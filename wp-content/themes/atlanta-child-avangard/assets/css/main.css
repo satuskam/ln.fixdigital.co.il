@@ -1,0 +1,116 @@
+.product-page-cont{
+    width: 70%;
+    min-width: 500px;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    margin-right: auto;
+    margin-left: auto;
+    background-color: #fff;
+    border: 3px solid #efefef;
+    padding: 24px;
+}
+
+@media (max-width: 767px) {
+    .product-page-cont {
+       min-width: 100%;
+       width: 100%;
+    }
+}
+
+
+.single-avangard_product #primary{
+	background-color: #c8ac84;
+}
+.product-cont{
+	padding: 10px;
+	border-left: 2px solid #efefef;
+}
+.slick-slider{
+	margin: 15px;
+	margin-left: 20px;
+}
+#zoom-product{
+	display: block;
+	float: left;
+}
+.title-product{
+	color: #422b19;
+	font-weight: none;
+    font-size: 30px;
+	font-weight: 400;
+}
+.line-product{
+	background-color: #9bb6c7;
+	margin-top: 15px;
+	margin-bottom: 15px;
+	width: 100%;
+	height: 3px;
+}
+.product-desc p{
+	font-size: 17px;
+}
+.product-form-title{
+	font-size: 16px;
+	font-weight: 400;
+	margin-top: 5px;
+	margin-bottom: 10px;
+}
+.single-avangard_product .wpcf7-form-control{
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+	text-align: right;
+}
+.single-avangard_product input[type=submit]{
+	background-color: #422b19!important;
+	color: #fff;
+}
+.single-avangard_product input[type=submit]:hover, .single-avangard_product input[type=submit]:focus{
+	opacity: 0.9!important;
+	color: #fff;
+}
+.product_url{
+	display: none;
+}
+.title-avantg{
+	text-align: center;
+	color: #412b19;
+	text-transform: uppercase;
+	font-weight: 500;
+	font-size: 45px;
+}
+
+@media (max-width: 767px) {
+    .logo-img {
+        width: 100%;
+        text-align: center;
+    }
+    
+    .navbar-toggle {
+        position: absolute;
+    }
+}
+
+.dialer {
+    display: inline-block;
+    position: absolute;
+    margin-left: 15px;
+    left: 0px;
+}
+
+.sticky-header .dialer {
+    margin-top: 8px;
+}
+
+.up-phone.round {
+    display: inline-block;
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    line-height: 34px;
+    border: 2px solid white;
+    text-align: center;
+    float: left;
+    
+    color: white;
+}

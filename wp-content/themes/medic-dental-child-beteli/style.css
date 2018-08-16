@@ -1,0 +1,184 @@
+/*
+Theme Name: Medic Dental child beteli
+Description: Medic Dental theme built on Elementor with ability to manage by API, in child theme new woocomerce single-product design
+Version: 0.0.1
+Text Domain: medic-dental
+Template: medic-dental
+*/
+
+
+/*2018.07.09 vaa changes for woocomerce*/
+@media (min-width: 768px){
+	.rtl.woocommerce-page div.product div.images
+	{
+		width: 59%;
+		float: left;
+		padding-right: 15px;
+		-webkit-box-sizing: border-box;
+		-moz-box-sizing: border-box;
+		box-sizing: border-box;
+		margin-bottom: 0;
+	}
+
+	.rtl.woocommerce-page div.product div.summary
+	{
+		width: 41%;
+		float: right;
+		padding: 10px;
+		-webkit-box-sizing: border-box;
+		-moz-box-sizing: border-box;
+		box-sizing: border-box;
+		margin-bottom: 0;
+	}
+
+	.woocommerce-page.columns-3 ul.products li.product,
+	.woocommerce.columns-3 ul.products li.product
+	{
+		margin-left: 0;
+		width: calc(33.3% - 8px);
+		margin-left: 12px;
+		margin-bottom: 12px;
+		-webkit-box-sizing: border-box;
+		-moz-box-sizing: border-box;
+		box-sizing: border-box;
+
+	}
+	.woocommerce-page.columns-3 ul.products li.product.last,
+	.woocommerce.columns-3 ul.products li.product.last
+	{
+		margin-left: 0;
+	}
+	.seeit .woocommerce  ul.products li.product a img
+	{
+		margin-bottom: 0;
+	}
+}
+
+
+.rtl.woocommerce-page.single-product .container-wrapper .product
+{
+	max-width: 1140px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.woocommerce-product-gallery__image
+{
+	position: relative;
+}
+
+
+.woocommerce-page div.product div.summary .product_title
+{
+	color: rgba(0,0,0,0.95);
+    font-family: "Assistant", Sans-serif;
+    font-size: 25px;
+    font-weight: 400;
+
+    padding-bottom: 36px;
+    border-bottom: 1px dashed #82448d;
+}
+
+.woocommerce-page div.product div.summary .woocommerce-product-details__short-description
+{
+	margin-top: 38px;
+}
+.woocommerce-page div.product div.summary .woocommerce-product-details__short-description h2
+{
+	color: rgba(0,0,0,0.81);
+	font-family: "Assistant", Sans-serif;
+	font-size: 21px;
+	font-weight: 400;
+	line-height: 1.5em;
+	text-align: justify;
+}
+
+
+/*
+
+
+.woocommerce div.product div.images .woocommerce-product-gallery__trigger
+{
+	background-color: transparent;
+	position: absolute;
+	text-indent:0px;
+	top:auto;
+	left:10px;
+	bottom: 15px;
+
+}
+
+.woocommerce div.product div.images .woocommerce-product-gallery__trigger img.emoji
+{
+	display: none!important;
+}
+
+
+
+.woocommerce-page.woocommerce div.product div.images .woocommerce-product-gallery__trigger:before
+{
+	border: none;
+	width: 36px;
+	height: 36px;
+	display: block;
+	font-family: FontAwesome;
+	content: "\f00e"!important;
+	font-size: 25px;
+	color: rgb(130, 68, 141);
+	transition: color 0.3s;
+}
+.woocommerce-page.woocommerce div.product div.images .woocommerce-product-gallery__trigger:hover:before
+{
+	color: rgb(244, 120, 37);
+}
+
+.woocommerce-page.woocommerce div.product div.images .woocommerce-product-gallery__trigger:after
+{
+	display: none;
+}
+*/
+
+.woocommerce-product-gallery__image
+{
+	position: relative;
+}
+.woocommerce-product-gallery__image:before
+{
+	font-family: FontAwesome;
+	content: "\f00e";
+	position: absolute;
+	left:10px;
+	bottom: 15px;
+	font-size: 25px;
+	color: rgb(130, 68, 141);
+	transition: color 0.3s;
+}
+.woocommerce-product-gallery__image:hover:before
+{
+	color: rgb(244, 120, 37);
+}
+
+
+.woocommerce ul.products li.product .woocommerce-loop-product__title
+{
+	text-align: center;
+	color: #000000;
+	font-family: "Assistant", Sans-serif;
+	font-size: 20px;
+	line-height: 20px;
+	font-weight: normal;
+}
+.button.product_type_simple.ajax_add_to_cart
+{
+	display: none;
+}
+.seeit
+{
+	display: block!important;
+}
+
+
+body.single-product .product-type-simple
+{
+	min-height: 100vh;
+}

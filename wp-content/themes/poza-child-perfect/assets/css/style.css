@@ -1,0 +1,325 @@
+@import "../../../poza/assets/css/style.min.css";
+
+/* Your CSS code goes here
+-------------------------------------- */
+.pojo-form .form-message{
+    font-size: 1.6em;
+}
+.phone-mobile-menu{
+	display: none;
+}
+@media only screen and (max-width: 425px) {
+	.sub-menu{
+		display: none;
+	}
+	.gallery.gallery-columns-3 .gallery-item{
+		max-width: 50%;
+	}
+	.phone-mobile-menu{
+		display: inline-block;
+	}
+	.fix_smartphone_href > i.round{
+	    transition: color 0.3s;
+	    color: #a83b27;
+	    font-size: 22px;
+	}
+	.fix_smartphone_href > i.round:hover{
+	  color: #878787;
+	  font-size: 22px;
+	  border-color: #878787;
+	}
+	#container > div.sticky-header > div > div > div.logo > span{
+		float: left;
+	}
+	#container > div.sticky-header > div > div > div.logo > span > a{
+		margin-left: 30px;
+    	width: 100%;
+	}
+}
+
+/*css for woocommerce single product*/
+.single-product.woocommerce #breadcrumbs
+{
+	display: none;
+}
+
+@media(min-width: 768px)
+{
+	body.rtl.woocommerce.single-product #content div.product div.images
+	{
+		float: left;
+		padding-left: 0px;
+		width: 55.7%
+	}
+	body.rtl.woocommerce.single-product #content div.product div.summary
+	{
+		padding-right: 0px;
+		width:44.3%
+	}
+	.woocommerce.single-product .entry-page>div.product .product_title
+	{
+		margin-top: 22px;
+        margin-bottom: 10px;
+	}
+	.shop_attributes
+	{
+		margin-top: 25px;
+	}
+		.woocommerce div.product form.cart .variations>tbody>tr>td
+	{
+		display: block;
+	}
+
+	.woocommerce div.product form.cart .variations td.label {
+		text-align: right;
+	}
+
+	.woocommerce div.product form.cart .variations td.label label {
+		font-size: 30px;
+		font-weight: normal;
+		padding-right:5px;
+		color: #025486;
+	}
+	.woocommerce div.product form.cart .variations
+	{
+		margin-top:26px;
+	}
+	.woocommerce div.product form.cart div.tawcvs-swatches > span.swatch
+	{
+		border-radius:0px;
+		width: 57px;
+		height: 57px;
+		margin-right: 3px;
+		margin-left:12px;
+		border: 1px solid #555;
+	}
+	.woocommerce div.product form.cart div.tawcvs-swatches > span.swatch:before
+	{
+		display: none;
+	}
+	.woocommerce div.product form.cart .reset_variations
+	{
+		display: none!important;
+	}
+	.woocommerce.single-product  .woocommerce-product-gallery__image
+	{
+		min-height: 600px;
+	}
+	.sec_attr
+	{
+		height: 215px;
+	}
+}
+
+
+
+.woocommerce div.product form.cart div.tawcvs-swatches > span.swatch
+{
+	border: 1px solid #555;
+}
+
+.woocommerce.single-product .entry-page>div.product .product_title
+{
+    font-size: 40px;
+	color: #9c2314;;
+}
+.woocommerce.single-product .sku_wrapper
+{
+    color: #025486;
+	font-weight: bold;
+}
+
+.attr_cont {
+	display: inline-block;
+	min-width: 150px;
+}
+.attr_cont>.attr_list>.list_item
+{
+	background-color: #e6e6e6;
+	font-size: 20px;
+	min-width:85px;
+	line-height: 30px;
+	margin-left: 10px;
+	text-align: center;
+	display: inline-block;
+	color: #0267a6;
+
+}
+.attr_cont>.attr_titul
+{
+	color:#025486;
+	line-height: 30px;
+	font-size:30px;
+	padding-bottom: 20px;
+}
+
+.sec_attr_item
+{
+	display: block;
+	max-width: 195px;
+	line-height: 30px;
+	background-color: #e6e6e6;
+	margin-bottom: 12px;
+	display: flex;
+}
+.sec_attr_item>span
+{
+	text-align: center;
+	color: #0267a6;
+	min-width: 73px;
+
+	flex-grow: 1;
+
+}
+.sec_attr_item .sec_attr_item_titul
+{
+	min-width: 115px;
+	flex-grow: 0;
+	border-left: 1px solid #0267a6;
+}
+.sec_attr
+{
+	display: flex;
+	flex-direction: column;
+	flex-wrap: wrap;
+	align-content:space-between;
+	max-width:422px;
+}
+
+.sec_attr_titul
+{
+		font-size: 30px;
+		font-weight: normal;
+		padding-right:5px;
+		color: #025486;
+	}
+.short-description_titul
+{
+
+	  margin-top: 16px;
+	margin-bottom: 0px;
+	font-weight: bold;
+	line-height: 1;
+	display: inline-block;
+	font-size: 25px;
+	padding-right: 0px;
+	color: #025486;
+}
+.woocommerce-product-details__short-description p
+{
+	line-height: 1.4;
+}
+.woocommerce.single-product div.product form.cart
+{
+	margin-bottom: 4px;
+
+}
+.sec_attr_titul
+{
+	line-height: 1.6;
+}
+.woocommerce-product-gallery__wrapper
+{
+	border: 2px solid #b4b4b4;
+}
+
+
+.single-product .wpcf7-form .form-topline>.wpcf7-form-control-wrap
+{
+	padding-left: 6px;
+	padding-right: 6px;
+}
+.single-product .wpcf7-form .form-botline>.wpcf7-form-control-wrap
+{
+	padding-left: 6px;
+	padding-right: 6px;
+}
+
+.single-product .wpcf7-form .form-botline>.wpcf7-submit
+{
+	    margin-right: 6px;
+    margin-left: 6px;
+    background-color: #9c2314;
+    border: 2px solid #b4b4b4;
+    font-weight: normal;
+    font-size: 25px;
+    line-height: 22px;
+}
+
+.single-product .wpcf7-form input
+{
+	direction: rtl;
+	line-height: 1;
+}
+.single-product .wpcf7-form-control-wrap
+{
+	position: relative;
+}
+.single-product .wpcf7-form-control-wrap>input
+{
+	    border: 2px solid #b4b4b4;
+}
+.single-product .single_form_titul
+{
+	margin-top: 26px;
+    margin-bottom: 18px;
+    font-weight: bold;
+    line-height: 1;
+    text-align: right;
+    display: inline-block;
+    font-size: 24px;
+    padding-right: 0px;
+    color: #025486;
+    float: right;padding-right: 5px;
+}
+@media(min-width: 768px)
+{
+
+	.single-product .wpcf7-form .form-topline>.wpcf7-form-control-wrap
+	{
+		display: inline-block;
+		width: 50%;
+	}
+	.single-product .wpcf7-form .form-botline>.wpcf7-form-control-wrap
+	{
+		width: 67%;
+		display: inline-block;
+	}
+
+	.single-product .wpcf7-form .ajax-loader
+	{
+		position: absolute;
+		left:-20px
+	}
+	.single-product .wpcf7-form .form-botline>.wpcf7-submit
+	{
+	    display: inline-block;
+	    width: calc(33% - 12px);
+	}
+
+	.single-product .wpcf7-form .form-botline,
+	.single-product .wpcf7-form .form-topline
+	{
+		width:95%;
+		float: right;
+		margin-bottom: 10px;
+	}
+	.single-product .form-topline .wpcf7-not-valid-tip
+	{
+		position: absolute;
+		z-index:1;
+		top:-1.5em
+	}
+	.single-product .form-botline .wpcf7-not-valid-tip
+	{
+		position: absolute;
+		z-index:1;
+		bottom:-1.5em
+	}
+	.single-product .wpcf7-form .form-botline
+	{
+		display: flex;
+		flex-direction: row-reverse;
+		position: relative;
+	}
+}

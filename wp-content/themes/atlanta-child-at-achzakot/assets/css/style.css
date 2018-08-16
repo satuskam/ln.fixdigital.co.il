@@ -1,0 +1,45 @@
+@import "../../../atlanta/assets/css/style.min.css";
+
+/* Your CSS code goes here
+-------------------------------------- */
+.pojo-form .form-message{
+    font-size: 1.6em;
+}
+
+
+/*  Styles for phone in mobile header  */
+@media (max-width: 767px) {
+    .logo .logo-img,
+    .logo .logo-text {
+        width: 60%;
+        text-align: center;
+    }
+
+    .logo .phoneBtn {
+        font-size: 25px;
+        width: 20%;
+    }
+
+    .rtl #header.logo-right .logo .phoneBtn,
+	.rtl .sticky-header.logo-left .logo .phoneBtn {
+        float: left;
+        text-align: left;
+    }
+
+    .rtl #header.logo-left .logo .phoneBtn,
+	.rtl .sticky-header.logo-left .logo .phoneBtn {
+        float: right;
+        text-align: right;
+    }
+
+    .rtl #header.logo-left .logo .phoneBtn .navbar-toggle,
+	.rtl .sticky-header.logo-left .logo .phoneBtn .navbar-toggle {
+        float: right;
+        padding: 4px 10px;
+        color: #3f9dbf;
+    }
+
+    .phoneMenuItem {
+        display: none !important;
+    }
+}

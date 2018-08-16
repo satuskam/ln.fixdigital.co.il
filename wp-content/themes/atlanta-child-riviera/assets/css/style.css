@@ -1,0 +1,257 @@
+@import "../../../atlanta/assets/css/style.min.css";
+
+/* Your CSS code goes here
+-------------------------------------- */
+.pojo-form .form-message{
+    font-size: 1.6em;
+}
+/*vaa css for header beg*/
+body .sf-menu a,
+body .menu-no-found,
+body .sf-menu li.pojo-menu-search,
+body .search-header {
+    line-height: 1.5;
+}
+
+body  .logo
+{
+	margin-top: 0;
+}
+body  .logo-img-primary
+{
+	height: 2em;
+}
+body:not(.home) .logo-img-primary
+{
+	height: 6em;
+	margin-bottom: 20px;
+}
+body  #header>.container
+{
+	position: relative;
+}
+body.home  #header>.container>.wraph
+{
+	position: absolute;
+	z-index: 100;
+	left:15px;
+	right:15px;
+	padding-top: 5px;
+}
+body #header>.container>.wraph .nav-main
+{
+	padding-top: 10px;
+}
+body:not(.home) #header>.container>.wraph .nav-main
+{
+	padding-top: 21px;
+}
+body .sf-menu li:hover ul,
+body .sf-menu li.sfHover ul
+{
+	top:25px;
+}
+body .sf-menu li
+{
+	border-top: none;
+	border-bottom:2px solid transparent;
+}
+body  ul#menu-main.sf-menu>li>a
+{
+	color: #fff!important;
+}
+body .sf-menu li.active,
+body .sf-menu li:hover,
+body .sf-menu li.current-menu-item,
+body .sf-menu li.current-menu-parent,
+body .sf-menu li.current-menu-ancestor,
+body .sf-menu li.current_page_item,
+body .sf-menu li.current_page_paren,
+body .sf-menu li.current_page_ancestor
+{
+	border-top: none;
+	border-color: #fff ;
+}
+
+
+body  #container #top-bar
+{
+	height: 1px;
+	overflow: hidden;
+}
+body .phone-number .button
+{
+	border-radius: 0px!important;
+	padding-left: 18px;
+	padding-right: 18px;
+	padding-top: 7px;
+	padding-bottom: 7px;
+}
+body .phone-number.men
+{
+	float: left;
+}
+body:not(.home) .phone-number.men
+{
+	float: right;
+}
+body .phone-number.men .button
+{
+	border-color: rgba(255,255,255,0.8)!important;
+	border: none!important;
+	background-color: rgba(255,255,255,0.8)!important;
+
+
+}
+body .phone-number.phone-number.phone-number .button .pojo-button-icon
+{
+	float: left;
+	padding-left: 0px;
+	padding-right: 10px;
+}
+body.home.layout-section #primary>.container #content #main
+{
+	margin-top: -1px;
+}
+body .sticky-header .logo
+{
+	padding-top: 10px;
+}
+body .sf-menu li a
+{
+	padding-left: 0.6em;
+	padding-right: 0.6em;
+}
+@media(max-width: 1150px) {
+	body .phone-number .button
+	{
+		padding-left: 5px;
+		padding-right: 5px;
+		/*font-size: 70%;*/
+	}
+	body .sf-menu li a
+	{
+		padding-left: 0.5em;
+		padding-right: 0.5em;
+	}
+}
+/*for not home*/
+body:not(.home) #top-bar,
+body:not(.home) #header
+{
+	background-color: #706f74;
+}
+body:not(.home) #header
+{
+	padding-top: 8px;
+}
+@media (max-width: 991px)
+{
+	#header .container
+	{
+		max-width: 100%;
+	}
+}
+
+@media (max-width: 1040px)
+{
+	body:not(.home) .logo-img-primary
+	{
+		height: 3.5em;
+		margin-bottom: 5px;
+	}
+}
+@media (max-width: 767px)
+{
+	body:not(.home) #header
+	{
+		padding-bottom: 1px;
+	}
+	body:not(.home) .elementor-2238 .elementor-element.elementor-element-bspnjgh
+	{
+		margin-top: 0;
+	}
+	body:not(.home) #header.logo-right .logo
+	{
+		width: 100%;
+	}
+	body:not(.home) .phone-number.men
+	{
+		float: left;
+	}
+}
+/*for dropdown and mobile*/
+#header .nav-main .mobile-menu,
+#header .navbar-toggle
+{
+	background-color: #EFEFEF;
+}
+@media (max-width: 767px)
+{
+	body.home #header>.container>.wraph
+	{
+		left:0px;
+		right:0px;
+	}
+	body.home .phone-number.men
+	{
+		margin-left: 15px;
+	}
+
+	body.home .navbar-toggle
+	{
+		margin-right: 15px;
+	}
+	body.home #header>.container>.wraph .nav-main
+	{
+		padding-top: 0;
+		margin-top: -15px;
+	}
+	body:not(.home) .navbar-toggle
+	{
+		margin-top: 15px;
+	}
+	body:not(.home) #header>.container>.wraph .nav-main
+	{
+		padding-top: 0;
+		margin-top: -15px;
+	}
+	body:not(.home) .navbar-collapse
+	{
+		margin-left: -15px;
+		margin-right: -15px;
+	}
+	body.home .navbar-collapse
+	{
+		border-bottom: 1px solid #706F74;
+	}
+}
+@media (max-width: 991px)
+{
+	body .sf-menu li:hover ul,
+	body .sf-menu li.sfHover ul
+	{
+		top:18px;
+	}
+}
+
+body .sf-menu a:hover,
+body .sf-menu li.active a,
+body .sf-menu li.current-menu-item > a,
+body .sf-menu .sfHover > a,
+body .sf-menu .sfHover > li.current-menu-item > a,
+body .sf-menu li.current-menu-ancestor > a,
+body .mobile-menu a:hover,
+body .mobile-menu li.current-menu-item > a
+{
+		color:#c5c5c5;
+}
+body .nav-main .sf-menu .sub-menu li:hover
+{
+	background-color: #706F74;
+}
+body .sf-menu .sub-menu li
+{
+	border: none;
+}
+/*vaa css for header end*/

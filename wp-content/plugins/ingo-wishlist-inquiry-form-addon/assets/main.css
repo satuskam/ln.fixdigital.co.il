@@ -1,0 +1,37 @@
+.wishlist_table tfoot {
+    display: none;
+}
+
+.wishlist_table tr td.product-name {
+    text-align: center;
+}
+
+.wishlist_table tr th.product-name {
+    text-align: center;
+}
+
+.wishlist_table tr td.product-name a {
+    color: black;
+    font-weight: bold;
+}
+
+.page-title {
+/*     display: none; */
+}
+
+.submit {
+    width: 100%;
+}
+
+#breadcrumbs {
+    display: none;
+}
+
+.inquiryWrapper {
+    display: none;
+    padding: 0px;
+}
+
+.inquiryWrapper .formWrapper {
+    padding: 0px;
+}

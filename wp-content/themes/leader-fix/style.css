@@ -1,0 +1,18 @@
+/*
+Theme Name: Leader Fix
+Theme URI: http://
+Description: A Beautiful, Professional and Ultimate WordPress Theme Made by Elementor Framework.
+Version: 4.0.11
+Author: Fix
+Author URI: http://
+Text Domain: leader-fix
+*/
+
+
+.accessability_container{
+  top: 100px!important;
+}
+
+.sticked .elementor-4271 .elementor-element.elementor-element-fc0e248 > .elementor-widget-container{
+	margin: 0px!important;
+}

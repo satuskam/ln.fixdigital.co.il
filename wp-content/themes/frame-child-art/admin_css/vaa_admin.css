@@ -1,0 +1,50 @@
+#acf-configuration1 ul.acf-radio-list.radio.horizontal {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: row;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+      -ms-flex-pack: justify;
+          justify-content: space-between; }
+  #acf-configuration1 ul.acf-radio-list.radio.horizontal > li {
+    width: 30%;
+    margin-right: 0;
+    box-sizing: border-box; }
+    #acf-configuration1 ul.acf-radio-list.radio.horizontal > li:last-child {
+      margin-right: 1px; }
+    #acf-configuration1 ul.acf-radio-list.radio.horizontal > li label {
+      width: 100%; }
+      #acf-configuration1 ul.acf-radio-list.radio.horizontal > li label input {
+        float: right;
+        margin-right: 0 !important;
+        margin-bottom: 5px; }
+      #acf-configuration1 ul.acf-radio-list.radio.horizontal > li label img {
+        width: 100%;
+        border: 1px solid transparent; }
+      #acf-configuration1 ul.acf-radio-list.radio.horizontal > li label input:checked + img {
+        border-color: #000; }
+
+@media (max-width: 767px) {
+  #acf-configuration1 ul.acf-radio-list.radio.horizontal.horizontal {
+    -webkit-box-pack: column;
+    -webkit-justify-content: column;
+        -ms-flex-pack: column;
+            justify-content: column; }
+    #acf-configuration1 ul.acf-radio-list.radio.horizontal.horizontal > li {
+      width: 100%; }
+      #acf-configuration1 ul.acf-radio-list.radio.horizontal.horizontal > li label {
+        text-align: center; }
+      #acf-configuration1 ul.acf-radio-list.radio.horizontal.horizontal > li label input {
+        display: block;
+        width: 25px !important;
+        float: none;
+        margin-left: auto;
+        margin-right: auto !important; } }
+
+/*# sourceMappingURL=vaa_admin.css.map */

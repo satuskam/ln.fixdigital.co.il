@@ -1,0 +1,13 @@
+/*
+Theme Name: Baker
+Description: Baker theme built on Elementor with ability to manage by API
+Version: 0.1.0
+Author: UCO Team
+Author URI: http://uco.co.il
+Text Domain: baker
+*/
+
+
+.accessability_container{
+  top: 100px!important;
+}

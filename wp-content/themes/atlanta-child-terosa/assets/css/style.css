@@ -1,0 +1,147 @@
+@import "../../../atlanta/assets/css/style.min.css";
+
+/* Your CSS code goes here
+-------------------------------------- */
+.pojo-form .form-message{
+    font-size: 1.6em;
+}
+#header .right-menu{
+    padding-left: 25px !important;
+}
+#header .left-menu-cont{
+    padding-right: 25px !important;
+}
+
+#header .right-menu{
+    justify-content: flex-end !important;
+} 
+#header .left-menu{
+    justify-content: flex-start !important;
+}
+#header .right-menu li+li{
+    padding-right: 25px;
+}
+#header .left-menu li+li{
+    padding-left: 25px;
+}
+.sticky-header{
+    overflow: hidden;
+}
+.sticky-header.logo-left .nav-main,
+.rtl .sticky-header.logo-left .nav-main{
+    float: right !important;
+    overflow: hidden;
+}
+.phone-button{
+    display: none;
+    position: absolute;
+    left: 0;
+    bottom: 15px;
+}
+.phone-button .image-text-body{
+    display: none;
+}
+.logo.logom{
+    position: relative;
+}
+.cont_a_menu .pojo-image-text a{
+    display: inline-block;
+    line-height: 0;
+    font-size: 0;
+}
+.cont_a_menu .pojo-image-text a img{
+    max-width: 100%;
+}
+
+
+#button-smartphone > div > div > p > a{
+    display: inline-block;
+    line-height: 1;
+    color: #000000;
+    background-color: #ffffff;
+    border-style: double;
+    border-color: rgba(0,0,0,0.37);
+    box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.5);
+    font-size: 15px;
+    padding: 12px 24px;
+    border-radius: 3px;
+    opacity: 1;
+}
+
+#button-smartphone > div > div > p > a:hover{
+    opacity: .9;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@media (max-width: 1370px) {
+    #header .right-menu li+li{
+        padding-right: 15px;
+    }
+    #header .left-menu li+li{
+        padding-left: 15px;
+    }
+    #header .right-menu a,
+    #header .left-menu a{
+        font-size: 15px;
+        white-space: nowrap;
+    }
+}
+@media (max-width: 1250px) {
+    .cont_a_menu{
+        justify-content: center;
+    }
+    #header .left-menu-cont, #header .right-menu{
+        width: auto;
+    }
+    .cont_a_menu .img-cont.logod{
+        flex: 0 0 auto;
+    }
+}
+@media (max-width: 767px) {
+    .cont_a_menu{
+        display: none !important;
+    }
+    body #pojo-a11y-toolbar{
+        top: 208px !important;
+    }
+    .phone-button{
+        display: block;
+    }
+}
+#wpadminbar{
+    overflow: hidden;
+}
+@media (max-width: 425px) {
+	#gallery-1 > figure{
+    	max-width: 50%!important;
+	}
+	#post-2 > div > div > div > div > section.elementor-element.elementor-element-khbddtl.elementor-section-boxed.elementor-section-height-default.elementor-section-height-default.elementor-section.elementor-top-section, #post-434 > div > div > div > div > section.elementor-element.elementor-element-342e78d1.elementor-section-boxed.elementor-section-height-default.elementor-section-height-default.elementor-section.elementor-top-section, .elementor-2322 .elementor-element.elementor-element-316ffe5e, .elementor-1009 .elementor-element.elementor-element-bbd8bd8, .elementor-2329 .elementor-element.elementor-element-18042f40, .elementor-1008 .elementor-element.elementor-element-721e88b7, .elementor-2256 .elementor-element.elementor-element-tc3rr84 .elementor-divider, .elementor-2256 .elementor-element.elementor-element-yfcxpnb .elementor-divider, .elementor-488 .elementor-element.elementor-element-djlryad{
+    padding: 0px!important;
+	}
+	#post-2256 > div > div > div > div > section > div > div > div > div > div > div.elementor-element.elementor-element-tc3rr84.elementor-widget.elementor-widget-divider, #post-2256 > div > div > div > div > section > div > div > div > div > div > div.elementor-element.elementor-element-yfcxpnb.elementor-widget.elementor-widget-divider{
+    	margin-bottom: 0px!important;
+	}
+	.elementor-2256 .elementor-element.elementor-element-d8981f0 > .elementor-element-populated{
+	margin: 0px 0px 0px 0px;
+	}
+	.submenu-plus{
+		float: left;	
+	}
+	.sub-menu{
+    	display:none;
+    	padding-right: 5px;
+	}
+}

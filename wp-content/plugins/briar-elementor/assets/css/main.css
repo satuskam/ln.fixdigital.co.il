@@ -1,0 +1,71 @@
+.elementor-widget-briar-masonry-gallery .gallery-icon img {
+    width: 100%;
+}
+
+.elementor-widget-briar-masonry-gallery .gallery-item {
+    padding: 0 0 5px 0;
+}
+
+.elementor-widget-briar-masonry-gallery .gallery {
+    column-gap: 5px;
+}
+
+.elementor-widget-briar-masonry-gallery .gallery .gallery-item {
+    max-width: 100% !important;
+    width: 100% !important;
+}
+
+.elementor-widget-briar-masonry-gallery .gallery .gallery-item a {
+    width: 100%;
+}
+
+.elementor-widget-briar-masonry-gallery .gallery .gallery-item a:hover {
+    display: block;
+}
+
+.elementor-widget-briar-masonry-gallery .animated {
+    display: block;
+}
+
+@media only screen and (min-width:1024px) {
+    .elementor-widget-briar-masonry-gallery .gallery-columns-1 {
+        column-count: 1;
+    }
+    .elementor-widget-briar-masonry-gallery .gallery-columns-2 {
+        column-count: 2;
+    }
+    .elementor-widget-briar-masonry-gallery .gallery-columns-3 {
+        column-count: 3;
+    }
+    .elementor-widget-briar-masonry-gallery .gallery-columns-4 {
+        column-count: 4;
+    }
+    .elementor-widget-briar-masonry-gallery .gallery-columns-5{
+        column-count: 5;
+    }
+    .elementor-widget-briar-masonry-gallery .gallery-columns-6 {
+        column-count: 6;
+    }
+    .elementor-widget-briar-masonry-gallery .gallery-columns-7 {
+        column-count: 7;
+    }
+    .elementor-widget-briar-masonry-gallery .gallery-columns-8 {
+        column-count: 8;
+    }
+    .elementor-widget-briar-masonry-gallery .gallery-columns-9 {
+        column-count: 9;
+    }
+    .elementor-widget-briar-masonry-gallery .gallery-columns-10 {
+        column-count: 10;
+    }
+}
+
+@media only screen and (min-width:361px) and (max-width:1024px) {
+    .elementor-widget-briar-masonry-gallery .gallery {
+        column-count: 2;
+    }
+}
+
+.elementor-widget-briar-masonry-gallery .elementor-image-gallery .gallery {
+    column-gap: 0px;
+}

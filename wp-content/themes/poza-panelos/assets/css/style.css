@@ -1,0 +1,77 @@
+@import "../../../poza/assets/css/style.min.css";
+
+/* Your CSS code goes here
+-------------------------------------- */
+.pojo-form .form-message{
+    font-size: 1.6em;
+}
+
+.phoneBtn {
+   display: inline-block !important;
+   padding: 0px 1.5vw;
+   border: 0.15vw solid #fab95b;
+   line-height: 1.7;
+   color: black;
+   font-size: 2vw;
+   text-align: center;
+   background: #fff;
+}
+
+.phoneBtn:hover {
+   color: black;
+   background: #f0f0f0 !important;
+   border-color: #ffc96b;
+}
+
+.phoneBtnWrapper {
+    width: 40%;
+    display: inline-block;
+    text-align: left;
+    vertical-align: bottom;
+    margin-bottom: 2.9vw;
+}
+
+#header .logo-img,
+#header .logo-text {
+   display: inline-block;
+   width: 59%;
+}
+
+#header .logo-img .pojo-hidden-phone {
+/*     -moz-transform: scaleY(-1);
+-o-transform: scaleY(-1);
+-webkit-transform: scaleY(-1);
+transform: scaleY(-1); */
+}
+
+
+@media (min-width: 767px) {
+	.sticky-header .phoneBtnWrapper {
+    	display: none;
+	}
+}
+
+@media (max-width: 767px) {
+    #header .logo-img,
+    #header .logo-text,
+	.sticky-header .logo-img,
+	.sticky-header .logo-text {
+       width: 40%;
+    }
+
+    .phoneBtn {
+       font-size: 4vw;
+       padding: 2px 5px;
+       white-space: nowrap;
+    }
+
+	.phoneBtnWrapper {
+    	margin: 0px;
+        vertical-align: middle;
+        text-align: center;
+	}
+
+   .phoneBtnText > span:first-child {
+       display: none;
+   }
+}

@@ -1,0 +1,45 @@
+2017-09-29 16:19:29: Turn Off Copy Attributes, as one of file systems does not support it
+2017-09-29 16:19:29: Turn Off Copy/Compare Extended Attributes, as one of file systems does not support it
+2017-09-29 16:19:29: Turn Off Copy Symbolic LInks, as one of file systems does not support it. You may want to consider using Job -> Options -> Advanced -> Links -> Drill Down, if you need to copy folder to which the link points
+2017-09-29 16:19:29: -- Analysis Started by User Command
+2017-09-29 16:19:29: Слева: State file does not exist: E:/my joms/UCO/fixdigital.co.il/terosa.ln.fixdigital.co.il/terosa_themes/atlanta-child-terosa/_gsdata_/_file_state_v4._gs
+2017-09-29 16:19:29: Справа: State file does not exist: ftp://62.219.23.33/htdocs/wp-content/themes/atlanta-child-terosa/_gsdata_/_file_state_v4._gs
+2017-09-29 16:19:32: /assets/css/rtl.css: Конфликт: Новые файлы, которые отличаются
+2017-09-29 16:19:32: /assets/css/style.css: Конфликт: Новые файлы, которые отличаются
+2017-09-29 16:19:32: /assets/images/index.php: Конфликт: Новые файлы, которые отличаются
+2017-09-29 16:19:32: /content/index.php: Конфликт: Новые файлы, которые отличаются
+2017-09-29 16:19:32: /functions.php: Конфликт: Новые файлы, которые отличаются
+2017-09-29 16:19:32: /header.php: Конфликт: Новые файлы, которые отличаются
+2017-09-29 16:19:32: /includes/class-pojo-child-template.php: Конфликт: Новые файлы, которые отличаются
+2017-09-29 16:19:32: /loop/index.php: Конфликт: Новые файлы, которые отличаются
+2017-09-29 16:19:32: /screenshot.png: Конфликт: Новые файлы, которые отличаются
+2017-09-29 16:19:32: /style.css: Конфликт: Новые файлы, которые отличаются
+2017-09-29 16:19:32: Исключите конфликты выбором правильного направления синхронизации
+2017-09-29 16:19:32: Изменений: 10, Конфликтов: 10, Копий Времени: 0, Копий Состояния: 6, Ошибок: 0, All: 17
+2017-09-29 16:19:32: ----- Анализ завершён. Время 00:00:05, Скорость: 3 файлов/сек -----
+2017-09-29 16:19:32: 
+2017-09-29 16:19:45: === User Changed Action from 'CONFLICT' to 'COPY_FILE_RTOL' on item /assets/css/rtl.css
+2017-09-29 16:19:45: === User Changed Action from 'CONFLICT' to 'COPY_FILE_RTOL' on item /assets/css/style.css
+2017-09-29 16:19:45: === User Changed Action from 'CONFLICT' to 'COPY_FILE_RTOL' on item /assets/images/index.php
+2017-09-29 16:19:45: === User Changed Action from 'CONFLICT' to 'COPY_FILE_RTOL' on item /content/index.php
+2017-09-29 16:19:45: === User Changed Action from 'CONFLICT' to 'COPY_FILE_RTOL' on item /functions.php
+2017-09-29 16:19:45: === User Changed Action from 'CONFLICT' to 'COPY_FILE_RTOL' on item /header.php
+2017-09-29 16:19:45: === User Changed Action from 'CONFLICT' to 'COPY_FILE_RTOL' on item /includes/class-pojo-child-template.php
+2017-09-29 16:19:45: === User Changed Action from 'CONFLICT' to 'COPY_FILE_RTOL' on item /loop/index.php
+2017-09-29 16:19:45: === User Changed Action from 'CONFLICT' to 'COPY_FILE_RTOL' on item /screenshot.png
+2017-09-29 16:19:45: === User Changed Action from 'CONFLICT' to 'COPY_FILE_RTOL' on item /style.css
+2017-09-29 16:19:45: Done.
+2017-09-29 16:19:49: New _gsdata_ folder(s) created, so rescan all job folders for their ghosts
+2017-09-29 16:19:49: == Sync Started by User Command
+2017-09-29 16:19:51: Скопировано поверх 'ftp://62.219.23.33/htdocs/wp-content/themes/atlanta-child-terosa/assets/css/rtl.css' -> 'E:/my joms/UCO/fixdigital.co.il/terosa.ln.fixdigital.co.il/terosa_themes/atlanta-child-terosa/assets/css/rtl.css' (User Action)
+2017-09-29 16:19:51: Скопировано поверх 'ftp://62.219.23.33/htdocs/wp-content/themes/atlanta-child-terosa/assets/css/style.css' -> 'E:/my joms/UCO/fixdigital.co.il/terosa.ln.fixdigital.co.il/terosa_themes/atlanta-child-terosa/assets/css/style.css' (User Action)
+2017-09-29 16:19:52: Скопировано поверх 'ftp://62.219.23.33/htdocs/wp-content/themes/atlanta-child-terosa/assets/images/index.php' -> 'E:/my joms/UCO/fixdigital.co.il/terosa.ln.fixdigital.co.il/terosa_themes/atlanta-child-terosa/assets/images/index.php' (User Action)
+2017-09-29 16:19:52: Скопировано поверх 'ftp://62.219.23.33/htdocs/wp-content/themes/atlanta-child-terosa/content/index.php' -> 'E:/my joms/UCO/fixdigital.co.il/terosa.ln.fixdigital.co.il/terosa_themes/atlanta-child-terosa/content/index.php' (User Action)
+2017-09-29 16:19:53: Скопировано поверх 'ftp://62.219.23.33/htdocs/wp-content/themes/atlanta-child-terosa/functions.php' -> 'E:/my joms/UCO/fixdigital.co.il/terosa.ln.fixdigital.co.il/terosa_themes/atlanta-child-terosa/functions.php' (User Action)
+2017-09-29 16:19:53: Скопировано поверх 'ftp://62.219.23.33/htdocs/wp-content/themes/atlanta-child-terosa/header.php' -> 'E:/my joms/UCO/fixdigital.co.il/terosa.ln.fixdigital.co.il/terosa_themes/atlanta-child-terosa/header.php' (User Action)
+2017-09-29 16:19:54: Скопировано поверх 'ftp://62.219.23.33/htdocs/wp-content/themes/atlanta-child-terosa/includes/class-pojo-child-template.php' -> 'E:/my joms/UCO/fixdigital.co.il/terosa.ln.fixdigital.co.il/terosa_themes/atlanta-child-terosa/includes/class-pojo-child-template.php' (User Action)
+2017-09-29 16:19:55: Скопировано поверх 'ftp://62.219.23.33/htdocs/wp-content/themes/atlanta-child-terosa/loop/index.php' -> 'E:/my joms/UCO/fixdigital.co.il/terosa.ln.fixdigital.co.il/terosa_themes/atlanta-child-terosa/loop/index.php' (User Action)
+2017-09-29 16:19:55: Скопировано поверх 'ftp://62.219.23.33/htdocs/wp-content/themes/atlanta-child-terosa/screenshot.png' -> 'E:/my joms/UCO/fixdigital.co.il/terosa.ln.fixdigital.co.il/terosa_themes/atlanta-child-terosa/screenshot.png' (User Action)
+2017-09-29 16:19:56: Скопировано поверх 'ftp://62.219.23.33/htdocs/wp-content/themes/atlanta-child-terosa/style.css' -> 'E:/my joms/UCO/fixdigital.co.il/terosa.ln.fixdigital.co.il/terosa_themes/atlanta-child-terosa/style.css' (User Action)
+2017-09-29 16:19:58: ===== Синхронизация завершена. Время 00:00:11, Скорость: 18,1 КБ/s файлов/сек =====, Синхронизировано: 16, Ошибок: 0
+2017-09-29 16:19:58: 

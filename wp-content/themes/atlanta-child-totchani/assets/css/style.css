@@ -1,0 +1,42 @@
+@import "../../../atlanta/assets/css/style.min.css";
+
+/* Your CSS code goes here
+-------------------------------------- */
+.pojo-form .form-message{
+    font-size: 1.6em;
+}
+.p-like-h3, .p-like-h4, .p-like-h5{
+	font-family: 'Assistant', Arial, sans-serif;
+	font-weight: 600;	
+	text-transform: none;
+	letter-spacing: 0px;
+	line-height: 1em;
+}
+.p-like-h3 .elementor-flip-box__layer__description{	
+	font-size: 21px !important;
+}
+.p-like-h3  .elementor-flip-box__front .elementor-flip-box__layer__description{
+	color:#adb627 !important;
+}
+.p-like-h3{
+	font-size: 36px;	
+}
+.p-like-h4{
+	font-size: 28px;
+	}
+.p-like-h5{
+	font-size: 24px;
+}
+.p-like-h6{
+	font-family: 'Assistant', Arial, sans-serif;
+	font-size: 20px;
+}
+.categories-front-page h2{
+	color: #adb627;
+    font-size: 30px;
+    line-height: 1;
+    font-weight: 600;
+}
+#nav_menu-5 #menu-main li{
+	height: 72px;
+}

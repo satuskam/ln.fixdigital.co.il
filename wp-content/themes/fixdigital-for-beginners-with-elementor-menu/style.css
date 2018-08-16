@@ -1,0 +1,30 @@
+/*
+Theme Name: For Beginners with Elemenotr Menu
+Author: the UCO team
+Author URI: http://www.e-publish.co.il
+Description: Fixdigital Theme for Beginners
+Version: 0.1
+Text Domain: fixdigitalForBeginners
+
+*/
+
+.topMenuSection .menuPhone,
+.topMenuSection .menuLogo {
+	display: none;
+}
+
+@media all and (max-width: 769px) {
+    .topMenuSection .menuPhone,
+    .topMenuSection .menuLogo {
+    	display: block;
+    	border: none;
+        padding: 0px;
+        margin-bottom: 0px;
+    }
+
+	.topMenuSection .menuPhone {   	
+		position: absolute;
+    	left: 10px;
+    	top: 10px;
+	}
+}

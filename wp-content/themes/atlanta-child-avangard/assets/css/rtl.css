@@ -1,0 +1,6 @@
+@import "../../../atlanta/assets/css/rtl.min.css";
+
+.product-page-cont{
+	margin-right: auto;
+	margin-left: auto;
+}

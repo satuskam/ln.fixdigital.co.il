@@ -1,0 +1,54 @@
+@import "../../../everest/assets/css/style.min.css";
+
+/* Your CSS code goes here
+-------------------------------------- */
+.pojo-form .form-message{
+    font-size: 1.6em;
+}
+
+section#search-3{
+	display: none;
+}
+ul.sub-menu{
+	display: none;
+}
+
+#header > div > nav > div.up-phone{
+	display: none;
+}
+.mobile-cat-subtitle{
+	display: none;
+}
+@media only screen and (max-width: 426px)  {
+	section#search-2{
+		display: none!important;
+	}
+	section#search-3{
+		display: block!important;
+	}
+	.elementor-1470 .elementor-element.elementor-element-98aj8qe .slick-slide{
+		height: 350px!important;
+	}
+	.elementor-1470 .elementor-element.elementor-element-msnefgx{
+		padding-top: 0px;
+		height: 250px;
+	}
+	.mobile-cat-subtitle{
+		display: block;
+	}
+	.woocommerce div.product div.images{
+		margin-bottom: 0px;
+	}
+	.owl-theme .owl-controls .owl-page{
+		display: none!important;
+	}
+	body.rtl .wrps_related_products_area .owl-buttons{
+		top:95%;
+	}
+	.formContainer{
+		margin-top: 0px!important;
+	}
+	#footer{
+		margin-top: -25px;
+	}
+}

@@ -1,0 +1,50 @@
+@import "../../../atlanta/assets/css/style.min.css";
+
+/* Your CSS code goes here
+-------------------------------------- */
+.pojo-form .form-message{
+    font-size: 1.6em;
+}
+
+.product-page-cont{
+	margin-right: auto;
+	margin-left: auto;
+}
+.title-avantg h1{
+	text-align: center;
+	color: #412b19;
+	text-transform: uppercase;
+	font-size: 45px;
+	font-weight: 600;
+	font-family: "Assistant", Sans-serif;
+}
+.sticky-header .sf-menu li a {
+    padding: 0 0.9em;
+	font-size: 16px;
+    }
+.sticky-header .logo {
+    padding: 5px 0;
+    }
+.sticky-header .logo .logo-img img {
+    max-height: 50px;
+    }
+.links-toprod h3{
+    font-family: "Assistant", Sans-serif;
+	font-size: 25px;
+	font-weight: 600;
+	text-transform: uppercase;
+	letter-spacing: 2.2px;
+	color: #412b19;
+	background-color: #9bb6c7;
+	-webkit-transition: all .5s;
+-o-transition: all .5s;
+transition: all .5s;
+    }
+.links-toprod h3:hover{
+    color: #9bb6c7;
+	background-color: #412b19;
+	}
+.links-toprod h3 a{
+	padding: 15px;
+	display: block;
+}

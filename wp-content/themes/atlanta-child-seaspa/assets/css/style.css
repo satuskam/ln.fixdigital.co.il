@@ -1,0 +1,15 @@
+@import "../../../atlanta/assets/css/style.min.css";
+
+/* Your CSS code goes here
+-------------------------------------- */
+.pojo-form .form-message{
+    font-size: 1.6em;
+}
+#top-bar .pull-left{
+	font-size: 14px!important;
+}
+@media only screen and (max-width: 425px) {
+	#top-bar{
+		display: none!important;
+	}
+}

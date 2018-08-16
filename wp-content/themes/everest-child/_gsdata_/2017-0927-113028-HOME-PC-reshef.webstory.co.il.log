@@ -1,0 +1,56 @@
+2017-09-27 11:30:29: Turn Off Copy Attributes, as one of file systems does not support it
+2017-09-27 11:30:29: Turn Off Copy/Compare Extended Attributes, as one of file systems does not support it
+2017-09-27 11:30:29: Turn Off Copy Symbolic LInks, as one of file systems does not support it. You may want to consider using Job -> Options -> Advanced -> Links -> Drill Down, if you need to copy folder to which the link points
+2017-09-27 11:30:29: -- Analysis Started by User Command
+2017-09-27 11:30:29: Слева: State file does not exist: E:/my joms/UCO/fixdigital.co.il/reshef.webstory.co.il/themes/everest-child/_gsdata_/_file_state_v4._gs
+2017-09-27 11:30:29: Справа: State file does not exist: ftp://62.219.23.33/htdocs/wp-content/themes/everest-child/_gsdata_/_file_state_v4._gs
+2017-09-27 11:30:33: /assets/css/rtl.css: Конфликт: Новые файлы, которые отличаются
+2017-09-27 11:30:33: /assets/css/style.css: Конфликт: Новые файлы, которые отличаются
+2017-09-27 11:30:33: /assets/images/index.php: Конфликт: Новые файлы, которые отличаются
+2017-09-27 11:30:33: /content/index.php: Конфликт: Новые файлы, которые отличаются
+2017-09-27 11:30:33: /functions.php: Конфликт: Новые файлы, которые отличаются
+2017-09-27 11:30:33: /includes/class-pojo-child-template.php: Конфликт: Новые файлы, которые отличаются
+2017-09-27 11:30:33: /loop/index.php: Конфликт: Новые файлы, которые отличаются
+2017-09-27 11:30:33: /screenshot.png: Конфликт: Новые файлы, которые отличаются
+2017-09-27 11:30:33: /screenshot.png.webp: Конфликт: Новые файлы, которые отличаются
+2017-09-27 11:30:33: /style.css: Конфликт: Новые файлы, которые отличаются
+2017-09-27 11:30:33: Исключите конфликты выбором правильного направления синхронизации
+2017-09-27 11:30:33: Изменений: 10, Конфликтов: 10, Копий Времени: 0, Копий Состояния: 6, Ошибок: 0, All: 17
+2017-09-27 11:30:33: ----- Анализ завершён. Время 00:00:05, Скорость: 3 файлов/сек -----
+2017-09-27 11:30:33: 
+2017-09-27 11:30:35: === User Changed Action from 'CONFLICT' to 'COPY_FILE_RTOL' on item /assets/css/rtl.css
+2017-09-27 11:30:35: === User Changed Action from 'CONFLICT' to 'COPY_FILE_RTOL' on item /assets/css/style.css
+2017-09-27 11:30:35: === User Changed Action from 'CONFLICT' to 'COPY_FILE_RTOL' on item /assets/images/index.php
+2017-09-27 11:30:35: === User Changed Action from 'CONFLICT' to 'COPY_FILE_RTOL' on item /content/index.php
+2017-09-27 11:30:35: === User Changed Action from 'CONFLICT' to 'COPY_FILE_RTOL' on item /functions.php
+2017-09-27 11:30:35: === User Changed Action from 'CONFLICT' to 'COPY_FILE_RTOL' on item /includes/class-pojo-child-template.php
+2017-09-27 11:30:35: === User Changed Action from 'CONFLICT' to 'COPY_FILE_RTOL' on item /loop/index.php
+2017-09-27 11:30:35: === User Changed Action from 'CONFLICT' to 'COPY_FILE_RTOL' on item /screenshot.png
+2017-09-27 11:30:35: === User Changed Action from 'CONFLICT' to 'COPY_FILE_RTOL' on item /screenshot.png.webp
+2017-09-27 11:30:35: === User Changed Action from 'CONFLICT' to 'COPY_FILE_RTOL' on item /style.css
+2017-09-27 11:30:35: Done.
+2017-09-27 11:30:37: === User Changed Action from 'CONFLICT' to 'COPY_FILE_RTOL' on item /assets/css/rtl.css
+2017-09-27 11:30:37: === User Changed Action from 'CONFLICT' to 'COPY_FILE_RTOL' on item /assets/css/style.css
+2017-09-27 11:30:37: === User Changed Action from 'CONFLICT' to 'COPY_FILE_RTOL' on item /assets/images/index.php
+2017-09-27 11:30:37: === User Changed Action from 'CONFLICT' to 'COPY_FILE_RTOL' on item /content/index.php
+2017-09-27 11:30:37: === User Changed Action from 'CONFLICT' to 'COPY_FILE_RTOL' on item /functions.php
+2017-09-27 11:30:37: === User Changed Action from 'CONFLICT' to 'COPY_FILE_RTOL' on item /includes/class-pojo-child-template.php
+2017-09-27 11:30:37: === User Changed Action from 'CONFLICT' to 'COPY_FILE_RTOL' on item /loop/index.php
+2017-09-27 11:30:37: === User Changed Action from 'CONFLICT' to 'COPY_FILE_RTOL' on item /screenshot.png
+2017-09-27 11:30:37: === User Changed Action from 'CONFLICT' to 'COPY_FILE_RTOL' on item /screenshot.png.webp
+2017-09-27 11:30:37: === User Changed Action from 'CONFLICT' to 'COPY_FILE_RTOL' on item /style.css
+2017-09-27 11:30:37: Done.
+2017-09-27 11:30:41: New _gsdata_ folder(s) created, so rescan all job folders for their ghosts
+2017-09-27 11:30:41: == Sync Started by User Command
+2017-09-27 11:30:42: Скопировано поверх 'ftp://62.219.23.33/htdocs/wp-content/themes/everest-child/assets/css/rtl.css' -> 'E:/my joms/UCO/fixdigital.co.il/reshef.webstory.co.il/themes/everest-child/assets/css/rtl.css' (User Action)
+2017-09-27 11:30:43: Скопировано поверх 'ftp://62.219.23.33/htdocs/wp-content/themes/everest-child/assets/css/style.css' -> 'E:/my joms/UCO/fixdigital.co.il/reshef.webstory.co.il/themes/everest-child/assets/css/style.css' (User Action)
+2017-09-27 11:30:43: Скопировано поверх 'ftp://62.219.23.33/htdocs/wp-content/themes/everest-child/assets/images/index.php' -> 'E:/my joms/UCO/fixdigital.co.il/reshef.webstory.co.il/themes/everest-child/assets/images/index.php' (User Action)
+2017-09-27 11:30:44: Скопировано поверх 'ftp://62.219.23.33/htdocs/wp-content/themes/everest-child/content/index.php' -> 'E:/my joms/UCO/fixdigital.co.il/reshef.webstory.co.il/themes/everest-child/content/index.php' (User Action)
+2017-09-27 11:30:44: Скопировано поверх 'ftp://62.219.23.33/htdocs/wp-content/themes/everest-child/functions.php' -> 'E:/my joms/UCO/fixdigital.co.il/reshef.webstory.co.il/themes/everest-child/functions.php' (User Action)
+2017-09-27 11:30:45: Скопировано поверх 'ftp://62.219.23.33/htdocs/wp-content/themes/everest-child/includes/class-pojo-child-template.php' -> 'E:/my joms/UCO/fixdigital.co.il/reshef.webstory.co.il/themes/everest-child/includes/class-pojo-child-template.php' (User Action)
+2017-09-27 11:30:46: Скопировано поверх 'ftp://62.219.23.33/htdocs/wp-content/themes/everest-child/loop/index.php' -> 'E:/my joms/UCO/fixdigital.co.il/reshef.webstory.co.il/themes/everest-child/loop/index.php' (User Action)
+2017-09-27 11:30:47: Скопировано поверх 'ftp://62.219.23.33/htdocs/wp-content/themes/everest-child/screenshot.png' -> 'E:/my joms/UCO/fixdigital.co.il/reshef.webstory.co.il/themes/everest-child/screenshot.png' (User Action)
+2017-09-27 11:30:48: Скопировано поверх 'ftp://62.219.23.33/htdocs/wp-content/themes/everest-child/screenshot.png.webp' -> 'E:/my joms/UCO/fixdigital.co.il/reshef.webstory.co.il/themes/everest-child/screenshot.png.webp' (User Action)
+2017-09-27 11:30:48: Скопировано поверх 'ftp://62.219.23.33/htdocs/wp-content/themes/everest-child/style.css' -> 'E:/my joms/UCO/fixdigital.co.il/reshef.webstory.co.il/themes/everest-child/style.css' (User Action)
+2017-09-27 11:30:50: ===== Синхронизация завершена. Время 00:00:11, Скорость: 59,7 КБ/s файлов/сек =====, Синхронизировано: 16, Ошибок: 0
+2017-09-27 11:30:50: 

@@ -1,0 +1,33 @@
+/*
+Theme Name: Firma Fix
+Theme URI: http://
+Description: A Beautiful, Professional and Ultimate WordPress Theme Made by Elementor Framework.
+Version: 4.0.11
+Author: Fix
+Author URI: http://
+Text Domain: firma-fix
+*/
+
+
+.accessability_container{
+  top: 100px!important;
+}
+
+#container.boxed {
+    max-width: 1280px;
+    margin: auto;
+}
+.sticked .stick_logo{
+	display: block!important;
+}
+.sticked .elementor-nav-menu{
+	margin-left: auto!important;
+	margin-right: 0!important;
+}
+@media (max-width: 768px){
+	.container {
+   		width: 100%!important;
+    	padding-right: 0px!important; 
+    	padding-left: 0px!important;
+	}
+}

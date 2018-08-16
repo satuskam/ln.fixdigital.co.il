@@ -1,0 +1,33 @@
+@import "../../../atlanta/assets/css/style.min.css";
+
+/* Your CSS code goes here
+-------------------------------------- */
+.pojo-form .form-message{
+    font-size: 1.6em;
+}
+.p-like-h3{
+	font-family: 'Assistant', Arial, sans-serif;
+	font-weight: 600;
+	font-size: 36px;
+	text-transform: none;
+	letter-spacing: 0px;
+	line-height: 1em;
+}
+.p-like-h5{
+	font-family: 'Assistant', Arial, sans-serif;
+	font-weight: 600;
+	font-size: 24px;
+	text-transform: none;
+	letter-spacing: 0px;
+}
+.p-like-h6{
+	font-family: 'Assistant', Arial, sans-serif;
+	font-size: 20px;
+}
+.categories-front-page h2{
+	color: #adb627;
+    font-size: 30px;
+    line-height: 1;
+    font-weight: 600;
+}
+.contact-us-block p

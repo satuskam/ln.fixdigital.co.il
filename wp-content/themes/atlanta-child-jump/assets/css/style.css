@@ -1,0 +1,10 @@
+@import "../../../atlanta/assets/css/style.min.css";
+
+/* Your CSS code goes here
+-------------------------------------- */
+.pojo-form .form-message{
+    font-size: 1.6em;
+}
+.up-form-cont .iframe-cont{
+	padding-right: 5%!important;
+}

@@ -1,0 +1,25 @@
+/*
+Theme Name: Frame Fix
+Theme URI: http://
+Description: A Beautiful, Professional and Ultimate WordPress Theme Made by Elementor Framework.
+Version: 4.0.11
+Author: Fix
+Author URI: http://
+Text Domain: frame-fix
+*/
+
+
+.accessability_container{
+  top: 100px!important;
+}
+
+
+#header > div > div > div > div > section.sticked > div > div > div.elementor-top-column > div > div > div > div{
+  margin: 0!important;
+}
+
+.form_home{
+  margin-left: auto;
+  margin-right: auto;
+}
+

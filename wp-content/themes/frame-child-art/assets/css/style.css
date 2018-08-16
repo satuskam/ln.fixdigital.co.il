@@ -1,0 +1,15 @@
+@import "../../../frame/assets/css/style.min.css";
+
+/* Your CSS code goes here
+-------------------------------------- */
+.pojo-form .form-message{
+    font-size: 1.6em;
+}
+
+body.rtl.woocommerce #payment #place_order,
+body.rtl.woocommerce-page #payment #place_order{
+    float: right!important;
+    background-color: rgba(209,34,41,1);
+    border-color: #d12229;
+    color: #ffffff;
+}

@@ -1,0 +1,17 @@
+/*
+Theme Name: Versity
+Description: Versity theme built on Elementor with ability to manage by API
+Version: 0.1.0
+Author: Uco Team
+Author URI: http://uco.co.il
+Text Domain: versity
+*/
+
+
+.accessability_container{
+  top: 100px!important;
+}
+
+.sticked .elementor-4271 .elementor-element.elementor-element-fc0e248 > .elementor-widget-container{
+	margin: 0px!important;
+}

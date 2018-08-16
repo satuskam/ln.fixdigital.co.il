@@ -1,0 +1,31 @@
+[06:46:54] localProcessing Group : fix-smartphone-elementor
+[06:46:54] Asset (handle: fix-smartphone-elementor) in group styles has been successfully processed.
+[06:46:55] localProcessing Group : rs-plugin-settings
+[06:46:55] Asset (handle: rs-plugin-settings) in group styles has been successfully processed.
+[06:46:56] localProcessing Group : wdsi
+[06:46:56] Asset (handle: wdsi) in group styles has been successfully processed.
+[06:46:57] localProcessing Group : uaf_client_css
+[06:46:57] localProcessing Group : twentyseventeen-style
+[06:46:57] Asset (handle: twentyseventeen-style) in group styles has been successfully processed.
+[06:46:59] localProcessing Group : twentyseventeen-ie8
+[06:46:59] Asset (handle: twentyseventeen-ie8) in group styles has been successfully processed.
+[06:46:59] localProcessing Group : elementor-icons
+[06:46:59] Asset (handle: elementor-icons) in group styles has been successfully processed.
+[06:47:00] localProcessing Group : font-awesome
+[06:47:00] Asset (handle: font-awesome) in group styles has been successfully processed.
+[06:58:39] localProcessing Group : elementor-animations
+[06:58:39] Asset (handle: elementor-animations) in group styles has been successfully processed.
+[06:58:40] localProcessing Group : elementor-frontend
+[06:58:40] Asset (handle: elementor-frontend) in group styles has been successfully processed.
+[06:58:40] localProcessing Group : elementor-global
+[06:58:40] Asset (handle: elementor-global) in group styles has been successfully processed.
+[06:58:41] localProcessing Group : elementor-pro
+[06:58:41] Asset (handle: elementor-pro) in group styles has been successfully processed.
+[06:58:42] localProcessing Group : wpmu-wpmu-ui-3-min-css
+[06:58:43] Asset (handle: wpmu-wpmu-ui-3-min-css) in group styles has been successfully processed.
+[06:58:44] localProcessing Group : wpmu-animate-3-min-css
+[06:58:44] Asset (handle: wpmu-animate-3-min-css) in group styles has been successfully processed.
+[06:58:45] localProcessing Group : jquery-core
+[06:58:45] Asset (handle: jquery-core) in group scripts has been successfully processed.
+[06:58:49] localProcessing Group : jquery-migrate
+[06:58:49] Asset (handle: jquery-migrate) in group scripts has been successfully processed.

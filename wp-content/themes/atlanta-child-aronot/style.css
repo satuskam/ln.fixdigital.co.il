@@ -1,0 +1,39 @@
+/*
+Theme Name: Atlanta Child for Aronot
+Theme URI: http://pojo.me/
+Description: Child theme Aronot for the Atlanta theme
+Version: 1.0.0
+Author: Pojo
+Author URI: http://pojo.me/
+Text Domain: pojochild
+Template: atlanta
+*/
+@import "/assets/css/style.min.css";
+
+#call-container {
+	float: left !important;
+	height: 100%;
+}
+
+#call-container>a {
+	font-size: 30px!important;
+	line-height: 35px!important;
+	color: #fff;
+	vertical-align: middle;
+}
+
+
+@media (max-width:768px){
+	.gallery .gallery-item {
+	    max-width: 100%!important;
+	}
+	.elementor-1467 .elementor-element.elementor-element-zwlxmgt{
+		padding: 0px!important;
+	}
+	.elementor-lightbox-item {
+		padding: 0px!important;
+	}
+	.elementor-2698 .elementor-element.elementor-element-calupcl .elementor-heading-title {
+		letter-spacing: 0px;
+	}
+}

@@ -1,0 +1,38 @@
+.lightbox-gallery {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.lightbox-gallery__item {
+    text-align: center;
+    margin: auto;
+    align-content: space-between;
+    display: block;
+    border: 1px solid black;
+}
+
+.lightbox-gallery__item:hover {
+    cursor: pointer;
+}
+
+.lightbox-gallery__title {
+    font-weight: normal;
+    line-height: 16px;
+    white-space: nowrap;
+    overflow: hidden;
+    padding: 5px;
+    text-overflow: ellipsis;
+}
+
+.lightbox-gallery__subtitle {
+    font-weight: bold;
+    line-height: 16px;
+    color: black;
+}
+
+.lightbox-gallery__image {
+    width: 100%;
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+}

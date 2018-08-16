@@ -1,0 +1,18 @@
+p {
+    margin: 0 0 10px;
+}
+
+h1, h2, h3, h4, h5, h6, p, blockquote, ul, ol, dl, address, table {
+    margin-bottom: 1em;
+}
+
+
+
+body {margin: 0}
+
+
+.gallery img {
+    border: none!important;
+    -webkit-transition: .4s;
+    transition: .4s;
+}

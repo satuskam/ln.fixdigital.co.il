@@ -1,0 +1,8 @@
+.menuBarToBeSticked.sticked {
+    position: fixed !important;
+    top: 0;
+    right: 0 !important;
+    z-index: 100000;
+    width: 100% !important;
+    margin-top: 0px !important;
+}

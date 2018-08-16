@@ -1,0 +1,103 @@
+/* Styles like for standart icon-box element */
+    
+    @media (min-width: 768px) {
+  .elementor-widget-fix-smartphone.elementor-position-left .elementor-icon-box-wrapper, .elementor-widget-fix-smartphone.elementor-position-right .elementor-icon-box-wrapper {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex; }
+  .elementor-widget-fix-smartphone.elementor-position-left .elementor-icon-box-icon, .elementor-widget-fix-smartphone.elementor-position-right .elementor-icon-box-icon {
+    -webkit-box-flex: 0;
+    -webkit-flex: 0 0 auto;
+        -ms-flex: 0 0 auto;
+            flex: 0 0 auto; }
+  .elementor-widget-fix-smartphone.elementor-position-right .elementor-icon-box-wrapper {
+    text-align: right;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: reverse;
+    -webkit-flex-direction: row-reverse;
+        -ms-flex-direction: row-reverse;
+            flex-direction: row-reverse; }
+  .elementor-widget-fix-smartphone.elementor-position-left .elementor-icon-box-wrapper {
+    text-align: left;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: row;
+        -ms-flex-direction: row;
+            flex-direction: row; }
+  .elementor-widget-fix-smartphone.elementor-position-top .elementor-icon-box-img {
+    margin: auto; }
+  .elementor-widget-fix-smartphone.elementor-vertical-align-top .elementor-icon-box-wrapper {
+    -webkit-box-align: start;
+    -webkit-align-items: flex-start;
+        -ms-flex-align: start;
+            align-items: flex-start; }
+  .elementor-widget-fix-smartphone.elementor-vertical-align-middle .elementor-icon-box-wrapper {
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+        -ms-flex-align: center;
+            align-items: center; }
+  .elementor-widget-fix-smartphone.elementor-vertical-align-bottom .elementor-icon-box-wrapper {
+    -webkit-box-align: end;
+    -webkit-align-items: flex-end;
+        -ms-flex-align: end;
+            align-items: flex-end; } }
+    
+    
+    @media (min-width: 768px) {
+  .elementor-widget-fix-smartphone.elementor-position-left .elementor-icon-box-wrapper, .elementor-widget-fix-smartphone.elementor-position-right .elementor-icon-box-wrapper {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex; }
+  .elementor-widget-fix-smartphone.elementor-position-left .elementor-icon-box-icon, .elementor-widget-fix-smartphone.elementor-position-right .elementor-icon-box-icon {
+    -webkit-box-flex: 0;
+    -webkit-flex: 0 0 auto;
+        -ms-flex: 0 0 auto;
+            flex: 0 0 auto; }
+  .elementor-widget-fix-smartphone.elementor-position-right .elementor-icon-box-wrapper {
+    text-align: left;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: row;
+        -ms-flex-direction: row;
+            flex-direction: row; }
+  .elementor-widget-fix-smartphone.elementor-position-left .elementor-icon-box-wrapper {
+    text-align: right;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: reverse;
+    -webkit-flex-direction: row-reverse;
+        -ms-flex-direction: row-reverse;
+            flex-direction: row-reverse; }
+  .elementor-widget-fix-smartphone.elementor-position-top .elementor-icon-box-img {
+    margin: auto; }
+  .elementor-widget-fix-smartphone.elementor-vertical-align-top .elementor-icon-box-wrapper {
+    -webkit-box-align: start;
+    -webkit-align-items: flex-start;
+        -ms-flex-align: start;
+            align-items: flex-start; }
+  .elementor-widget-fix-smartphone.elementor-vertical-align-middle .elementor-icon-box-wrapper {
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+        -ms-flex-align: center;
+            align-items: center; }
+  .elementor-widget-fix-smartphone.elementor-vertical-align-bottom .elementor-icon-box-wrapper {
+    -webkit-box-align: end;
+    -webkit-align-items: flex-end;
+        -ms-flex-align: end;
+            align-items: flex-end; } }
+
+@media (max-width: 767px) {
+  .elementor-widget-fix-smartphone .elementor-icon-box-icon {
+    margin-left: auto !important;
+    margin-right: auto !important;
+    margin-bottom: 15px; } }
+
+.elementor-widget-fix-smartphone .elementor-icon-box-wrapper {
+  text-align: center; }
+
+.elementor-widget-fix-smartphone .elementor-icon-box-title a {
+  color: inherit; }
+
+.elementor-widget-fix-smartphone .elementor-icon-box-description {
+  margin: 0; }

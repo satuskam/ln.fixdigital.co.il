@@ -1,0 +1,17 @@
+/*
+Theme Name: Atlanta Fix Child nofshim
+Description: Atlanta Fix theme with ability to manage by API, child theme for nofshim
+Version: 0.1.0
+Author: Uco Team
+Text Domain: atlanta-fix
+Template: atlanta-fix
+
+*/
+
+img.alignleft {
+    float: left;
+}
+
+img.alignright {
+    float: right;
+}

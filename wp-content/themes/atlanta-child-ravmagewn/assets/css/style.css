@@ -1,0 +1,13 @@
+@import "../../../atlanta/assets/css/style.min.css";
+
+/* Your CSS code goes here
+-------------------------------------- */
+.pojo-form .form-message{
+    font-size: 1.6em;
+}
+
+div.woocommerce-product-gallery__image {
+	max-height: 680px;
+	#height: 680px;
+}
+

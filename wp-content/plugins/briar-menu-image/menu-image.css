@@ -1,0 +1,23 @@
+.c-briar-image::after {
+    content: ' ';
+    display: block;
+    height: 100px;
+    width: 100px;
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+    background-size: cover;
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.sub-menu.c-briar-image {
+    width: auto;
+    padding-right: 140px;
+    overflow: hidden;
+}
+
+.sub-menu.c-briar-image li a {
+    white-space: nowrap;
+}

@@ -1,0 +1,16 @@
+{
+    "name": "briar/menu-image",
+    "description": "Menu with image",
+    "type": "wordpress-plugin",
+    "require": {
+        "timber/timber": "^1.6"
+    },
+    "license": "GPL_2",
+    "authors": [
+        {
+            "name": "shvv",
+            "email": "shvv86@gmail.com"
+        }
+    ],
+    "minimum-stability": "beta"
+}

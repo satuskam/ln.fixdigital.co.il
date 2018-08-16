@@ -1,0 +1,26 @@
+/*
+Theme Name: Everest Child Ingo
+Theme URI: http://pojo.me/
+Description: Child theme for the Everest theme
+Version: 1.0.0
+Author: Pojo
+Author URI: http://pojo.me/
+Text Domain: pojochild
+Template: everest
+*/
+
+/* fix style for dropdown menu with DIV (past h3) */
+.subcatsAccordion .accordion .accordion-title {
+    border-bottom: 1px solid lightgray;
+    cursor: pointer;
+    color: #000;
+    font-size: 16px;
+    margin: 0px;
+    line-height: 40px;
+    font-weight: bold; 
+    text-transform: none;
+    letter-spacing: 0px;
+    font-style: normal;
+}
+.subcatsAccordion .accordion .accordion-title a {color: #000;}
+/* END */

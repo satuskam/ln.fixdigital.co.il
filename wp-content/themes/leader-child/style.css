@@ -1,0 +1,209 @@
+/*
+Theme Name: Leader Child
+Theme URI: http://pojo.me/
+Description: Child theme for the Leader theme
+Version: 1.0.0
+Author: Pojo
+Author URI: http://pojo.me/
+Text Domain: pojochild
+Template: leader
+*/
+
+/**
+* YOUR CSS CODE, PUT IN assets/css/style.css
+* FOR RTL, PUT IN assets/css/rtl.css
+*/
+
+.logo{
+	width: 25%!important;
+	max-width: 332px;
+	min-width: 240px;
+	padding: 0!important;
+}
+.nav-main {
+	padding: 0!important;
+}
+.sf-menu>li>a {
+	max-height: 80px;
+}
+.smartphone-container-lg .fix_smartphone_href {
+	font-size: 2.7em;
+	font-family: 'Open Sans',sans-serif;
+	font-weight: bold;
+	color: #fff;
+	float: right!important;
+	display: block;
+	margin-top: 2px;
+	margin-right: 25px;
+}
+.fix_smartphone_href:hover {
+	color: #fff;
+}
+.smartphone-xs {
+	margin: 0px!important;
+	padding: 0px!important;
+}
+@media screen and (min-width: 1456px) {
+	.smartphone-container-lg .fix_smartphone_href {
+		font-size: 2.7em;
+		font-family: 'Open Sans',sans-serif;
+		font-weight: bold;
+		color: #fff;
+		float: right!important;
+		display: block;
+		margin-top: 12px;
+		margin-right: 20px;
+	}
+}
+@media screen and (max-width: 768px) {
+	.logo{
+		width: 100%!important;
+		padding: 0!important;
+	}
+	#sticky-smartphone {
+		padding-top: 7px;
+	}
+	#header > div > div > div.smartphone-container-xs.visible-xs-block > .fix_smartphone_href{
+		font-size: 1.2em;
+		font-family: 'Open Sans',sans-serif;
+		font-weight: bold;
+		color: #fff;
+		width: 55%;
+		height: 25px;
+		padding-top: 7px;
+		float: right;
+		margin-top: 0px;
+		text-align: center;
+		margin-left: auto!important;
+		margin-right: auto!important;
+		vertical-align: middle;
+	}
+	.logo-img-secondary{
+		margin-top: 5px;
+	}
+}
+@media screen and (max-width: 1255px) {
+	.sf-menu>li>a {
+		padding: 0 0.8em!important;
+	}
+}
+@media screen and (min-width: 769px) {
+	#container > div.sticky-header.logo-left > div > div > div > a > img {
+		margin-top: 20px;
+	}
+	.sticky-header .fix_smartphone_href {
+		padding-top: 0px!important;
+		font-size: 1.2em;
+		font-family: 'Open Sans',sans-serif;
+		font-weight: bold;
+		color: #fff;
+		width: 55%;
+		height: 25px;
+		float: right;
+		margin-top: 12px;
+		text-align: center;
+		margin-left: auto!important;
+		margin-right: auto!important;
+		vertical-align: middle;
+	}
+	#container > div.sticky-header.logo-left > div > div > a  {
+		
+	}
+	#container > div.sticky-header.logo-left > .container > .logo {
+		width: 40%!important;
+	}
+	#container > div.sticky-header.logo-left > .container > .logo > .logo-img{
+		float: right;
+	}
+}
+@media screen and (max-width: 769px) {
+
+	.sticky-header .fix_smartphone_href {
+		padding-top: 0px!important;
+		font-size: 1.2em;
+		font-family: 'Open Sans',sans-serif;
+		font-weight: bold;
+		color: #fff;
+		width: 55%;
+		height: 25px;
+		float: right;
+		margin-top: 0px;
+		text-align: center;
+		margin-left: auto!important;
+		margin-right: auto!important;
+		vertical-align: middle;
+	}
+	#container > div.sticky-header.logo-left > div > div > a  {
+		
+	}
+	#container > div.sticky-header.logo-left > .container > .logo {
+		
+	}
+	#container > div.sticky-header.logo-left > .container > .logo > .logo-img{
+		float: right;
+	}
+}
+@media screen and (max-width: 1255px) {
+
+}
+
+.p-like-h3{
+	font-weight: 600;
+	font-size: 50px;
+}
+.blocks-4 h3{
+	margin-bottom: 0;
+}
+.blocks-4 p span{
+	color: #154484;
+	font-family: "Assistant", Sans-serif;
+	font-size: 30px;
+	font-weight: normal;
+	display: inherit;
+	margin: 15px 0 25px;
+}
+.elementor-3808 .blocks-4 .elementor-element .elementor-icon-box-content .elementor-icon-box-title{
+	margin-bottom: 0;
+	margin: 0;
+}
+.bold-font {
+	font-weight: bold;
+}
+.bold-600 > .elementor-widget-container > p,
+.bold-600 h2{
+	font-weight: 600;	
+}
+.galery-header{
+	text-align: center;
+}
+p.grid-heading.entry-title a{
+	font-weight: 700;
+	color: #154484;
+	font-family: 'Heebo', Arial, sans-serif;
+	font-weight: 600;
+	font-size: 19px;
+	text-transform: none;
+	letter-spacing: 0px;
+	font-style: normal;
+	line-height: 15px;
+}
+p.grid-heading.entry-title a small{
+	color: #000000;
+	font-weight: normal;
+	font-size: 13px;
+	font-style: normal;
+}
+p.grid-heading.entry-title.post-title a{
+	color: #212121;
+	font-family: 'Heebo', Arial, sans-serif;
+	font-weight: 600;
+	font-size: 22px;
+	text-transform: none;
+	letter-spacing: -0.4px;
+	font-style: normal;	
+}
+p.grid-heading.entry-title.post-title{
+	line-height: 1.3;	
+	margin-top: 15px;
+	margin-bottom: 15px;
+}

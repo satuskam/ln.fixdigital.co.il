@@ -1,0 +1,35 @@
+/*
+Theme Name: Atlanta Child Terosa
+Theme URI: http://pojo.me/
+Description: Terosa Child theme for the Atlanta theme
+Version: 1.0.0
+Author: Pojo
+Author URI: http://pojo.me/
+Text Domain: pojochild
+Template: atlanta
+*/
+
+/**
+* YOUR CSS CODE, PUT IN assets/css/style.css
+* FOR RTL, PUT IN assets/css/rtl.css
+*/
+
+@import "/assets/css/style.min.css";
+
+#header #menu-terosa{
+	max-width: 1220px!important;
+	margin-left: auto!important;
+	margin-right: auto!important;
+	position: relative;
+	/*max-height: 132px;*/
+}
+
+/*vaa changes This is not right stile of coding, do not do so again. If you do not understand, what is wrong, please, ask me. */
+/*.navbar-collapse {
+	position: absolute;
+    top: 70px;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+*/

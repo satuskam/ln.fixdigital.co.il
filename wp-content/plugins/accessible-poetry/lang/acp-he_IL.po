@@ -1,0 +1,464 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"POT-Creation-Date: 2017-09-10 02:00+0300\n"
+"PO-Revision-Date: 2017-09-10 02:18+0300\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: en\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.8.6\n"
+"X-Poedit-Basepath: ..\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Poedit-KeywordsList: __;_e\n"
+"X-Poedit-SearchPath-0: .\n"
+
+#: lib/panel/header.php:5
+msgid "Opening WordPress sites to people with disabilites"
+msgstr "מנגישים אתרי וורדפרס לבעלי מוגבלויות"
+
+#: lib/panel/menu.php:5 lib/panel/panel.php:42 lib/toolbar/toolbar.php:89
+msgid "General"
+msgstr "כללי"
+
+#: lib/panel/menu.php:8 lib/panel/panel.php:43
+msgid "Toolbar"
+msgstr "סרגל נגישות"
+
+#: lib/panel/menu.php:11 lib/panel/panel.php:44 lib/panel/panel.php:464
+#: skiplinks.php:5
+msgid "Skiplinks"
+msgstr "קישורי דילוג"
+
+#: lib/panel/menu.php:14 lib/panel/panel.php:45 lib/panel/panel.php:504
+msgid "Custom Code"
+msgstr "קוד מותאם אישית"
+
+#: lib/panel/panel.php:14
+msgid "Accessibility"
+msgstr "נגישות"
+
+#: lib/panel/panel.php:92
+msgid "Images"
+msgstr "תמונות"
+
+#: lib/panel/panel.php:93
+msgid ""
+"Add empty value for the Alternative text attribute (ALT) when the attribute "
+"is missing."
+msgstr ""
+"הוספת תכונת טקסט חלופי עם ערך ריק לתמונות שאין להן טקסט חלופי כלל (מומלץ)"
+
+#: lib/panel/panel.php:116
+msgid "Focus"
+msgstr "פוקוס"
+
+#: lib/panel/panel.php:120
+msgid "Add effect for items in focus mode:"
+msgstr "הוספת אפקט לרכיבים במצב פוקוס:"
+
+#: lib/panel/panel.php:122
+msgid "Don't do nothing"
+msgstr "אל תעשה כלום"
+
+#: lib/panel/panel.php:123
+msgid "Only using the toolbar"
+msgstr "רק באמצעות סרגל הנגישות"
+
+#: lib/panel/panel.php:124
+msgid "Use always"
+msgstr "תמיד"
+
+#: lib/panel/panel.php:139
+msgid "Choose the type of effect for focus mode:"
+msgstr "בחר/י את סוג האפקט לרכיבים במצב פוקוס:"
+
+#: lib/panel/panel.php:141 lib/panel/panel.php:181
+msgid "-- None --"
+msgstr "— ללא —"
+
+#: lib/panel/panel.php:142
+msgid "Red outline"
+msgstr "קו אדום תוחם"
+
+#: lib/panel/panel.php:143
+msgid "Blue outline"
+msgstr "קו כחול תוחם"
+
+#: lib/panel/panel.php:144
+msgid "Yellow background"
+msgstr "רקע צהוב"
+
+#: lib/panel/panel.php:145
+msgid "Custom Outline"
+msgstr "קו תוחם בצבע מותאם אישית"
+
+#: lib/panel/panel.php:164
+msgid ""
+"Use <strong>!important</strong> for the outline CSS (check this only if the "
+"outline does not work)."
+msgstr ""
+"השתמש ב-<strong>!important</strong> עבור הגדרות הפוקוס (בחר/י באפשרות זו רק "
+"אם האפקט אינו עובד)."
+
+#: lib/panel/panel.php:178 lib/toolbar/toolbar.php:207
+msgid "Links"
+msgstr "קישורים"
+
+#: lib/panel/panel.php:179
+msgid "Links Underline"
+msgstr "קו תחתון לקישורים"
+
+#: lib/panel/panel.php:182
+msgid "On focus mode only"
+msgstr "במצב פוקוס בלבד"
+
+#: lib/panel/panel.php:183
+msgid "On focus and hover mode"
+msgstr "במצב פוקוס במצב שהעכבר מעליו (hover)"
+
+#: lib/panel/panel.php:184
+msgid "Always"
+msgstr "תמיד"
+
+#: lib/panel/panel.php:190
+msgid ""
+"Use <strong>!important</strong> for the underline CSS (check this only if "
+"the underline does not work)."
+msgstr ""
+"השתמש ב-<strong>!important</strong> עבור הגדרות קו תחתון לקישורים (בחר/י "
+"באפשרות זו רק אם הקו התחתון אינו מתווסף)."
+
+#: lib/panel/panel.php:200
+msgid "Activate the toolbar"
+msgstr "הפעלת סרגל הנגישות"
+
+#: lib/panel/panel.php:209
+msgid "Disable the black screen"
+msgstr "ביטול המסך השחור שמופיע כשסרגל הנגישות פתוח"
+
+#: lib/panel/panel.php:210
+msgid "Hide the toolbar for mobile users"
+msgstr "הסתרת סרגל הנגישות למשתמשי מובייל"
+
+#: lib/panel/panel.php:212
+msgid "Hide the button to disable flashes"
+msgstr "הסתרת הלחצן לביטול הבהובים"
+
+#: lib/panel/panel.php:213
+msgid "Hide the button to to mark heading"
+msgstr "הסתרת הלחצן לסימון כותרות"
+
+#: lib/panel/panel.php:215
+msgid "Hide the screen zoom buttons"
+msgstr "הסתרת לחצני הזום"
+
+#: lib/panel/panel.php:216
+msgid "Hide the font resize buttons"
+msgstr "הסתרת לחצני שינוי גודל הגופן"
+
+#: lib/panel/panel.php:217
+msgid "Hide the button that change to readable font"
+msgstr "הסתרת הלחצן לגופן קריא"
+
+#: lib/panel/panel.php:219
+msgid "Hide the contrast buttons"
+msgstr "הסתרת לחצני ניגודיות הצבעים"
+
+#: lib/panel/panel.php:221
+msgid "Hide the underline button"
+msgstr "הסתרת הלחצן עבור קו תחתון לקישורים"
+
+#: lib/panel/panel.php:222
+msgid "Hide the button to mark links"
+msgstr "הסתרת הלחצן לסימון קישורים"
+
+#: lib/panel/panel.php:234
+msgid "Visibility"
+msgstr "נראות"
+
+#: lib/panel/panel.php:256
+msgid "Mark headings mode"
+msgstr "מצב סימון כותרות"
+
+#: lib/panel/panel.php:257
+msgid "Readable font mode"
+msgstr "מצב גופן קריא"
+
+#: lib/panel/panel.php:258
+msgid "Contrast modes"
+msgstr "מצבי ניגודיות צבעים"
+
+#: lib/panel/panel.php:259
+msgid "Underline mode"
+msgstr "מצב קו תחתון לקישורים"
+
+#: lib/panel/panel.php:260
+msgid "Mark links mode"
+msgstr "מצב סימון קישורים"
+
+#: lib/panel/panel.php:269
+msgid "CSS Important (Advanced)"
+msgstr "CSS Important (מתקדם)"
+
+#: lib/panel/panel.php:270
+msgid ""
+"You can hardened the effect of some toolbar button with the use of CSS "
+"important. this is not the best way, the best way is to implement a better "
+"CSS by yourself with Accessible Poetry set of classes."
+msgstr ""
+"ניתן להקשיח את האפקטים של לחצני סרגל הנגישות באמצעות שימוש בתכונת CSS מסוג "
+"Important. זו אינה הדרך האופטימלית, הדרך הטובה ביותר לתקן סטיות היא באמצעות "
+"כתיבת קוד ה-CSS בעצמך על ידי שימוש בקלאסים שמתווספים לתגית body."
+
+#: lib/panel/panel.php:298
+msgid "Customization"
+msgstr "עיצוב"
+
+#: lib/panel/panel.php:303
+msgid "Toolbar Skin"
+msgstr "סגנון סרגל"
+
+#: lib/panel/panel.php:305
+msgid "Classic"
+msgstr "קלאסי"
+
+#: lib/panel/panel.php:306
+msgid "Flat"
+msgstr "שטוח"
+
+#: lib/panel/panel.php:307
+msgid "Rounded"
+msgstr "מעוגל"
+
+#: lib/panel/panel.php:308
+msgid "Minimal"
+msgstr "מינימלי"
+
+#: lib/panel/panel.php:309
+msgid "Smooth"
+msgstr "חלק"
+
+#: lib/panel/panel.php:310
+msgid "Space"
+msgstr "חללי"
+
+#: lib/panel/panel.php:324
+msgid "Toolbar Side"
+msgstr "מיקום סרגל"
+
+#: lib/panel/panel.php:326
+msgid "Right side"
+msgstr "צד ימין"
+
+#: lib/panel/panel.php:327
+msgid "Left side"
+msgstr "צד שמאל"
+
+#: lib/panel/panel.php:346
+msgid "Icon Size"
+msgstr "גודל אייקון"
+
+#: lib/panel/panel.php:348
+msgid "Normal size"
+msgstr "גודל רגיל"
+
+#: lib/panel/panel.php:349
+msgid "Big size"
+msgstr "גדול"
+
+#: lib/panel/panel.php:350
+msgid "Small size"
+msgstr "קטן"
+
+#: lib/panel/panel.php:361
+msgid "Positioning of the icon and the toolbar from top"
+msgstr "מיקום האייקון ביחס לחלק העליון"
+
+#: lib/panel/panel.php:382
+msgid "Additional Buttons"
+msgstr "לחצנים נוספים"
+
+#: lib/panel/panel.php:385
+msgid ""
+"To display a link to your Accessibility Statement page, select your "
+"Accessibility Statement page"
+msgstr "להוספת קישור להצהרת הנגישות יש לבחור את עמוד הצהרת הנגישות במערכת"
+
+#: lib/panel/panel.php:387 lib/panel/panel.php:407
+msgid "Select page"
+msgstr "בחירת עמוד"
+
+#: lib/panel/panel.php:405
+msgid "To display a link to your Feedback page, select your Feedback page"
+msgstr "להוספת קישור להשארת משוב יש לבחור את עמוד השארת המשוב במערכת"
+
+#: lib/panel/panel.php:436
+msgid "Font Size Modifier"
+msgstr "משנה גודל גופן"
+
+#: lib/panel/panel.php:437
+msgid ""
+"Include additional elements that should be affected with the font size "
+"modifier (default is: body, p, h1, h2, h3, h4, h5, h6, label, input, a, "
+"button, textarea)"
+msgstr ""
+"כלול רכיבים נוספים שיש להשפיע עליהם עם לחצני שינוי גודל הגופן. הפרד את "
+"תכונות ה-CSS אחת מהשניה באמצעות פסיק (ברירת מחדל: p‪,‬ h1‪,‬ h2‪,‬ h3‪,‬ h4‪,‬ h5‪,‬ "
+"h6‪,‬ label‪,‬ input‪,‬ textarea‪,‬ a‪,‬ button‪).‬"
+
+#: lib/panel/panel.php:448
+msgid "Exclude additional elements from the effect of the font size modifier"
+msgstr ""
+"אל תכלול את הרכיבים הבאים בעת השפעת לחצני שינוי גודל הגופן. יש להפריד את "
+"תכונות ה-CSS באמצעות פסיק. לדוגמה: h1‪.‬single‪-‬title‪,‬ ‪.‬box‪-‬element‪,‬ label."
+
+#: lib/panel/panel.php:467
+msgid "Activate skiplinks menus"
+msgstr "הפעלת קישורי הדילוג"
+
+#: lib/panel/panel.php:488
+msgid "Skiplinks Side"
+msgstr "מיקום קישורי הדילוג"
+
+#: lib/panel/panel.php:490
+msgid "Left"
+msgstr "שמאל"
+
+#: lib/panel/panel.php:491
+msgid "Right"
+msgstr "ימין"
+
+#: lib/panel/panel.php:505
+msgid "Add additional CSS code"
+msgstr "הוספת קוד CSS"
+
+#: lib/panel/panel.php:516
+msgid "Add additional JS code"
+msgstr "הוספת קוד JS"
+
+#: lib/toolbar/toolbar.php:34
+msgid "Accessibility Icon"
+msgstr "סמל נגישות"
+
+#: lib/toolbar/toolbar.php:51
+msgid "Close the accessibility toolbar"
+msgstr "סגירת סרגל הנגישות"
+
+#: lib/toolbar/toolbar.php:54
+msgid "Accessibility Toolbar"
+msgstr "סרגל נגישות"
+
+#: lib/toolbar/toolbar.php:96
+msgid "Disable flashes"
+msgstr "ביטול הבהובים"
+
+#: lib/toolbar/toolbar.php:105
+msgid "Keyboard navigation"
+msgstr "ניווט מקלדת"
+
+#: lib/toolbar/toolbar.php:113
+msgid "Mark headings"
+msgstr "סימון כותרות"
+
+#: lib/toolbar/toolbar.php:127
+msgid "Resolution"
+msgstr "זום"
+
+#: lib/toolbar/toolbar.php:132
+msgid "Zoom in"
+msgstr "התקרב"
+
+#: lib/toolbar/toolbar.php:138
+msgid "Zoom out"
+msgstr "התרחק"
+
+#: lib/toolbar/toolbar.php:149
+msgid "Fonts"
+msgstr "גופנים"
+
+#: lib/toolbar/toolbar.php:156
+msgid "Increase font size"
+msgstr "הגדלת גודל גופן"
+
+#: lib/toolbar/toolbar.php:162
+msgid "Decrease font size"
+msgstr "הקטנת גודל גופן"
+
+#: lib/toolbar/toolbar.php:170
+msgid "Readable font"
+msgstr "גופן קריא"
+
+#: lib/toolbar/toolbar.php:183
+msgid "Color Contrast"
+msgstr "ניגודיות צבעים"
+
+#: lib/toolbar/toolbar.php:188
+msgid "Bright contrast"
+msgstr "ניגודיות בהירה"
+
+#: lib/toolbar/toolbar.php:194
+msgid "Dark contrast"
+msgstr "ניגודיות כהה"
+
+#: lib/toolbar/toolbar.php:213
+msgid "Underline links"
+msgstr "קו תחתי לקישורים"
+
+#: lib/toolbar/toolbar.php:221
+msgid "Mark links"
+msgstr "סימון קישורים"
+
+#: lib/toolbar/toolbar.php:240
+msgid "Reset all options"
+msgstr "איפוס כל ההגדרות"
+
+#: lib/toolbar/toolbar.php:243
+msgid "Reset the accessibility toolbar options"
+msgstr "איפוס כל הגדרות סרגל הנגישות"
+
+#: lib/toolbar/toolbar.php:248 lib/toolbar/toolbar.php:251
+msgid "Leave feedback"
+msgstr "השארת משוב"
+
+#: lib/toolbar/toolbar.php:257 lib/toolbar/toolbar.php:260
+msgid "Accessibility statement"
+msgstr "הצהרת נגישות"
+
+#: lib/toolbar/toolbar.php:272
+msgid "the link will open in a new tab"
+msgstr "הקישור יפתח בכרטיסיה חדשה"
+
+#: missing-alts.php:49
+msgid "Missing ALT's"
+msgstr "תמונות ללא טקסט חלופי"
+
+#: missing-alts.php:53
+msgid "ID"
+msgstr "מזהה"
+
+#: missing-alts.php:54
+msgid "Thumbnail"
+msgstr "תמונה"
+
+#: missing-alts.php:55
+msgid "Image Name"
+msgstr "שם התמונה"
+
+#: missing-alts.php:56
+msgid "Add your ALT"
+msgstr "הוספת טקסט חלופי"
+
+#: missing-alts.php:65
+msgid "Thumbnail of"
+msgstr "תמונה מתוך"
+
+#: missing-alts.php:80
+msgid "Congratulation! You don't have images without ALT text."
+msgstr "מעולה! אין לך תמונת שחסר להן טקסט חלופי."
+
+#: missing-alts.php:121
+msgid " Missing ALT's"
+msgstr "תמונות ללא טקסט חלופי"

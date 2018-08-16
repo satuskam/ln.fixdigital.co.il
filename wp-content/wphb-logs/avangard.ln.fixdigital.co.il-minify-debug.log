@@ -1,0 +1,212 @@
+[13:37:36] localProcessing Group : fix-smartphone-elementor
+[13:37:36] Asset (handle: fix-smartphone-elementor) in group styles has been successfully processed.
+[13:37:38] localProcessing Group : rs-plugin-settings
+[13:37:38] Asset (handle: rs-plugin-settings) in group styles has been successfully processed.
+[13:37:40] localProcessing Group : wdsi
+[13:37:40] Asset (handle: wdsi) in group styles has been successfully processed.
+[13:37:41] localProcessing Group : uaf_client_css
+[13:37:41] localProcessing Group : menu-image
+[13:37:41] Asset (handle: menu-image) in group styles has been successfully processed.
+[13:37:43] localProcessing Group : contact-form-7
+[13:37:43] Asset (handle: contact-form-7) in group styles has been successfully processed.
+[13:37:44] localProcessing Group : contact-form-7-rtl
+[13:37:44] Asset (handle: contact-form-7-rtl) in group styles has been successfully processed.
+[13:37:46] localProcessing Group : cf7cf-style
+[13:37:46] Asset (handle: cf7cf-style) in group styles has been successfully processed.
+[13:39:21] localProcessing Group : woocommerce-layout
+[13:39:21] Asset (handle: woocommerce-layout) in group styles has been successfully processed.
+[13:39:22] localProcessing Group : woocommerce-smallscreen
+[13:39:22] Asset (handle: woocommerce-smallscreen) in group styles has been successfully processed.
+[13:39:22] localProcessing Group : woocommerce-general
+[13:39:22] Asset (handle: woocommerce-general) in group styles has been successfully processed.
+[13:39:23] localProcessing Group : avangard-css
+[13:39:23] Asset (handle: avangard-css) in group styles has been successfully processed.
+[13:39:24] localProcessing Group : slick-css
+[13:39:24] Asset (handle: slick-css) in group styles has been successfully processed.
+[13:39:25] localProcessing Group : slick-theme-css
+[13:39:25] Asset (handle: slick-theme-css) in group styles has been successfully processed.
+[13:39:26] localProcessing Group : pojo-a11y
+[13:39:26] Asset (handle: pojo-a11y) in group styles has been successfully processed.
+[13:39:27] localProcessing Group : elementor-icons
+[13:39:27] Asset (handle: elementor-icons) in group styles has been successfully processed.
+[13:41:39] localProcessing Group : font-awesome
+[13:41:39] Asset (handle: font-awesome) in group styles has been successfully processed.
+[13:41:40] localProcessing Group : elementor-animations
+[13:41:40] Asset (handle: elementor-animations) in group styles has been successfully processed.
+[13:41:41] localProcessing Group : elementor-frontend
+[13:41:41] Asset (handle: elementor-frontend) in group styles has been successfully processed.
+[13:41:43] localProcessing Group : elementor-post-488
+[13:41:43] Asset (handle: elementor-post-488) in group styles has been successfully processed.
+[13:41:44] localProcessing Group : elementor-pro
+[13:41:44] Asset (handle: elementor-pro) in group styles has been successfully processed.
+[13:41:45] localProcessing Group : pojo-css-framework
+[13:41:45] Asset (handle: pojo-css-framework) in group styles has been successfully processed.
+[13:41:46] localProcessing Group : wpmu-wpmu-ui-3-min-css
+[13:41:46] Asset (handle: wpmu-wpmu-ui-3-min-css) in group styles has been successfully processed.
+[13:41:47] localProcessing Group : wpmu-animate-3-min-css
+[13:41:47] Asset (handle: wpmu-animate-3-min-css) in group styles has been successfully processed.
+[13:43:20] localProcessing Group : photoswipe
+[13:43:20] Asset (handle: photoswipe) in group styles has been successfully processed.
+[13:43:21] localProcessing Group : photoswipe-skin
+[13:43:21] Asset (handle: photoswipe-skin) in group styles has been successfully processed.
+[13:43:22] localProcessing Group : pojo-base-style
+[13:43:22] Asset (handle: pojo-base-style) in group styles has been successfully processed.
+[13:43:23] localProcessing Group : pojo-style
+[13:43:23] Asset (handle: pojo-style) in group styles has been successfully processed.
+[13:43:23] localProcessing Group : pojo-base-style-rtl
+[13:43:23] Asset (handle: pojo-base-style-rtl) in group styles has been successfully processed.
+[13:43:24] localProcessing Group : pojo-style-rtl
+[13:43:24] Asset (handle: pojo-style-rtl) in group styles has been successfully processed.
+[13:43:24] localProcessing Group : jquery-core
+[13:43:24] Asset (handle: jquery-core) in group scripts has been successfully processed.
+[13:43:28] localProcessing Group : jquery-migrate
+[13:43:28] Asset (handle: jquery-migrate) in group scripts has been successfully processed.
+[13:45:20] localProcessing Group : tp-tools
+[13:45:20] Asset (handle: tp-tools) in group scripts has been successfully processed.
+[13:45:22] localProcessing Group : revmin
+[13:45:22] Asset (handle: revmin) in group scripts has been successfully processed.
+[13:45:23] localProcessing Group : wdsi
+[13:45:23] Asset (handle: wdsi) in group scripts has been successfully processed.
+[13:45:24] localProcessing Group : elevatezoom
+[13:45:24] Asset (handle: elevatezoom) in group scripts has been successfully processed.
+[13:45:25] localProcessing Group : slick-slider
+[13:45:25] Asset (handle: slick-slider) in group scripts has been successfully processed.
+[13:45:28] localProcessing Group : comment-reply
+[13:45:28] Asset (handle: comment-reply) in group scripts has been successfully processed.
+[13:45:29] localProcessing Group : briar-elementor
+[13:45:29] Asset (handle: briar-elementor) in group styles has been successfully processed.
+[13:47:20] localProcessing Group : WebgroupUtils
+[13:47:20] Asset (handle: WebgroupUtils) in group scripts has been successfully processed.
+[13:47:21] localProcessing Group : addPageViewCrmInfoScript
+[13:47:21] Asset (handle: addPageViewCrmInfoScript) in group scripts has been successfully processed.
+[13:47:22] localProcessing Group : addDiviFormCrmInfoScript
+[13:47:22] Asset (handle: addDiviFormCrmInfoScript) in group scripts has been successfully processed.
+[13:47:23] localProcessing Group : replacePhoneNumbersByChannelId
+[13:47:23] Asset (handle: replacePhoneNumbersByChannelId) in group scripts has been successfully processed.
+[13:47:23] localProcessing Group : contact-form-7
+[13:47:23] Asset (handle: contact-form-7) in group scripts has been successfully processed.
+[13:47:24] localProcessing Group : jquery-blockui
+[13:47:24] Asset (handle: jquery-blockui) in group scripts has been successfully processed.
+[13:47:25] localProcessing Group : js-cookie
+[13:47:25] Asset (handle: js-cookie) in group scripts has been successfully processed.
+[13:47:26] localProcessing Group : woocommerce
+[13:47:26] Asset (handle: woocommerce) in group scripts has been successfully processed.
+[13:49:24] localProcessing Group : wc-cart-fragments
+[13:49:24] Asset (handle: wc-cart-fragments) in group scripts has been successfully processed.
+[13:49:25] localProcessing Group : elevatezoom-main
+[13:49:25] Asset (handle: elevatezoom-main) in group scripts has been successfully processed.
+[13:49:26] localProcessing Group : pojo-forms
+[13:49:26] Asset (handle: pojo-forms) in group scripts has been successfully processed.
+[13:49:27] localProcessing Group : pojo-a11y
+[13:49:27] Asset (handle: pojo-a11y) in group scripts has been successfully processed.
+[13:49:28] localProcessing Group : pojo-plugins
+[13:49:28] Asset (handle: pojo-plugins) in group scripts has been successfully processed.
+[13:49:29] localProcessing Group : pojo-scripts
+[13:49:29] Asset (handle: pojo-scripts) in group scripts has been successfully processed.
+[13:49:31] localProcessing Group : wpmu-wpmu-ui-3-min-js
+[13:49:31] Asset (handle: wpmu-wpmu-ui-3-min-js) in group scripts has been successfully processed.
+[13:49:32] localProcessing Group : wpmu-public-min-js
+[13:49:32] Asset (handle: wpmu-public-min-js) in group scripts has been successfully processed.
+[13:51:21] localProcessing Group : masterslider
+[13:51:21] Asset (handle: masterslider) in group scripts has been successfully processed.
+[13:51:22] localProcessing Group : photoswipe
+[13:51:22] Asset (handle: photoswipe) in group scripts has been successfully processed.
+[13:51:23] localProcessing Group : photoswipe-ui
+[13:51:23] Asset (handle: photoswipe-ui) in group scripts has been successfully processed.
+[13:51:24] localProcessing Group : pojo-lightbox-app
+[13:51:24] Asset (handle: pojo-lightbox-app) in group scripts has been successfully processed.
+[13:51:25] localProcessing Group : pojo-news-ticker
+[13:51:25] Asset (handle: pojo-news-ticker) in group scripts has been successfully processed.
+[13:51:26] localProcessing Group : wp-embed
+[13:51:26] Asset (handle: wp-embed) in group scripts has been successfully processed.
+[13:51:27] localProcessing Group : elementor-pro-frontend
+[13:51:27] Asset (handle: elementor-pro-frontend) in group scripts has been successfully processed.
+[13:51:28] localProcessing Group : jquery-ui-position
+[13:51:28] Asset (handle: jquery-ui-position) in group scripts has been successfully processed.
+[13:53:23] localProcessing Group : elementor-dialog
+[13:53:23] Asset (handle: elementor-dialog) in group scripts has been successfully processed.
+[13:53:24] localProcessing Group : elementor-waypoints
+[13:53:24] Asset (handle: elementor-waypoints) in group scripts has been successfully processed.
+[13:53:25] localProcessing Group : jquery-swiper
+[13:53:25] Asset (handle: jquery-swiper) in group scripts has been successfully processed.
+[13:53:26] localProcessing Group : elementor-frontend
+[13:53:26] Asset (handle: elementor-frontend) in group scripts has been successfully processed.
+[13:53:28] localProcessing Group : briar-elementor
+[13:53:28] Asset (handle: briar-elementor) in group scripts has been successfully processed.
+[15:42:31] localProcessing Group : elementor-post-2256
+[15:42:31] Asset (handle: elementor-post-2256) in group styles has been successfully processed.
+[15:42:32] localProcessing Group : jquery-slick
+[15:42:32] Asset (handle: jquery-slick) in group scripts has been successfully processed.
+[19:32:24] localProcessing Group : dashicons
+[19:32:24] Asset (handle: dashicons) in group styles has been successfully processed.
+[19:32:26] localProcessing Group : admin-bar
+[19:32:26] Asset (handle: admin-bar) in group styles has been successfully processed.
+[19:32:26] localProcessing Group : yoast-seo-adminbar
+[19:32:26] Asset (handle: yoast-seo-adminbar) in group styles has been successfully processed.
+[19:32:27] localProcessing Group : duplicate-post
+[19:32:27] Asset (handle: duplicate-post) in group styles has been successfully processed.
+[19:32:28] localProcessing Group : elementor-post-4093
+[19:32:28] Asset (handle: elementor-post-4093) in group styles has been successfully processed.
+[19:32:29] localProcessing Group : admin-bar
+[19:32:29] Asset (handle: admin-bar) in group scripts has been successfully processed.
+[19:34:06] localProcessing Group : elementor-post-4101
+[19:34:06] Asset (handle: elementor-post-4101) in group styles has been successfully processed.
+[19:35:34] localProcessing Group : elementor-post-6532
+[19:35:34] Asset (handle: elementor-post-6532) in group styles has been successfully processed.
+[19:40:26] localProcessing Group : elementor-post-4095
+[19:40:26] Asset (handle: elementor-post-4095) in group styles has been successfully processed.
+[19:40:45] localProcessing Group : elementor-post-6513
+[19:40:45] Asset (handle: elementor-post-6513) in group styles has been successfully processed.
+[19:41:01] localProcessing Group : elementor-post-2332
+[19:41:01] Asset (handle: elementor-post-2332) in group styles has been successfully processed.
+[19:47:25] localProcessing Group : editor-preview
+[19:47:25] Asset (handle: editor-preview) in group styles has been successfully processed.
+[19:47:26] localProcessing Group : flatpickr
+[19:47:26] Asset (handle: flatpickr) in group styles has been successfully processed.
+[19:47:27] localProcessing Group : flatpickr
+[19:47:27] Asset (handle: flatpickr) in group scripts has been successfully processed.
+[19:47:28] localProcessing Group : jquery-numerator
+[19:47:28] Asset (handle: jquery-numerator) in group scripts has been successfully processed.
+[19:47:29] localProcessing Group : imagesloaded
+[19:47:29] Asset (handle: imagesloaded) in group scripts has been successfully processed.
+[19:47:31] localProcessing Group : smartmenus
+[19:47:31] Asset (handle: smartmenus) in group scripts has been successfully processed.
+[19:47:32] localProcessing Group : social-share
+[19:47:32] Asset (handle: social-share) in group scripts has been successfully processed.
+[19:47:32] localProcessing Group : elementor-inline-editor
+[19:47:32] Asset (handle: elementor-inline-editor) in group scripts has been successfully processed.
+[20:15:20] localProcessing Group : elementor-post-6736
+[20:15:20] Asset (handle: elementor-post-6736) in group styles has been successfully processed.
+[05:17:44] localProcessing Group : elementor-post-1467
+[05:17:44] Asset (handle: elementor-post-1467) in group styles has been successfully processed.
+[06:30:16] localProcessing Group : photoswipe-default-skin
+[06:30:16] Asset (handle: photoswipe-default-skin) in group styles has been successfully processed.
+[06:30:17] localProcessing Group : zoom
+[06:30:17] Asset (handle: zoom) in group scripts has been successfully processed.
+[06:30:18] localProcessing Group : flexslider
+[06:30:18] Asset (handle: flexslider) in group scripts has been successfully processed.
+[06:30:19] localProcessing Group : photoswipe-ui-default
+[06:30:19] Asset (handle: photoswipe-ui-default) in group scripts has been successfully processed.
+[06:30:20] localProcessing Group : wc-single-product
+[06:30:20] Asset (handle: wc-single-product) in group scripts has been successfully processed.
+[06:30:20] localProcessing Group : wpcf7cf-scripts
+[06:30:20] Asset (handle: wpcf7cf-scripts) in group scripts has been successfully processed.
+[07:09:02] localProcessing Group : elementor-post-6733
+[07:09:02] Asset (handle: elementor-post-6733) in group styles has been successfully processed.
+[09:35:36] localProcessing Group : elementor-post-6501
+[09:35:36] Code different from 200. Truncated content:
+[09:35:36] <html>
+<head><title>404 Not Found</title></head>
+<body bgcolor="white">
+<center><h1>404 Not Found</h1></center>
+<hr><center>nginx</center>
+</body>
+</html>
+
+[09:35:36] Asset (handle: elementor-post-6501) in group styles has been successfully processed.
+[09:48:29] localProcessing Group : elementor-post-6767
+[09:48:29] Asset (handle: elementor-post-6767) in group styles has been successfully processed.
+[09:50:14] localProcessing Group : elementor-post-6506
+[09:50:14] Asset (handle: elementor-post-6506) in group styles has been successfully processed.
+[10:34:12] localProcessing Group : elementor-post-4097
+[10:34:12] Asset (handle: elementor-post-4097) in group styles has been successfully processed.

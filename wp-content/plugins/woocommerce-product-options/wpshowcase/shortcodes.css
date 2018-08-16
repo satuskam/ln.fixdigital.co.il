@@ -1,0 +1,23 @@
+.wpshowcase-accordion-content {
+    display:none;
+}
+
+.wpshowcase-accordion-header-expander {
+    float:left;
+    font-weight:bold;
+}
+
+.wpshowcase-accordion-header {
+    background:lightgray;
+    padding:10px;
+}
+
+.wpshowcase-accordion-content {
+    padding:10px
+}
+
+.wpshowcase-accordion-element {
+    border-radius:10px;
+    border:1px solid gray;
+    margin:10px;
+}

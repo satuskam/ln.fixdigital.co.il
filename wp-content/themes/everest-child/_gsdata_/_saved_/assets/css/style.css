@@ -1,0 +1,22 @@
+@import "../../../everest/assets/css/style.min.css";
+
+/* Your CSS code goes here
+-------------------------------------- */
+.pojo-form .form-message{
+    font-size: 1.6em;
+}
+.elementor-icon .fa-wordpress:before{
+    content: "\f095";
+}
+footer .elementor-social-icon-phone{
+    background-color: #fff;
+}
+footer .elementor-social-icon-phone i{
+    color: #3a3f41;
+}
+@media (max-width: 767px) {
+    .projects_wrap>.elementor-container.elementor-column-gap-default{
+        padding-bottom: 30px;
+    }
+}
+ 
