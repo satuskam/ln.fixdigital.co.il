@@ -37,21 +37,8 @@ define('PATH_CURRENT_SITE', '/');
 define('SITE_ID_CURRENT_SITE', 1);
 define('BLOG_ID_CURRENT_SITE', 1);
 
-/*
-$isSecure = false;
-if (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] == 'on') {
-    $isSecure = true;
-    
-} elseif (!empty($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROTO'] == 'https' || !empty($_SERVER['HTTP_X_FORWARDED_SSL']) && $_SERVER['HTTP_X_FORWARDED_SSL'] == 'on') {
-    $isSecure = true;
-    
-} elseif (!empty($_SERVER['HTTP_CLOUDFRONT_FORWARDED_PROTO']) && $_SERVER['HTTP_CLOUDFRONT_FORWARDED_PROTO'] == 'https') {
-    $isSecure = true;
-}
- */
 
-
-// Work out if we are using https
+// It's need to enable ssl supposrt for HTTPS requests to the mapped custom domains through CluoudFront
 $sslHeaders = [
     'HTTPS' => 'on',
     'HTTP_X_FORWARDED_PROTO' => 'https',
@@ -61,17 +48,15 @@ $sslHeaders = [
 $isSecure = false;
 foreach ($sslHeaders as $header => $value) {
     if (!empty($_SERVER[$header]) && $_SERVER[$header] == $value) {
-        $isSecure = true;
         $_SERVER['HTTPS'] = 'on';
         break;
     }
 }
 
-var_dump($isSecure);
 
-$REQUEST_PROTOCOL = $isSecure ? 'https://' : 'http://';
-define( 'WP_CONTENT_URL', $REQUEST_PROTOCOL.$_SERVER['HTTP_HOST'] . '/wp-content');
-define( 'WP_HOME', $REQUEST_PROTOCOL.$_SERVER['HTTP_HOST'] );
+//$REQUEST_PROTOCOL = $isSecure ? 'https://' : 'http://';
+//define( 'WP_CONTENT_URL', $REQUEST_PROTOCOL.$_SERVER['HTTP_HOST'] . '/wp-content');
+//define( 'WP_HOME', $REQUEST_PROTOCOL.$_SERVER['HTTP_HOST'] );
 
 
 define( 'SUNRISE', 'on' );
