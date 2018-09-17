@@ -62,6 +62,7 @@ $isSecure = false;
 foreach ($sslHeaders as $header => $value) {
     if (!empty($_SERVER[$header]) && $_SERVER[$header] == $value) {
         $isSecure = true;
+        $_SERVER['HTTPS'] = 'on';
         break;
     }
 }
