@@ -41,10 +41,15 @@ define('BLOG_ID_CURRENT_SITE', 1);
 $isSecure = false;
 if (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] == 'on') {
     $isSecure = true;
-}
-elseif (!empty($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROTO'] == 'https' || !empty($_SERVER['HTTP_X_FORWARDED_SSL']) && $_SERVER['HTTP_X_FORWARDED_SSL'] == 'on') {
+    
+} elseif (!empty($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROTO'] == 'https' || !empty($_SERVER['HTTP_X_FORWARDED_SSL']) && $_SERVER['HTTP_X_FORWARDED_SSL'] == 'on') {
+    $isSecure = true;
+    
+} elseif (!empty($_SERVER['HTTP_CLOUDFRONT_FORWARDED_PROTO']) && $_SERVER['HTTP_CLOUDFRONT_FORWARDED_PROTO'] == 'https') {
     $isSecure = true;
 }
+
+
 $REQUEST_PROTOCOL = $isSecure ? 'https://' : 'http://';
 define( 'WP_CONTENT_URL', $REQUEST_PROTOCOL.$_SERVER['HTTP_HOST'] . '/wp-content');
 define( 'WP_HOME', $REQUEST_PROTOCOL.$_SERVER['HTTP_HOST'] );
