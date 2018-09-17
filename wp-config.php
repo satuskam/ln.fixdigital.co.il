@@ -49,7 +49,9 @@ $REQUEST_PROTOCOL = $isSecure ? 'https://' : 'http://';
 define( 'WP_CONTENT_URL', $REQUEST_PROTOCOL.$_SERVER['HTTP_HOST'] . '/wp-content');
 define( 'WP_HOME', $REQUEST_PROTOCOL.$_SERVER['HTTP_HOST'] );
 
+
 var_dump( $_SERVER['HTTP_HOST'] );
+var_dump( $_SERVER['HTTP_X_FORWARDED_PROTO'] );
 //var_dump(is_ssl());
 var_dump($isSecure);
 var_dump('ssl_test');
