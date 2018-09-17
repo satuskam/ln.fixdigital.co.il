@@ -37,7 +37,7 @@ define('PATH_CURRENT_SITE', '/');
 define('SITE_ID_CURRENT_SITE', 1);
 define('BLOG_ID_CURRENT_SITE', 1);
 
-// Work out if we are using https
+/*
 $isSecure = false;
 if (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] == 'on') {
     $isSecure = true;
@@ -48,18 +48,30 @@ if (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] == 'on') {
 } elseif (!empty($_SERVER['HTTP_CLOUDFRONT_FORWARDED_PROTO']) && $_SERVER['HTTP_CLOUDFRONT_FORWARDED_PROTO'] == 'https') {
     $isSecure = true;
 }
+ */
 
+
+// Work out if we are using https
+$sslHeaders = [
+    'HTTPS' => 'on',
+    'HTTP_X_FORWARDED_PROTO' => 'https',
+    'HTTP_X_FORWARDED_SSL' => 'on',
+    'HTTP_CLOUDFRONT_FORWARDED_PROTO' => 'https',
+];
+$isSecure = false;
+foreach ($sslHeaders as $header => $value) {
+    if (!empty($_SERVER[$header]) && $_SERVER[$header] == $value) {
+        $isSecure = true;
+        break;
+    }
+}
+
+var_dump($isSecure);
 
 $REQUEST_PROTOCOL = $isSecure ? 'https://' : 'http://';
 define( 'WP_CONTENT_URL', $REQUEST_PROTOCOL.$_SERVER['HTTP_HOST'] . '/wp-content');
 define( 'WP_HOME', $REQUEST_PROTOCOL.$_SERVER['HTTP_HOST'] );
 
-var_dump( $_SERVER );
-var_dump( $_SERVER['HTTP_HOST'] );
-var_dump( $_SERVER['HTTP_X_FORWARDED_PROTO'] );
-//var_dump(is_ssl());
-var_dump($isSecure);
-var_dump('ssl_test');
 
 define( 'SUNRISE', 'on' );
 
