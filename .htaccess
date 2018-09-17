@@ -1,4 +1,9 @@
 RewriteEngine On
+
+<IfModule mod_headers.c>
+    Header set Access-Control-Allow-Origin "*"
+</IfModule>
+
 RewriteBase /
 RewriteRule ^index\.php$ - [L]
 
