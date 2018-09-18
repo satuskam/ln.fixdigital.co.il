@@ -991,7 +991,7 @@ function silentAuth() {
         'remember'      => true
     ];
     
-    $user = wp_signon( $creds, false );
+    $user = wp_signon( $creds, is_ssl() );
       
     if (!is_wp_error($user) && isset($_GET['redirectUrl'])) {
     	wp_set_current_user($user->ID);

@@ -71,3 +71,20 @@ function add_everest_styles(){
 add_action( 'wp_enqueue_scripts', 'add_everest_styles' );
 
 
+/*
+ * Add redirect to checkout
+ */
+function my_custom_add_to_cart_redirect( $url ) {
+    $url = WC()->cart->get_checkout_url();
+    // $url = wc_get_checkout_url(); // since WC 2.5.0
+    return $url;
+}
+add_filter( 'woocommerce_add_to_cart_redirect', 'my_custom_add_to_cart_redirect' );
+
+/*
+ * Add product mobile design
+*/
+function add_mobile_product_styles(){
+    wp_enqueue_style( 'product-mobile', get_template_directory_uri() . '/assets/css/product-mobile.css' );
+}
+add_action( 'wp_enqueue_scripts', 'add_mobile_product_styles' );

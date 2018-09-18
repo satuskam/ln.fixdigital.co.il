@@ -38,7 +38,7 @@ define('SITE_ID_CURRENT_SITE', 1);
 define('BLOG_ID_CURRENT_SITE', 1);
 
 
-// It's need to enable ssl supposrt for HTTPS requests to the mapped custom domains through CluoudFront
+// It's need to enable ssl support for HTTPS requests to the mapped custom domains through CluoudFront
 $sslHeaders = [
     'HTTPS' => 'on',
     'HTTP_X_FORWARDED_PROTO' => 'https',
@@ -49,6 +49,8 @@ $isSecure = false;
 foreach ($sslHeaders as $header => $value) {
     if (!empty($_SERVER[$header]) && $_SERVER[$header] == $value) {
         $_SERVER['HTTPS'] = 'on';
+        define( 'WP_CONTENT_URL', 'https://'.$_SERVER['HTTP_HOST'] . '/wp-content');
+        define( 'WP_HOME', 'https://'.$_SERVER['HTTP_HOST'] );
         break;
     }
 }
