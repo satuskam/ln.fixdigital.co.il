@@ -1,5 +1,5 @@
-/*! elementor-pro - v2.0.4 - 02-05-2018 */
-(function(){function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s}return e})()({1:[function(require,module,exports){
+/*! elementor-pro - v2.1.9 - 17-09-2018 */
+(function(){function r(e,n,t){function o(i,f){if(!n[i]){if(!e[i]){var c="function"==typeof require&&require;if(!f&&c)return c(i,!0);if(u)return u(i,!0);var a=new Error("Cannot find module '"+i+"'");throw a.code="MODULE_NOT_FOUND",a}var p=n[i]={exports:{}};e[i][0].call(p.exports,function(r){var n=e[i][1][r];return o(n||r)},p,p.exports,r,e,n,t)}return n[i].exports}for(var u="function"==typeof require&&require,i=0;i<t.length;i++)o(t[i]);return o}return r})()({1:[function(require,module,exports){
 var ElementorProFrontend = function( $ ) {
 	var self = this;
 
@@ -19,8 +19,22 @@ var ElementorProFrontend = function( $ ) {
         social: require( 'modules/social/assets/js/frontend/frontend' ),
 		themeElements: require( 'modules/theme-elements/assets/js/frontend/frontend' ),
 		themeBuilder: require( 'modules/theme-builder/assets/js/frontend/frontend' ),
-		sticky: require( 'modules/sticky/assets/js/frontend/frontend' )
+		sticky: require( 'modules/sticky/assets/js/frontend/frontend' ),
+        woocommerce: require( 'modules/woocommerce/assets/js/frontend/frontend' )
     };
+
+	var addIeCompatibility = function() {
+		var isIE = jQuery( 'body' ).hasClass( 'elementor-msie' );
+
+		if ( ! isIE ) {
+			return;
+		}
+
+		var $frontendCss = jQuery( '#elementor-pro-css' ),
+			msieCss = $frontendCss[0].outerHTML.replace( 'css/frontend', 'css/frontend-msie' ).replace( 'elementor-pro-css', 'elementor-pro-msie-css' );
+
+		$frontendCss.after( msieCss );
+	};
 
 	var initModules = function() {
 		self.modules = {};
@@ -31,6 +45,7 @@ var ElementorProFrontend = function( $ ) {
 	};
 
 	this.init = function() {
+		addIeCompatibility();
 		$( window ).on( 'elementor/frontend/init', initModules );
 	};
 
@@ -39,7 +54,7 @@ var ElementorProFrontend = function( $ ) {
 
 window.elementorProFrontend = new ElementorProFrontend( jQuery );
 
-},{"modules/animated-headline/assets/js/frontend/frontend":2,"modules/carousel/assets/js/frontend/frontend":4,"modules/countdown/assets/js/frontend/frontend":8,"modules/forms/assets/js/frontend/frontend":10,"modules/nav-menu/assets/js/frontend/frontend":17,"modules/posts/assets/js/frontend/frontend":19,"modules/share-buttons/assets/js/frontend/frontend":23,"modules/slides/assets/js/frontend/frontend":25,"modules/social/assets/js/frontend/frontend":27,"modules/sticky/assets/js/frontend/frontend":29,"modules/theme-builder/assets/js/frontend/frontend":31,"modules/theme-elements/assets/js/frontend/frontend":34}],2:[function(require,module,exports){
+},{"modules/animated-headline/assets/js/frontend/frontend":2,"modules/carousel/assets/js/frontend/frontend":4,"modules/countdown/assets/js/frontend/frontend":8,"modules/forms/assets/js/frontend/frontend":10,"modules/nav-menu/assets/js/frontend/frontend":17,"modules/posts/assets/js/frontend/frontend":19,"modules/share-buttons/assets/js/frontend/frontend":23,"modules/slides/assets/js/frontend/frontend":25,"modules/social/assets/js/frontend/frontend":27,"modules/sticky/assets/js/frontend/frontend":29,"modules/theme-builder/assets/js/frontend/frontend":31,"modules/theme-elements/assets/js/frontend/frontend":34,"modules/woocommerce/assets/js/frontend/frontend":36}],2:[function(require,module,exports){
 module.exports = function() {
     elementorFrontend.hooks.addAction( 'frontend/element_ready/animated-headline.default', require( './handlers/animated-headlines' ) );
 };
@@ -384,17 +399,25 @@ module.exports = elementorFrontend.Module.extend( {
 	getInitialSlide: function() {
 		var editSettings = this.getEditSettings();
 
-		return editSettings.activeItemIndex ? editSettings.activeItemIndex - 1 : Math.floor( ( this.getSlidesCount() - 1 ) / 2 );
+		return editSettings.activeItemIndex ? editSettings.activeItemIndex - 1 : 0;
 	},
 
 	getEffect: function() {
 		return this.getElementSettings( 'effect' );
 	},
 
-	getSlidesPerView: function( device ) {
+	getDeviceSlidesPerView: function( device ) {
 		var slidesPerViewKey = 'slides_per_view' + ( 'desktop' === device ? '' : '_' + device );
 
 		return Math.min( this.getSlidesCount(), +this.getElementSettings( slidesPerViewKey ) || this.getSettings( 'slidesPerView' )[ device ] );
+	},
+
+	getSlidesPerView: function( device ) {
+		if ( 'slide' === this.getEffect() ) {
+			return this.getDeviceSlidesPerView( device );
+		}
+
+		return 1;
 	},
 
 	getDesktopSlidesPerView: function() {
@@ -409,8 +432,30 @@ module.exports = elementorFrontend.Module.extend( {
 		return this.getSlidesPerView( 'mobile' );
 	},
 
-	getSlidesToScroll: function() {
-		return Math.min( this.getSlidesCount(), +this.getElementSettings( 'slides_to_scroll' ) || 1 );
+    getDeviceSlidesToScroll: function( device ) {
+        var slidesToScrollKey = 'slides_to_scroll' + ( 'desktop' === device ? '' : '_' + device );
+
+        return Math.min( this.getSlidesCount(), +this.getElementSettings( slidesToScrollKey ) || 1 );
+    },
+
+    getSlidesToScroll: function( device ) {
+        if ( 'slide' === this.getEffect() ) {
+            return this.getDeviceSlidesToScroll( device );
+        }
+
+        return 1;
+    },
+
+	getDesktopSlidesToScroll: function() {
+		return this.getSlidesToScroll( 'desktop' );
+	},
+
+	getTabletSlidesToScroll: function() {
+		return this.getSlidesToScroll( 'tablet' );
+	},
+
+	getMobileSlidesToScroll: function() {
+		return this.getSlidesToScroll( 'mobile' );
 	},
 
 	getSpaceBetween: function( device ) {
@@ -424,49 +469,67 @@ module.exports = elementorFrontend.Module.extend( {
 	},
 
 	getSwiperOptions: function() {
-		var elementSettings = this.getElementSettings(),
-			effect = this.getEffect(),
-			isSlideEffect = 'slide' === effect;
+		var elementSettings = this.getElementSettings();
 
-		return {
-			pagination: '.swiper-pagination',
-			nextButton: '.elementor-swiper-button-next',
-			prevButton: '.elementor-swiper-button-prev',
-			paginationClickable: true,
+		var swiperOptions = {
+			navigation: {
+				prevEl: '.elementor-swiper-button-prev',
+				nextEl: '.elementor-swiper-button-next'
+			},
+			pagination: {
+				el: '.swiper-pagination',
+				type: elementSettings.pagination,
+				clickable: true
+			},
 			grabCursor: true,
 			initialSlide: this.getInitialSlide(),
-			slidesPerView: isSlideEffect ? this.getDesktopSlidesPerView() : 1,
-			slidesPerGroup: this.getSlidesToScroll(),
+			slidesPerView: this.getDesktopSlidesPerView(),
+			slidesPerGroup: this.getDesktopSlidesToScroll(),
 			spaceBetween: this.getSpaceBetween(),
-			paginationType: elementSettings.pagination,
-			autoplay: this.isEdit ? 0 : elementSettings.autoplay_speed,
-			autoplayDisableOnInteraction: !! elementSettings.pause_on_interaction,
 			loop: 'yes' === elementSettings.loop,
-			loopedSlides: this.getSlidesCount(),
 			speed: elementSettings.speed,
-			effect: effect,
-			breakpoints: {
-				1024: {
-					slidesPerView: isSlideEffect ? this.getTabletSlidesPerView() : 1,
-					spaceBetween: this.getSpaceBetween( 'tablet' )
-				},
-				767: {
-					slidesPerView: isSlideEffect ? this.getMobileSlidesPerView() : 1,
-					spaceBetween: this.getSpaceBetween( 'mobile' )
-				}
-			}
+			effect: this.getEffect()
 		};
+
+		if ( 'cube' !== this.getEffect() ) {
+			var breakpointsSettings = {},
+				breakpoints = elementorFrontend.config.breakpoints;
+
+			breakpointsSettings[ breakpoints.lg - 1 ] = {
+				slidesPerView: this.getTabletSlidesPerView(),
+				slidesPerGroup: this.getTabletSlidesToScroll(),
+				spaceBetween: this.getSpaceBetween( 'tablet' )
+			};
+
+			breakpointsSettings[ breakpoints.md - 1 ] = {
+				slidesPerView: this.getMobileSlidesPerView(),
+				slidesPerGroup: this.getMobileSlidesToScroll(),
+				spaceBetween: this.getSpaceBetween( 'mobile' )
+			};
+
+			swiperOptions.breakpoints = breakpointsSettings;
+		}
+
+		if ( ! this.isEdit && elementSettings.autoplay ) {
+			swiperOptions.autoplay = {
+				delay: elementSettings.autoplay_speed,
+				disableOnInteraction: !! elementSettings.pause_on_interaction
+			};
+		}
+
+		return swiperOptions;
 	},
 
 	updateSpaceBetween: function( swiper, propertyName ) {
 		var deviceMatch = propertyName.match( 'space_between_(.*)' ),
 			device = deviceMatch ? deviceMatch[1] : 'desktop',
-			newSpaceBetween = this.getSpaceBetween( device );
+			newSpaceBetween = this.getSpaceBetween( device ),
+			breakpoints = elementorFrontend.config.breakpoints;
 
 		if ( 'desktop' !== device ) {
 			var breakpointDictionary = {
-				tablet: 1024,
-				mobile: 767
+				tablet: breakpoints.lg - 1,
+				mobile: breakpoints.md - 1
 			};
 
 			swiper.params.breakpoints[ breakpointDictionary[ device ] ].spaceBetween = newSpaceBetween;
@@ -476,7 +539,7 @@ module.exports = elementorFrontend.Module.extend( {
 
 		swiper.params.spaceBetween = newSpaceBetween;
 
-		swiper.onResize();
+		swiper.update();
 	},
 
 	onInit: function() {
@@ -492,8 +555,12 @@ module.exports = elementorFrontend.Module.extend( {
 	},
 
 	onElementChange: function( propertyName ) {
+		if ( 1 >= this.getSlidesCount() ) {
+			return;
+		}
+
 		if ( 0 === propertyName.indexOf( 'width' ) ) {
-			this.swipers.main.onResize();
+			this.swipers.main.update();
 		}
 
 		if ( 0 === propertyName.indexOf( 'space_between' ) ) {
@@ -502,8 +569,12 @@ module.exports = elementorFrontend.Module.extend( {
 	},
 
 	onEditSettingsChange: function( propertyName ) {
+		if ( 1 >= this.getSlidesCount() ) {
+			return;
+		}
+
 		if ( 'activeItemIndex' === propertyName ) {
-			this.swipers.main.slideTo( this.getEditSettings( 'activeItemIndex' ) - 1 );
+			this.swipers.main.slideToLoop( this.getEditSettings( 'activeItemIndex' ) - 1 );
 		}
 	}
 } );
@@ -559,15 +630,31 @@ MediaCarousel = Base.extend( {
 		return defaultElements;
 	},
 
+	getEffect: function() {
+		if ( 'coverflow' === this.getElementSettings( 'skin' ) ) {
+			return 'coverflow';
+		}
+
+		return Base.prototype.getEffect.apply( this, arguments );
+	},
+
+	getSlidesPerView: function( device ) {
+		if ( this.isSlideshow() ) {
+			return 1;
+		}
+
+		if ( 'coverflow' === this.getElementSettings( 'skin' ) ) {
+			return this.getDeviceSlidesPerView( device );
+		}
+
+		return Base.prototype.getSlidesPerView.apply( this, arguments );
+	},
+
 	getSwiperOptions: function() {
 		var options = Base.prototype.getSwiperOptions.apply( this, arguments );
 
-		if ( 'coverflow' === this.getElementSettings( 'skin' ) ) {
-			options.effect = 'coverflow';
-		}
-
 		if ( this.isSlideshow() ) {
-			options.slidesPerView = 1;
+			options.loopedSlides = this.getSlidesCount();
 
 			delete options.pagination;
 			delete options.breakpoints;
@@ -576,57 +663,57 @@ MediaCarousel = Base.extend( {
 		return options;
 	},
 
-	getTabletSlidesPerView: function() {
-		var elementSettings = this.getElementSettings();
-
-		if ( ! elementSettings.slides_per_view_tablet && 'coverflow' === elementSettings.skin ) {
-			return Math.min( this.getSlidesCount(), 3 );
-		}
-
-		return Base.prototype.getTabletSlidesPerView.apply( this, arguments );
-	},
-
 	onInit: function() {
 		Base.prototype.onInit.apply( this, arguments );
 
-		if ( ! this.isSlideshow() || 1 >= this.getSlidesCount() ) {
+		var slidesCount = this.getSlidesCount();
+
+		if ( ! this.isSlideshow() || 1 >= slidesCount ) {
 			return;
 		}
 
 		var elementSettings = this.getElementSettings(),
-			loop = 'yes' === elementSettings.loop;
+			loop = 'yes' === elementSettings.loop,
+			breakpointsSettings = {},
+			breakpoints = elementorFrontend.config.breakpoints,
+			desktopSlidesPerView = this.getDeviceSlidesPerView( 'desktop' );
+
+		breakpointsSettings[ breakpoints.lg - 1 ] = {
+			slidesPerView: this.getDeviceSlidesPerView( 'tablet' ),
+			spaceBetween: this.getSpaceBetween( 'tablet' )
+		};
+
+		breakpointsSettings[ breakpoints.md - 1 ] = {
+			slidesPerView: this.getDeviceSlidesPerView( 'mobile' ),
+			spaceBetween: this.getSpaceBetween( 'mobile' )
+		};
 
 		var thumbsSliderOptions = {
-			slidesPerView: this.getDesktopSlidesPerView(),
+			slidesPerView: desktopSlidesPerView,
 			initialSlide: this.getInitialSlide(),
-			centeredSlides: true,
+			centeredSlides: elementSettings.centered_slides,
 			slideToClickedSlide: true,
 			spaceBetween: this.getSpaceBetween(),
-			loopedSlides: this.getSlidesCount(),
+			loopedSlides: slidesCount,
 			loop: loop,
 			onSlideChangeEnd: function( swiper ) {
 				if ( loop ) {
 					swiper.fixLoop();
 				}
 			},
-			breakpoints: {
-				1024: {
-					slidesPerView: this.getTabletSlidesPerView(),
-					spaceBetween: this.getSpaceBetween( 'tablet' )
-				},
-				767: {
-					slidesPerView: this.getMobileSlidesPerView(),
-					spaceBetween: this.getSpaceBetween( 'mobile' )
-				}
-			}
+			breakpoints: breakpointsSettings
 		};
 
-		this.swipers.main.params.control = this.swipers.thumbs = new Swiper( this.elements.$thumbsSwiper, thumbsSliderOptions );
+		this.swipers.main.controller.control = this.swipers.thumbs = new Swiper( this.elements.$thumbsSwiper, thumbsSliderOptions );
 
-		this.swipers.thumbs.params.control = this.swipers.main;
+		this.swipers.thumbs.controller.control = this.swipers.main;
 	},
 
 	onElementChange: function( propertyName ) {
+		if ( 1 >= this.getSlidesCount() ) {
+			return;
+		}
+
 		if ( ! this.isSlideshow() ) {
 			Base.prototype.onElementChange.apply( this, arguments );
 
@@ -634,8 +721,8 @@ MediaCarousel = Base.extend( {
 		}
 
 		if ( 0 === propertyName.indexOf( 'width' ) ) {
-			this.swipers.main.onResize();
-			this.swipers.thumbs.onResize();
+			this.swipers.main.update();
+			this.swipers.thumbs.update();
 		}
 
 		if ( 0 === propertyName.indexOf( 'space_between' ) ) {
@@ -768,20 +855,20 @@ module.exports = function( $scope, $ ) {
 		return;
 	}
 
-	var addDatePicker = function ( $element ) {
+	var addDatePicker = function( $element ) {
 		if ( $( $element ).hasClass( 'elementor-use-native' ) ) {
 			return;
 		}
 		var options = {
-			minDate: $($element).attr( 'min' ) || null,
-			maxDate: $($element).attr( 'max' ) || null,
+			minDate: $( $element ).attr( 'min' ) || null,
+			maxDate: $( $element ).attr( 'max' ) || null,
 			allowInput: true
 		};
 		$element.flatpickr( options );
 	};
-	$.each($elements, function( i, $element ) {
+	$.each( $elements, function( i, $element ) {
 		addDatePicker( $element );
-	});
+	} );
 };
 
 },{}],12:[function(require,module,exports){
@@ -792,7 +879,7 @@ module.exports = function( $scope, $ ) {
 		return;
 	}
 
-	var addTimePicker = function ( $element ) {
+	var addTimePicker = function( $element ) {
 		if ( $( $element ).hasClass( 'elementor-use-native' ) ) {
 			return;
 		}
@@ -802,9 +889,9 @@ module.exports = function( $scope, $ ) {
 			allowInput: true
 		} );
 	};
-	$.each($elements, function( i, $element ) {
+	$.each( $elements, function( i, $element ) {
 		addTimePicker( $element );
-	});
+	} );
 };
 
 },{}],13:[function(require,module,exports){
@@ -1021,7 +1108,7 @@ module.exports = function( $scope, $ ) {
 	};
 
 	var onRecaptchaApiReady = function( callback ) {
-		if ( window.grecaptcha ) {
+		if ( window.grecaptcha && window.grecaptcha.render ) {
 			callback();
 		} else {
 			// If not ready check again by timeout..
@@ -1073,25 +1160,24 @@ var MenuHandler = elementorFrontend.Module.extend( {
 
 		elements.$menu = this.$element.find( selectors.menu );
 		elements.$dropdownMenu = this.$element.find( selectors.dropdownMenu );
+		elements.$dropdownMenuFinalItems = elements.$dropdownMenu.find( '.menu-item:not(.menu-item-has-children) > a' );
 		elements.$menuToggle = this.$element.find( selectors.menuToggle );
 
 		return elements;
 	},
 
 	bindEvents: function() {
-		var self = this;
-
-		if ( ! self.elements.$menu.length ) {
+		if ( ! this.elements.$menu.length ) {
 			return;
 		}
 
-		self.elements.$menuToggle.on( 'click', function() {
-			self.elements.$menuToggle.toggleClass( 'elementor-active' );
+		this.elements.$menuToggle.on( 'click', this.toggleMenu.bind( this ) );
 
-			self.toggleMenu( self.elements.$menuToggle.hasClass( 'elementor-active' ) );
-		} );
+		if ( this.getElementSettings( 'full_width' ) ) {
+			this.elements.$dropdownMenuFinalItems.on( 'click', this.toggleMenu.bind( this, false ) );
+		}
 
-		elementorFrontend.addListenerOnce( self.$element.data( 'model-cid' ), 'resize', self.stretchMenu );
+		elementorFrontend.addListenerOnce( this.$element.data( 'model-cid' ), 'resize', this.stretchMenu );
 	},
 
 	initStretchElement: function() {
@@ -1099,7 +1185,14 @@ var MenuHandler = elementorFrontend.Module.extend( {
 	},
 
 	toggleMenu: function( show ) {
-		var $dropdownMenu = this.elements.$dropdownMenu;
+		var $dropdownMenu = this.elements.$dropdownMenu,
+			isDropdownVisible = this.elements.$menuToggle.hasClass( 'elementor-active' );
+
+		if ( 'boolean' !== typeof show ) {
+			show = ! isDropdownVisible;
+		}
+
+		this.elements.$menuToggle.toggleClass( 'elementor-active', show );
 
 		if ( show ) {
 			$dropdownMenu.hide().slideDown( 250, function() {
@@ -1134,7 +1227,7 @@ var MenuHandler = elementorFrontend.Module.extend( {
 		}
 
 		this.elements.$menu.smartmenus( {
-			subIndicatorsText: '',
+			subIndicatorsText: '<i class="fa"></i>',
 			subIndicatorsPos: 'append',
             subMenusMaxWidth: '1000px'
 		} );
@@ -1589,11 +1682,19 @@ module.exports = elementorFrontend.Module.extend( {
 			return;
 		}
 
+		/* The `verticalSpaceBetween` variable is setup in a way that supports older versions of the portfolio widget */
+
+		var verticalSpaceBetween = this.getElementSettings( this.getSkinPrefix() + 'row_gap.size' );
+
+		if ( '' === this.getSkinPrefix() && '' === verticalSpaceBetween ) {
+			verticalSpaceBetween = this.getElementSettings( this.getSkinPrefix() + 'item_gap.size' );
+		}
+
 		var masonry = new elementorFrontend.modules.Masonry( {
 			container: elements.$postsContainer,
 			items: elements.$posts.filter( ':visible' ),
 			columnsCount: this.getSettings( 'colsCount' ),
-			verticalSpaceBetween: 0
+			verticalSpaceBetween: verticalSpaceBetween
 		} );
 
 		masonry.run();
@@ -1663,7 +1764,7 @@ ShareButtonsHandler = HandlerModule.extend( {
 			return network.has_counter ? networkName : null;
 		} );
 
-		if ( ! ElementorProFrontendConfig.hasOwnProperty( 'donreach') ) {
+		if ( ! ElementorProFrontendConfig.hasOwnProperty( 'donreach' ) ) {
 			return;
 		}
 
@@ -1741,6 +1842,10 @@ var SlidesHandler = elementorFrontend.Module.extend( {
 		$slider.slick( $slider.data( this.getSettings( 'attributes.dataSliderOptions' ) ) );
 	},
 
+	goToActiveSlide: function() {
+		this.elements.$slider.slick( 'slickGoTo', this.getEditSettings( 'activeItemIndex' ) - 1 );
+	},
+
 	onPanelShow: function() {
 		var $slider = this.elements.$slider;
 
@@ -1785,11 +1890,15 @@ var SlidesHandler = elementorFrontend.Module.extend( {
 		elementorFrontend.Module.prototype.onInit.apply( this, arguments );
 
 		this.initSlider();
+
+		if ( this.isEdit ) {
+			this.goToActiveSlide();
+		}
 	},
 
 	onEditSettingsChange: function( propertyName ) {
 		if ( 'activeItemIndex' === propertyName ) {
-			this.elements.$slider.slick( 'slickGoTo', this.getEditSettings( 'activeItemIndex' ) - 1 );
+			this.goToActiveSlide();
 		}
 	}
 } );
@@ -1853,54 +1962,61 @@ module.exports = function( $scope, $ ) {
 },{}],29:[function(require,module,exports){
 module.exports = function() {
     elementorFrontend.hooks.addAction( 'frontend/element_ready/section', require( './handlers/sticky' ) );
+    elementorFrontend.hooks.addAction( 'frontend/element_ready/widget', require( './handlers/sticky' ) );
 };
 
 },{"./handlers/sticky":30}],30:[function(require,module,exports){
 var StickyHandler = elementorFrontend.Module.extend( {
 
-	getDefaultSettings: function() {
-		return {
-			classes: {
-				stickyActive: 'elementor-sticky--active'
-			}
-		};
+	bindEvents: function() {
+		elementorFrontend.addListenerOnce( this.getUniqueHandlerID() + 'sticky', 'resize', this.run );
 	},
 
-	bindEvents: function() {
-		elementorFrontend.addListenerOnce( this.$element.data( 'model-cid' ) + 'sticky', 'resize', this.run );
+	unbindEvents: function() {
+		elementorFrontend.removeListeners( this.getUniqueHandlerID() + 'sticky', 'resize', this.run );
 	},
 
 	isActive: function() {
-		return undefined !== this.$element.data( 'sticky_kit' );
+		return undefined !== this.$element.data( 'sticky' );
 	},
 
-	activateSticky: function() {
-		var classes = this.getSettings( 'classes' ),
-			$element = this.$element,
+	activate: function() {
+		var elementSettings = this.getElementSettings(),
 			stickyOptions = {
-				sticky_class: classes.stickyActive,
-				parent: 'body'
+				to: elementSettings.sticky,
+				offset: elementSettings.sticky_offset,
+				effectsOffset: elementSettings.sticky_effects_offset,
+				classes: {
+					sticky: 'elementor-sticky',
+					stickyActive: 'elementor-sticky--active elementor-section--handles-inside',
+					stickyEffects: 'elementor-sticky--effects',
+					spacer: 'elementor-sticky__spacer'
+				}
 			},
 			$wpAdminBar = elementorFrontend.getElements( '$wpAdminBar' );
 
-		if ( $wpAdminBar.length && 'fixed' === $wpAdminBar.css( 'position' ) ) {
-			stickyOptions.offset_top = $wpAdminBar.height();
+		if ( elementSettings.sticky_parent ) {
+			stickyOptions.parent = '.elementor-widget-wrap';
 		}
 
-		$element.stick_in_parent( stickyOptions );
+		if ( $wpAdminBar.length && 'top' === elementSettings.sticky && 'fixed' === $wpAdminBar.css( 'position' ) ) {
+			stickyOptions.offset += $wpAdminBar.height();
+		}
+
+		this.$element.sticky( stickyOptions );
 	},
 
-	deactivateSticky: function() {
-		this.$element.trigger( 'sticky_kit:detach' );
+	deactivate: function() {
+		if ( ! this.isActive() ) {
+			return;
+		}
+
+		this.$element.sticky( 'destroy' );
 	},
 
-	run: function() {
-		var isActive = this.isActive();
-
+	run: function( refresh ) {
 		if ( ! this.getElementSettings( 'sticky' ) ) {
-			if ( isActive ) {
-				this.deactivateSticky();
-			}
+			this.deactivate();
 
 			return;
 		}
@@ -1909,19 +2025,29 @@ var StickyHandler = elementorFrontend.Module.extend( {
 			activeDevices = this.getElementSettings( 'sticky_on' );
 
 		if ( -1 !== activeDevices.indexOf( currentDeviceMode ) ) {
-			if ( ! isActive ) {
-				this.activateSticky();
+			if ( true === refresh ) {
+				this.reactivate();
+			} else if ( ! this.isActive() ) {
+				this.activate();
 			}
 		} else {
-			if ( isActive ) {
-				this.deactivateSticky();
-			}
+			this.deactivate();
 		}
 	},
 
+	reactivate: function() {
+		this.deactivate();
+
+		this.activate();
+	},
+
 	onElementChange: function( settingKey ) {
-		if ( 0 === settingKey.indexOf( 'sticky' ) ) {
-			this.run();
+		if ( -1 !== [ 'sticky', 'sticky_on' ].indexOf( settingKey ) ) {
+			this.run( true );
+		}
+
+		if ( -1 !== [ 'sticky_offset', 'sticky_effects_offset', 'sticky_parent' ].indexOf( settingKey ) ) {
+			this.reactivate();
 		}
 	},
 
@@ -1929,6 +2055,12 @@ var StickyHandler = elementorFrontend.Module.extend( {
 		elementorFrontend.Module.prototype.onInit.apply( this, arguments );
 
 		this.run();
+	},
+
+	onDestroy: function() {
+		elementorFrontend.Module.prototype.onDestroy.apply( this, arguments );
+
+		this.deactivate();
 	}
 } );
 
@@ -2090,6 +2222,87 @@ var SearchBerHandler = elementorFrontend.Module.extend( {
                 $input.focus();
             } );
         }
+    }
+} );
+
+module.exports = function( $scope ) {
+    new SearchBerHandler( { $element: $scope } );
+};
+
+},{}],36:[function(require,module,exports){
+module.exports = function() {
+    elementorFrontend.hooks.addAction( 'frontend/element_ready/woocommerce-menu-cart.default', require( './handlers/menu-cart' ) );
+
+	if ( elementorFrontend.isEditMode() ) {
+		return;
+	}
+
+	jQuery( document.body ).on( 'wc_fragments_loaded wc_fragments_refreshed', function() {
+		jQuery( 'div.elementor-widget-woocommerce-menu-cart' ).each( function() {
+			elementorFrontend.elementsHandler.runReadyTrigger( jQuery( this ) );
+		} );
+	} );
+};
+
+},{"./handlers/menu-cart":37}],37:[function(require,module,exports){
+var SearchBerHandler = elementorFrontend.Module.extend( {
+
+    getDefaultSettings: function() {
+        return {
+            selectors: {
+                container: '.elementor-menu-cart__container',
+                toggle: '.elementor-menu-cart__toggle .elementor-button',
+                closeButton: '.elementor-menu-cart__close-button'
+            },
+            classes: {
+                isShown: 'elementor-menu-cart--shown',
+                lightbox: 'elementor-lightbox'
+            }
+        };
+    },
+
+    getDefaultElements: function() {
+        var selectors = this.getSettings( 'selectors' ),
+            elements = {};
+
+        elements.$container = this.$element.find( selectors.container );
+        elements.$toggle = this.$element.find( selectors.toggle );
+        elements.$closeButton = this.$element.find( selectors.closeButton );
+
+        return elements;
+    },
+
+    bindEvents: function() {
+	    var self = this,
+		    $container = self.elements.$container,
+		    $closeButton = self.elements.$closeButton,
+		    classes = this.getSettings( 'classes' );
+
+	    // Activate full-screen mode on click
+	    self.elements.$toggle.on( 'click', function() {
+		    $container.toggleClass( classes.isShown );
+	    } );
+
+	    // Deactivate full-screen mode on click or on esc.
+	    $container.on( 'click', function( event ) {
+		    if ( $container.hasClass( classes.isShown ) && ( $container[ 0 ] === event.target ) ) {
+			    $container.removeClass( classes.isShown );
+		    }
+	    } );
+
+	    $closeButton.on( 'click', function() {
+		    $container.removeClass( classes.isShown );
+	    } );
+
+	    elementorFrontend.getElements( '$document' ).keyup( function( event ) {
+		    var ESC_KEY = 27;
+
+		    if ( ESC_KEY === event.keyCode ) {
+			    if ( $container.hasClass( classes.isShown ) ) {
+				    $container.click();
+			    }
+		    }
+	    } );
     }
 } );
 

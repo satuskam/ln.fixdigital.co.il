@@ -2,6 +2,7 @@
 namespace ElementorPro\Modules\Posts\Skins;
 
 use Elementor\Controls_Manager;
+use Elementor\Group_Control_Css_Filter;
 use Elementor\Group_Control_Image_Size;
 use Elementor\Group_Control_Typography;
 use Elementor\Scheme_Color;
@@ -10,7 +11,9 @@ use Elementor\Skin_Base as Elementor_Skin_Base;
 use Elementor\Widget_Base;
 use ElementorPro\Plugin;
 
-if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
+if ( ! defined( 'ABSPATH' ) ) {
+	exit; // Exit if accessed directly
+}
 
 abstract class Skin_Base extends Elementor_Skin_Base {
 
@@ -201,7 +204,6 @@ abstract class Skin_Base extends Elementor_Skin_Base {
 				'type' => Controls_Manager::SWITCHER,
 				'label_on' => __( 'Show', 'elementor-pro' ),
 				'label_off' => __( 'Hide', 'elementor-pro' ),
-				'return_value' => 'yes',
 				'default' => 'yes',
 				'separator' => 'before',
 			]
@@ -240,7 +242,6 @@ abstract class Skin_Base extends Elementor_Skin_Base {
 				'type' => Controls_Manager::SWITCHER,
 				'label_on' => __( 'Show', 'elementor-pro' ),
 				'label_off' => __( 'Hide', 'elementor-pro' ),
-				'return_value' => 'yes',
 				'default' => 'yes',
 			]
 		);
@@ -267,7 +268,6 @@ abstract class Skin_Base extends Elementor_Skin_Base {
 				'type' => Controls_Manager::SWITCHER,
 				'label_on' => __( 'Show', 'elementor-pro' ),
 				'label_off' => __( 'Hide', 'elementor-pro' ),
-				'return_value' => 'yes',
 				'default' => 'yes',
 				'separator' => 'before',
 			]
@@ -348,8 +348,9 @@ abstract class Skin_Base extends Elementor_Skin_Base {
 					],
 				],
 				'selectors' => [
-					'{{WRAPPER}} .elementor-post' => 'padding-right: calc( {{SIZE}}{{UNIT}}/2 ); padding-left: calc( {{SIZE}}{{UNIT}}/2 );',
-					'{{WRAPPER}} .elementor-posts-container' => 'margin-left: calc( -{{SIZE}}{{UNIT}}/2 ); margin-right: calc( -{{SIZE}}{{UNIT}}/2 );',
+					'{{WRAPPER}} .elementor-posts-container' => 'grid-column-gap: {{SIZE}}{{UNIT}}',
+					'.elementor-msie {{WRAPPER}} .elementor-post' => 'padding-right: calc( {{SIZE}}{{UNIT}}/2 ); padding-left: calc( {{SIZE}}{{UNIT}}/2 );',
+					'.elementor-msie {{WRAPPER}} .elementor-posts-container' => 'margin-left: calc( -{{SIZE}}{{UNIT}}/2 ); margin-right: calc( -{{SIZE}}{{UNIT}}/2 );',
 				],
 			]
 		);
@@ -368,8 +369,10 @@ abstract class Skin_Base extends Elementor_Skin_Base {
 						'max' => 100,
 					],
 				],
+				'frontend_available' => true,
 				'selectors' => [
-					'{{WRAPPER}} .elementor-post' => 'padding-bottom: {{SIZE}}{{UNIT}};',
+					'{{WRAPPER}} .elementor-posts-container' => 'grid-row-gap: {{SIZE}}{{UNIT}}',
+					'.elementor-msie {{WRAPPER}} .elementor-post' => 'padding-bottom: {{SIZE}}{{UNIT}};',
 				],
 			]
 		);
@@ -451,6 +454,42 @@ abstract class Skin_Base extends Elementor_Skin_Base {
 				],
 			]
 		);
+
+		$this->start_controls_tabs( 'thumbnail_effects_tabs' );
+
+		$this->start_controls_tab( 'normal',
+			[
+				'label' => __( 'Normal', 'elementor-pro' ),
+			]
+		);
+
+		$this->add_group_control(
+			Group_Control_Css_Filter::get_type(),
+			[
+				'name' => 'thumbnail_filters',
+				'selector' => '{{WRAPPER}} .elementor-post__thumbnail img',
+			]
+		);
+
+		$this->end_controls_tab();
+
+		$this->start_controls_tab( 'hover',
+			[
+				'label' => __( 'Hover', 'elementor-pro' ),
+			]
+		);
+
+		$this->add_group_control(
+			Group_Control_Css_Filter::get_type(),
+			[
+				'name' => 'thumbnail_hover_filters',
+				'selector' => '{{WRAPPER}} .elementor-post:hover .elementor-post__thumbnail img',
+			]
+		);
+
+		$this->end_controls_tab();
+
+		$this->end_controls_tabs();
 
 		$this->end_controls_section();
 	}
@@ -580,7 +619,7 @@ abstract class Skin_Base extends Elementor_Skin_Base {
 		$this->add_control(
 			'meta_spacing',
 			[
-				'label'     => __( 'Spacing', 'elementor-pro' ),
+				'label' => __( 'Spacing', 'elementor-pro' ),
 				'type' => Controls_Manager::SLIDER,
 				'range' => [
 					'px' => [
@@ -611,7 +650,7 @@ abstract class Skin_Base extends Elementor_Skin_Base {
 		$this->add_control(
 			'excerpt_color',
 			[
-				'label'     => __( 'Color', 'elementor-pro' ),
+				'label' => __( 'Color', 'elementor-pro' ),
 				'type' => Controls_Manager::COLOR,
 				'selectors' => [
 					'{{WRAPPER}} .elementor-post__excerpt p' => 'color: {{VALUE}};',
@@ -637,7 +676,7 @@ abstract class Skin_Base extends Elementor_Skin_Base {
 		$this->add_control(
 			'excerpt_spacing',
 			[
-				'label'     => __( 'Spacing', 'elementor-pro' ),
+				'label' => __( 'Spacing', 'elementor-pro' ),
 				'type' => Controls_Manager::SLIDER,
 				'range' => [
 					'px' => [
@@ -668,7 +707,7 @@ abstract class Skin_Base extends Elementor_Skin_Base {
 		$this->add_control(
 			'read_more_color',
 			[
-				'label'     => __( 'Color', 'elementor-pro' ),
+				'label' => __( 'Color', 'elementor-pro' ),
 				'type' => Controls_Manager::COLOR,
 				'scheme' => [
 					'type' => Scheme_Color::get_type(),
@@ -698,7 +737,7 @@ abstract class Skin_Base extends Elementor_Skin_Base {
 		$this->add_control(
 			'read_more_spacing',
 			[
-				'label'     => __( 'Spacing', 'elementor-pro' ),
+				'label' => __( 'Spacing', 'elementor-pro' ),
 				'type' => Controls_Manager::SLIDER,
 				'range' => [
 					'px' => [
@@ -727,9 +766,6 @@ abstract class Skin_Base extends Elementor_Skin_Base {
 			return;
 		}
 
-		add_filter( 'excerpt_more', [ $this, 'filter_excerpt_more' ], 20 );
-		add_filter( 'excerpt_length', [ $this, 'filter_excerpt_length' ], 20 );
-
 		$this->render_loop_header();
 
 		// It's the global `wp_query` it self. and the loop was started from the theme.
@@ -743,12 +779,10 @@ abstract class Skin_Base extends Elementor_Skin_Base {
 			}
 		}
 
-		$this->render_loop_footer();
-
 		wp_reset_postdata();
 
-		remove_filter( 'excerpt_length', [ $this, 'filter_excerpt_length' ], 20 );
-		remove_filter( 'excerpt_more', [ $this, 'filter_excerpt_more' ], 20 );
+		$this->render_loop_footer();
+
 	}
 
 	public function filter_excerpt_length() {
@@ -803,14 +837,24 @@ abstract class Skin_Base extends Elementor_Skin_Base {
 	}
 
 	protected function render_excerpt() {
+		add_filter( 'excerpt_more', [ $this, 'filter_excerpt_more' ], 20 );
+		add_filter( 'excerpt_length', [ $this, 'filter_excerpt_length' ], 20 );
+
 		if ( ! $this->get_instance_value( 'show_excerpt' ) ) {
 			return;
 		}
+
+		add_filter( 'excerpt_more', [ $this, 'filter_excerpt_more' ], 20 );
+		add_filter( 'excerpt_length', [ $this, 'filter_excerpt_length' ], 20 );
+
 		?>
 		<div class="elementor-post__excerpt">
 			<?php the_excerpt(); ?>
 		</div>
 		<?php
+
+		remove_filter( 'excerpt_length', [ $this, 'filter_excerpt_length' ], 20 );
+		remove_filter( 'excerpt_more', [ $this, 'filter_excerpt_more' ], 20 );
 	}
 
 	protected function render_read_more() {
@@ -889,14 +933,26 @@ abstract class Skin_Base extends Elementor_Skin_Base {
 		$links = [];
 
 		if ( $has_numbers ) {
-			$links = paginate_links( [
+			$paginate_args = [
 				'type' => 'array',
 				'current' => $this->parent->get_current_page(),
 				'total' => $page_limit,
 				'prev_next' => false,
 				'show_all' => 'yes' !== $parent_settings['pagination_numbers_shorten'],
 				'before_page_number' => '<span class="elementor-screen-only">' . __( 'Page', 'elementor-pro' ) . '</span>',
-			] );
+			];
+
+			if ( is_singular() && ! is_front_page() ) {
+				global $wp_rewrite;
+				if ( $wp_rewrite->using_permalinks() ) {
+					$paginate_args['base'] = trailingslashit( get_permalink() ) . '%_%';
+					$paginate_args['format'] = user_trailingslashit( '%#%', 'single_paged' );
+				} else {
+					$paginate_args['format'] = '?page=%#%';
+				}
+			}
+
+			$links = paginate_links( $paginate_args );
 		}
 
 		if ( $has_prev_next ) {
@@ -906,14 +962,14 @@ abstract class Skin_Base extends Elementor_Skin_Base {
 		}
 
 		?>
-		<nav class="elementor-pagination" role="navigation" aria-label="<?php _e( 'Pagination', 'elementor-pro' ); ?>">
+		<nav class="elementor-pagination" role="navigation" aria-label="<?php esc_attr_e( 'Pagination', 'elementor-pro' ); ?>">
 			<?php echo implode( PHP_EOL, $links ); ?>
 		</nav>
 		<?php
 	}
 
 	protected function render_meta_data() {
-		/** @var array $settings. e.g. [ 'author', 'date', ... ] */
+		/** @var array $settings e.g. [ 'author', 'date', ... ] */
 		$settings = $this->get_instance_value( 'meta_data' );
 		if ( empty( $settings ) ) {
 			return;

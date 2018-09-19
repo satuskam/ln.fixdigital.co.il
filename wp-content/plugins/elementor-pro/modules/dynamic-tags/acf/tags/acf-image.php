@@ -16,7 +16,7 @@ class ACF_Image extends Data_Tag {
 	}
 
 	public function get_title() {
-		return sprintf( '%s (%s)', __( 'ACF Field', 'elementor-pro' ), __( 'Beta', 'elementor-pro' ) );
+		return __( 'ACF', 'elementor-pro' ) . ' ' . __( 'Image Field', 'elementor-pro' );
 	}
 
 	public function get_group() {
@@ -43,11 +43,16 @@ class ACF_Image extends Data_Tag {
 
 			list( $field_key, $meta_key ) = explode( ':', $key );
 
-			$field = get_field_object( $field_key );
+			if ( 'options' === $field_key ) {
+				$field = get_field_object( $meta_key, $field_key );
+			} else {
+				$field = get_field_object( $field_key );
+			}
 
 			if ( $field && ! empty( $field['save_format'] ) ) {
 				switch ( $field['save_format'] ) {
 					case 'object':
+					case 'array':
 						$value = $field['value'];
 						break;
 					case 'url':
@@ -88,8 +93,8 @@ class ACF_Image extends Data_Tag {
 		$this->add_control(
 			'key',
 			[
-				'label'   => __( 'Key', 'elementor-pro' ),
-				'type'    => Controls_Manager::SELECT,
+				'label' => __( 'Key', 'elementor-pro' ),
+				'type' => Controls_Manager::SELECT,
 				'groups' => Module::get_control_options( $this->get_supported_fields() ),
 			]
 		);
