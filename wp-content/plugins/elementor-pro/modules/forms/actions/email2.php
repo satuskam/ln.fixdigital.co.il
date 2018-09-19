@@ -3,9 +3,7 @@ namespace ElementorPro\Modules\Forms\Actions;
 
 use Elementor\Controls_Manager;
 
-if ( ! defined( 'ABSPATH' ) ) {
-	exit; // Exit if accessed directly
-}
+if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
 class Email2 extends Email {
 

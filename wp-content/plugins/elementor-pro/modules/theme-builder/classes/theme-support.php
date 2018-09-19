@@ -1,4 +1,5 @@
 <?php
+
 namespace ElementorPro\Modules\ThemeBuilder\Classes;
 
 use ElementorPro\Modules\ThemeBuilder\Module;
@@ -62,7 +63,7 @@ class Theme_Support {
 	public function get_header( $name ) {
 		require __DIR__ . '/../views/theme-support-header.php';
 
-		$templates = [];
+		$templates = array();
 		$name = (string) $name;
 		if ( '' !== $name ) {
 			$templates[] = "header-{$name}.php";
@@ -81,7 +82,7 @@ class Theme_Support {
 	public function get_footer( $name ) {
 		require __DIR__ . '/../views/theme-support-footer.php';
 
-		$templates = [];
+		$templates = array();
 		$name = (string) $name;
 		if ( '' !== $name ) {
 			$templates[] = "footer-{$name}.php";

@@ -28,11 +28,7 @@ class Post_Excerpt extends Widget_Base {
 	}
 
 	public function get_categories() {
-		return [ 'theme-elements-single' ];
-	}
-
-	public function get_keywords() {
-		return [ 'post', 'excerpt', 'description' ];
+		return [ 'theme-elements' ];
 	}
 
 	protected function _register_controls() {

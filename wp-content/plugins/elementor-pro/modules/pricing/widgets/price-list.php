@@ -4,14 +4,11 @@ namespace ElementorPro\Modules\Pricing\Widgets;
 use Elementor\Controls_Manager;
 use Elementor\Group_Control_Image_Size;
 use Elementor\Group_Control_Typography;
-use Elementor\Repeater;
 use Elementor\Scheme_Color;
 use Elementor\Scheme_Typography;
 use ElementorPro\Base\Base_Widget;
 
-if ( ! defined( 'ABSPATH' ) ) {
-	exit; // Exit if accessed directly
-}
+if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
 class Price_List extends Base_Widget {
 
@@ -31,10 +28,6 @@ class Price_List extends Base_Widget {
 		return [ 'pro-elements' ];
 	}
 
-	public function get_keywords() {
-		return [ 'pricing', 'list', 'product', 'image', 'menu' ];
-	}
-
 	protected function _register_controls() {
 		$this->start_controls_section(
 			'section_list',
@@ -44,60 +37,45 @@ class Price_List extends Base_Widget {
 			]
 		);
 
-		$repeater = new Repeater();
-
-		$repeater->add_control(
-			'price',
-			[
-				'label' => __( 'Price', 'elementor-pro' ),
-				'type' => Controls_Manager::TEXT,
-			]
-		);
-
-		$repeater->add_control(
-			'title',
-			[
-				'label' => __( 'Title & Description', 'elementor-pro' ),
-				'type' => Controls_Manager::TEXT,
-				'default' => '',
-				'label_block' => 'true',
-			]
-		);
-
-		$repeater->add_control(
-			'item_description',
-			[
-				'label' => __( 'Description', 'elementor-pro' ),
-				'type' => Controls_Manager::TEXTAREA,
-				'default' => '',
-				'show_label' => false,
-			]
-		);
-
-		$repeater->add_control(
-			'image',
-			[
-				'label' => __( 'Image', 'elementor-pro' ),
-				'type' => Controls_Manager::MEDIA,
-				'default' => [],
-			]
-		);
-
-		$repeater->add_control(
-			'link',
-			[
-				'label' => __( 'Link', 'elementor-pro' ),
-				'type' => Controls_Manager::URL,
-				'default' => [ 'url' => '#' ],
-			]
-		);
-
 		$this->add_control(
 			'price_list',
 			[
 				'label' => __( 'List Items', 'elementor-pro' ),
 				'type' => Controls_Manager::REPEATER,
-				'fields' => $repeater->get_controls(),
+				'fields' => [
+					[
+						'name' => 'price',
+						'label' => __( 'Price', 'elementor-pro' ),
+						'type' => Controls_Manager::TEXT,
+						'default' => '',
+					],
+					[
+						'name' => 'title',
+						'label' => __( 'Title & Description', 'elementor-pro' ),
+						'type' => Controls_Manager::TEXT,
+						'default' => '',
+						'label_block' => 'true',
+					],
+					[
+						'name' => 'item_description',
+						'label' => __( 'Description', 'elementor-pro' ),
+						'type' => Controls_Manager::TEXTAREA,
+						'default' => '',
+						'show_label' => false,
+					],
+					[
+						'name' => 'image',
+						'label' => __( 'Image', 'elementor-pro' ),
+						'type' => Controls_Manager::MEDIA,
+						'default' => [],
+					],
+					[
+						'name' => 'link',
+						'label' => __( 'Link', 'elementor-pro' ),
+						'type' => Controls_Manager::URL,
+						'default' => [ 'url' => '#' ],
+					],
+				],
 				'default' => [
 					[
 						'title' => __( 'First item on the list', 'elementor-pro' ),
@@ -126,7 +104,7 @@ class Price_List extends Base_Widget {
 		$this->start_controls_section(
 			'section_list_style',
 			[
-				'label' => __( 'List', 'elementor-pro' ),
+				'label' => __( 'List Style', 'elementor-pro' ),
 				'tab' => Controls_Manager::TAB_STYLE,
 			]
 		);
@@ -289,7 +267,7 @@ class Price_List extends Base_Widget {
 		$this->start_controls_section(
 			'section_image_style',
 			[
-				'label' => __( 'Image', 'elementor-pro' ),
+				'label' => __( 'Image Style', 'elementor-pro' ),
 				'tab' => Controls_Manager::TAB_STYLE,
 				'show_label' => false,
 			]
@@ -342,7 +320,7 @@ class Price_List extends Base_Widget {
 		$this->start_controls_section(
 			'section_item_style',
 			[
-				'label' => __( 'Item', 'elementor-pro' ),
+				'label' => __( 'Item Style', 'elementor-pro' ),
 				'tab' => Controls_Manager::TAB_STYLE,
 				'show_label' => false,
 			]
@@ -447,39 +425,37 @@ class Price_List extends Base_Widget {
 
 		<?php foreach ( $settings['price_list'] as $item ) : ?>
 			<?php if ( ! empty( $item['title'] ) || ! empty( $item['price'] ) || ! empty( $item['item_description'] ) ) : ?>
-				<?php echo $this->render_item_header( $item ); ?>
-				<?php if ( ! empty( $item['image']['url'] ) ) : ?>
-					<div class="elementor-price-list-image">
+			<?php echo $this->render_item_header( $item ); ?>
+			<?php if ( ! empty( $item['image']['url'] ) ) : ?>
+				<div class="elementor-price-list-image">
 					<?php echo $this->render_image( $item, $settings ); ?>
 				</div>
+			<?php endif; ?>
+			<div class="elementor-price-list-text">
+			<?php if ( ! empty( $item['title'] ) || ! empty( $item['price'] ) ) : ?>
+				<div class="elementor-price-list-header">
+				<?php if ( ! empty( $item['title'] ) ) : ?>
+					<span class="elementor-price-list-title"><?php echo $item['title']; ?></span>
 				<?php endif; ?>
-
-				<div class="elementor-price-list-text">
-				<?php if ( ! empty( $item['title'] ) || ! empty( $item['price'] ) ) : ?>
-					<div class="elementor-price-list-header">
-					<?php if ( ! empty( $item['title'] ) ) : ?>
-						<span class="elementor-price-list-title"><?php echo $item['title']; ?></span>
-					<?php endif; ?>
-						<?php if ( 'none' != $settings['separator_style'] ) : ?>
-							<span class="elementor-price-list-separator"></span>
-						<?php endif; ?>
-						<?php if ( ! empty( $item['price'] ) ) : ?>
-							<span class="elementor-price-list-price"><?php echo $item['price']; ?></span>
-						<?php endif; ?>
+				<?php if ( 'none' != $settings['separator_style'] ) : ?>
+					<span class="elementor-price-list-separator"></span>
+				<?php endif; ?>
+				<?php if ( ! empty( $item['price'] ) ) : ?>
+					<span class="elementor-price-list-price"><?php echo $item['price']; ?></span>
+				<?php endif; ?>
 				</div>
-				<?php endif; ?>
-					<?php if ( ! empty( $item['item_description'] ) ) : ?>
-						<p class="elementor-price-list-description"><?php echo $item['item_description']; ?></p>
-					<?php endif; ?>
+			<?php endif; ?>
+			<?php if ( ! empty( $item['item_description'] ) ) : ?>
+				<p class="elementor-price-list-description"><?php echo $item['item_description']; ?></p>
+			<?php endif; ?>
 			</div>
-				<?php echo $this->render_item_footer( $item ); ?>
+			<?php echo $this->render_item_footer( $item ); ?>
 			<?php endif; ?>
 		<?php endforeach; ?>
 
 		</ul>
 
-		<?php
-	}
+	<?php }
 
 	protected function _content_template() {
 		?>
@@ -549,6 +525,5 @@ class Price_List extends Base_Widget {
 					<# } #>
 			 <# } #>
 		</ul>
-		<?php
-	}
+	<?php }
 }

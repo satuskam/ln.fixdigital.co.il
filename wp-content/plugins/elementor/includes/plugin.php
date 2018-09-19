@@ -2,9 +2,7 @@
 namespace Elementor;
 
 use Elementor\Core\Ajax_Manager;
-use Elementor\Core\Debug\Inspector;
 use Elementor\Core\Documents_Manager;
-use Elementor\Core\Files\Manager as Files_Manager;
 use Elementor\Core\Modules_Manager;
 use Elementor\Debug\Debug;
 use Elementor\Core\Settings\Manager as Settings_Manager;
@@ -316,27 +314,14 @@ class Plugin {
 	public $skins_manager;
 
 	/**
-	 * Files Manager.
+	 * Posts CSS manager.
 	 *
-	 * Holds the files manager.
-	 *
-	 * @since 2.1.0
-	 * @access public
-	 *
-	 * @var Files_Manager
-	 */
-	public $files_manager;
-
-	/**
-	 * Files Manager.
-	 *
-	 * Holds the files manager.
+	 * Holds the posts CSS manager.
 	 *
 	 * @since 1.0.0
 	 * @access public
-	 * @deprecated 2.1.0 Use `Plugin::$files_manager` instead
 	 *
-	 * @var Files_Manager
+	 * @var Posts_CSS_Manager
 	 */
 	public $posts_css_manager;
 
@@ -375,17 +360,6 @@ class Plugin {
 	 * @var Beta_Testers
 	 */
 	public $beta_testers;
-
-	/**
-	 * @var Inspector
-	 * @deprecated 2.1.2 Use $inspector.
-	 */
-	public $debugger;
-
-	/**
-	 * @var Inspector
-	 */
-	public $inspector;
 
 	/**
 	 * Clone.
@@ -480,9 +454,6 @@ class Plugin {
 	 * @access private
 	 */
 	private function init_components() {
-		$this->inspector = new Inspector();
-		$this->debugger = $this->inspector;
-
 		// Allow all components to use AJAX.
 		$this->ajax = new Ajax_Manager();
 
@@ -495,11 +466,7 @@ class Plugin {
 		$this->elements_manager = new Elements_Manager();
 		$this->widgets_manager = new Widgets_Manager();
 		$this->skins_manager = new Skins_Manager();
-		$this->files_manager = new Files_Manager();
-		/*
-		 * @TODO: Remove deprecated alias
-		 */
-		$this->posts_css_manager = $this->files_manager;
+		$this->posts_css_manager = new Posts_CSS_Manager();
 		$this->settings = new Settings();
 		$this->editor = new Editor();
 		$this->preview = new Preview();
@@ -520,7 +487,7 @@ class Plugin {
 			$this->heartbeat = new Heartbeat();
 			$this->wordpress_widgets_manager = new WordPress_Widgets_Manager();
 			$this->system_info = new System_Info\Main();
-			$this->admin = new Core\Admin\Admin();
+			$this->admin = new Admin();
 			$this->tools = new Tools();
 			$this->beta_testers = new Beta_Testers();
 
@@ -576,7 +543,6 @@ class Plugin {
 	private function __construct() {
 		$this->register_autoloader();
 
-		Maintenance::init();
 		Compatibility::register_actions();
 
 		add_action( 'init', [ $this, 'init' ], 0 );

@@ -8,9 +8,7 @@ use Elementor\Scheme_Color;
 use Elementor\Scheme_Typography;
 use Elementor\Utils;
 
-if ( ! defined( 'ABSPATH' ) ) {
-	exit; // Exit if accessed directly
-}
+if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
 class Testimonial_Carousel extends Base {
 
@@ -26,16 +24,12 @@ class Testimonial_Carousel extends Base {
 		return 'eicon-testimonial-carousel';
 	}
 
-	public function get_keywords() {
-		return [ 'testimonial', 'carousel', 'image' ];
-	}
-
 	protected function _register_controls() {
 		parent::_register_controls();
 
-		$this->start_injection( [
+		$this->start_injection([
 			'of' => 'slides',
-		] );
+		]);
 
 		$this->add_control(
 			'skin',
@@ -161,6 +155,7 @@ class Testimonial_Carousel extends Base {
 			[
 				'label' => __( 'Border', 'elementor-pro' ),
 				'type' => Controls_Manager::SWITCHER,
+				'return_value' => 'yes',
 				'selectors' => [
 					'{{WRAPPER}} .elementor-testimonial__content, {{WRAPPER}} .elementor-testimonial__content:after' => 'border-style: solid',
 				],
@@ -411,6 +406,7 @@ class Testimonial_Carousel extends Base {
 			[
 				'label' => __( 'Border', 'elementor-pro' ),
 				'type' => Controls_Manager::SWITCHER,
+				'return_value' => 'yes',
 				'selectors' => [
 					'{{WRAPPER}} .elementor-testimonial__image img' => 'border-style: solid',
 				],
@@ -574,7 +570,7 @@ class Testimonial_Carousel extends Base {
 		$locations_inside = [ 'image_inline', 'image_stacked' ];
 
 		$print_outside = ( 'outside' === $location && in_array( $layout, $locations_outside ) );
-		$print_inside = ( 'inside' === $location && in_array( $layout, $locations_inside ) );
+		$print_inside  = ( 'inside' === $location && in_array( $layout, $locations_inside ) );
 
 		$html = '';
 		if ( $print_outside || $print_inside ) {

@@ -20,10 +20,6 @@ class User {
 	 */
 	const ADMIN_NOTICES_KEY = 'elementor_admin_notices';
 
-	const INTRODUCTION_KEY = 'elementor_introduction';
-
-	const INTRODUCTION_VERSION = 2;
-
 	/**
 	 * Init.
 	 *
@@ -35,12 +31,6 @@ class User {
 	 */
 	public static function init() {
 		add_action( 'wp_ajax_elementor_set_admin_notice_viewed', [ __CLASS__, 'ajax_set_admin_notice_viewed' ] );
-
-		add_action( 'elementor/ajax/register_actions', [ __CLASS__, 'register_ajax_actions' ] );
-	}
-
-	public static function register_ajax_actions() {
-		Plugin::$instance->ajax->register_ajax_action( 'introduction_viewed', [ __CLASS__, 'set_introduction_viewed' ] );
 	}
 
 	/**
@@ -57,9 +47,11 @@ class User {
 	 * @return bool Whether the current user can edit the post.
 	 */
 	public static function is_current_user_can_edit( $post_id = 0 ) {
-		$post = get_post( $post_id );
+		if ( empty( $post_id ) ) {
+			$post_id = get_the_ID();
+		}
 
-		if ( ! $post ) {
+		if ( ! Utils::is_post_type_support( $post_id ) ) {
 			return false;
 		}
 
@@ -67,11 +59,10 @@ class User {
 			return false;
 		}
 
-		if ( ! self::is_current_user_can_edit_post_type( $post->post_type ) ) {
+		$post_type_object = get_post_type_object( get_post_type( $post_id ) );
+		if ( empty( $post_type_object ) ) {
 			return false;
 		}
-
-		$post_type_object = get_post_type_object( $post->post_type );
 
 		if ( ! isset( $post_type_object->cap->edit_post ) ) {
 			return false;
@@ -86,20 +77,6 @@ class User {
 			return false;
 		}
 
-		return true;
-	}
-
-	/**
-	 * Is current user can access elementor.
-	 *
-	 * Whether the current user role is not excluded by Elementor Settings.
-	 *
-	 * @access public
-	 * @static
-	 *
-	 * @return bool True if can access, False otherwise.
-	 */
-	public static function is_current_user_in_editing_black_list() {
 		$user = wp_get_current_user();
 		$exclude_roles = get_option( 'elementor_exclude_user_roles', [] );
 
@@ -114,28 +91,30 @@ class User {
 	/**
 	 * Is current user can edit post type.
 	 *
-	 * Whether the current user can edit the given post type.
+	 * Whether the current user can edit any given post type.
 	 *
 	 * @since 1.9.0
 	 * @access public
 	 * @static
 	 *
-	 * @param string $post_type the post type slug to check.
+	 * @param string The post type slug to check.
 	 *
-	 * @return bool True if can edit, False otherwise.
+	 * @return bool True on success, False otherwise.
 	 */
 	public static function is_current_user_can_edit_post_type( $post_type ) {
-		if ( ! self::is_current_user_in_editing_black_list() ) {
+		if ( ! post_type_exists( $post_type ) ) {
 			return false;
 		}
 
-		if ( ! Utils::is_post_type_support( $post_type ) ) {
+		if ( ! post_type_supports( $post_type, 'elementor' ) ) {
 			return false;
 		}
 
-		$post_type_object = get_post_type_object( $post_type );
+		$user = wp_get_current_user();
+		$exclude_roles = get_option( 'elementor_exclude_user_roles', [] );
 
-		if ( ! current_user_can( $post_type_object->cap->edit_posts ) ) {
+		$compare_roles = array_intersect( $user->roles, $exclude_roles );
+		if ( ! empty( $compare_roles ) ) {
 			return false;
 		}
 
@@ -204,28 +183,6 @@ class User {
 		update_user_meta( get_current_user_id(), self::ADMIN_NOTICES_KEY, $notices );
 
 		die;
-	}
-
-	public static function set_introduction_viewed() {
-		$user_introduction_meta = self::get_introduction_meta();
-
-		if ( ! $user_introduction_meta ) {
-			$user_introduction_meta = [];
-		}
-
-		$user_introduction_meta[ self::INTRODUCTION_VERSION ] = true;
-
-		update_user_meta( get_current_user_id(), self::INTRODUCTION_KEY, $user_introduction_meta );
-	}
-
-	public static function is_should_view_introduction() {
-		$user_introduction_meta = self::get_introduction_meta();
-
-		return empty( $user_introduction_meta[ self::INTRODUCTION_VERSION ] );
-	}
-
-	private static function get_introduction_meta() {
-		return get_user_meta( get_current_user_id(), self::INTRODUCTION_KEY, true );
 	}
 }
 

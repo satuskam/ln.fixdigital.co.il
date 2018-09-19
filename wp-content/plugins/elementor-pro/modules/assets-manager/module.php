@@ -4,9 +4,7 @@ namespace ElementorPro\Modules\AssetsManager;
 use ElementorPro\Base\Module_Base;
 use ElementorPro\Modules\AssetsManager\AssetTypes;
 
-if ( ! defined( 'ABSPATH' ) ) {
-	exit; // Exit if accessed directly
-}
+if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
 class Module extends Module_Base {
 

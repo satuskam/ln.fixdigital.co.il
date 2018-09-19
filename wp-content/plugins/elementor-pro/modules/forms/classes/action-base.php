@@ -1,4 +1,5 @@
 <?php
+
 namespace ElementorPro\Modules\Forms\Classes;
 
 use Elementor\Widget_Base;
@@ -14,7 +15,7 @@ abstract class Action_Base {
 	abstract public function get_label();
 
 	/**
-	 * @param Form_Record  $record
+	 * @param Form_Record $record
 	 * @param Ajax_Handler $ajax_handler
 	 */
 	abstract public function run( $record, $ajax_handler );

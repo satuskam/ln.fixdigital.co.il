@@ -7,11 +7,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 class General extends Condition_Base {
 
-	protected $sub_conditions = [
-		'archive',
-		'singular',
-	];
-
 	public static function get_type() {
 		return 'general';
 	}
@@ -26,6 +21,21 @@ class General extends Condition_Base {
 
 	public function get_all_label() {
 		return __( 'Entire Site', 'elementor-pro' );
+	}
+
+	public function get_sub_conditions() {
+		$conditions_templates_types = [
+			'archive' => 'archive',
+			'singular' => 'single',
+		];
+
+		$sub_conditions = [];
+
+		foreach ( $conditions_templates_types as $condition_id => $template_type ) {
+			$sub_conditions[] = $condition_id;
+		}
+
+		return $sub_conditions;
 	}
 
 	public function check( $args ) {

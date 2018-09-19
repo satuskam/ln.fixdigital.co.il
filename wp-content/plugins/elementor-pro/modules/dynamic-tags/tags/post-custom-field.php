@@ -26,7 +26,6 @@ class Post_Custom_Field extends Tag {
 	public function get_categories() {
 		return [
 			Module::TEXT_CATEGORY,
-			Module::URL_CATEGORY,
 			Module::POST_META_CATEGORY,
 		];
 	}
@@ -65,7 +64,7 @@ class Post_Custom_Field extends Tag {
 	private function get_custom_keys_array() {
 		$custom_keys = get_post_custom_keys();
 		$options = [
-			'' => __( 'Select...', 'elementor-pro' ),
+			'' => sprintf( '%s...', __( 'Select', 'elementor-pro' ) ),
 		];
 
 		if ( ! empty( $custom_keys ) ) {

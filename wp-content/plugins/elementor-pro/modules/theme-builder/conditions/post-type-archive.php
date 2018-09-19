@@ -1,6 +1,8 @@
 <?php
 namespace ElementorPro\Modules\ThemeBuilder\Conditions;
 
+use ElementorPro\Modules\ThemeBuilder\Module;
+
 if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly
 }
@@ -30,21 +32,27 @@ class Post_Type_Archive extends Condition_Base {
 	}
 
 	public function get_label() {
-		return sprintf( __( '%s Archive', 'elementor-pro' ), $this->post_type->label );
+		return $this->post_type->label . ' ' . __( 'Archive', 'elementor-pro' );
 	}
 
 	public function get_all_label() {
-		return sprintf( __( '%s Archive', 'elementor-pro' ), $this->post_type->label );
+		return $this->post_type->label . ' ' . __( 'Archive', 'elementor-pro' );
 	}
 
-	public function register_sub_conditions() {
+	public function get_sub_conditions() {
+		$sub_conditions = [];
+
+		$conditions_manager = Module::instance()->get_conditions_manager();
+
 		foreach ( $this->post_taxonomies as $slug => $object ) {
 			$condition = new Taxonomy( [
 				'object' => $object,
 			] );
-
-			$this->register_sub_condition( $condition );
+			$conditions_manager->register_condition_instance( $condition );
+			$sub_conditions[] = $condition->get_name();
 		}
+
+		return $sub_conditions;
 	}
 
 	public function check( $args ) {

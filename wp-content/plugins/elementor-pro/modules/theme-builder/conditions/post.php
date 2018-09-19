@@ -2,6 +2,7 @@
 namespace ElementorPro\Modules\ThemeBuilder\Conditions;
 
 use ElementorPro\Modules\QueryControl\Module as QueryModule;
+use ElementorPro\Modules\ThemeBuilder\Module;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly
@@ -31,10 +32,6 @@ class Post extends Condition_Base {
 		return $this->post_type->name;
 	}
 
-	public static function get_priority() {
-		return 40;
-	}
-
 	public function get_label() {
 		return $this->post_type->labels->singular_name;
 	}
@@ -55,18 +52,26 @@ class Post extends Condition_Base {
 		return is_singular( $this->post_type->name );
 	}
 
-	public function register_sub_conditions() {
+	public function get_sub_conditions() {
+		$sub_conditions = [];
+
+		$conditions_manager = Module::instance()->get_conditions_manager();
+
 		foreach ( $this->post_taxonomies as $slug => $object ) {
 			$condition = new In_Taxonomy( [
 				'object' => $object,
 			] );
-			$this->register_sub_condition( $condition );
+			$conditions_manager->register_condition_instance( $condition );
+			$sub_conditions[] = $condition->get_name();
 		}
 
 		if ( $this->post_type->hierarchical ) {
 			$condition = new Child_Of();
-			$this->register_sub_condition( $condition );
+			$conditions_manager->register_condition_instance( $condition );
+			$sub_conditions[] = $condition->get_name();
 		}
+
+		return $sub_conditions;
 	}
 
 	protected function _register_controls() {

@@ -122,7 +122,7 @@ abstract class Group_Control_Base implements Group_Control_Interface {
 
 				$element->add_responsive_control( $id, $field_args, $options );
 			} else {
-				$element->add_control( $id, $field_args, $options );
+				$element->add_control( $id , $field_args, $options );
 			}
 		}
 
@@ -289,14 +289,12 @@ abstract class Group_Control_Base implements Group_Control_Interface {
 
 		$field_args['classes'] = $this->get_base_group_classes() . ' elementor-group-control-' . $control_id;
 
-		foreach ( [ 'condition', 'conditions' ] as $condition_type ) {
-			if ( ! empty( $args[ $condition_type ] ) ) {
-				if ( empty( $field_args[ $condition_type ] ) ) {
-					$field_args[ $condition_type ] = [];
-				}
-
-				$field_args[ $condition_type ] += $args[ $condition_type ];
+		if ( ! empty( $args['condition'] ) ) {
+			if ( empty( $field_args['condition'] ) ) {
+				$field_args['condition'] = [];
 			}
+
+			$field_args['condition'] += $args['condition'];
 		}
 
 		return $field_args;
@@ -350,6 +348,7 @@ abstract class Group_Control_Base implements Group_Control_Interface {
 				'starter_name' => 'popover_toggle',
 				'starter_value' => 'custom',
 				'starter_title' => '',
+				'toggle_type' => 'switcher',
 			],
 		];
 
@@ -492,6 +491,7 @@ abstract class Group_Control_Base implements Group_Control_Interface {
 		$control_params = [
 			'type' => Controls_Manager::POPOVER_TOGGLE,
 			'label' => $label,
+			'toggle_type' => $popover_options['toggle_type'],
 			'return_value' => $popover_options['starter_value'],
 		];
 

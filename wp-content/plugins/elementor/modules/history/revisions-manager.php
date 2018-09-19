@@ -2,9 +2,9 @@
 namespace Elementor\Modules\History;
 
 use Elementor\Core\Base\Document;
-use Elementor\Core\Files\CSS\Post as Post_CSS;
 use Elementor\Core\Settings\Manager;
 use Elementor\Plugin;
+use Elementor\Post_CSS_File;
 use Elementor\Utils;
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -21,27 +21,11 @@ if ( ! defined( 'ABSPATH' ) ) {
  */
 class Revisions_Manager {
 
-	/**
-	 * Maximum number of revisions to display.
-	 */
 	const MAX_REVISIONS_TO_DISPLAY = 100;
 
-	/**
-	 * Authors list.
-	 *
-	 * Holds all the authors.
-	 *
-	 * @access private
-	 *
-	 * @var array
-	 */
 	private static $authors = [];
 
 	/**
-	 * History revisions manager constructor.
-	 *
-	 * Initializing Elementor history revisions manager.
-	 *
 	 * @since 1.7.0
 	 * @access public
 	 */
@@ -59,19 +43,16 @@ class Revisions_Manager {
 	}
 
 	/**
-	 * @since  2.0.0
+	 * @since 2.0.0
 	 * @access public
 	 * @static
-	 *
-	 * @param $post_content
-	 * @param $post_id
-	 *
-	 * @return string
 	 */
-	public static function avoid_delete_auto_save( $post_content, $post_id ) {
+	public static function avoid_delete_auto_save( $post_content ) {
+		global $post;
+
 		// Add a temporary string in order the $post will not be equal to the $autosave
 		// in edit-form-advanced.php:210
-		if ( $post_id && Plugin::$instance->db->is_built_with_elementor( $post_id ) ) {
+		if ( Plugin::$instance->db->is_built_with_elementor( $post->ID ) ) {
 			$post_content .= '<!-- Created with Elementor -->';
 		}
 
@@ -95,12 +76,6 @@ class Revisions_Manager {
 	 * @since 1.7.0
 	 * @access public
 	 * @static
-	 *
-	 * @param int   $post_id
-	 * @param array $query_args
-	 * @param bool  $parse_result
-	 *
-	 * @return array
 	 */
 	public static function get_revisions( $post_id = 0, $query_args = [], $parse_result = true ) {
 		$post = get_post( $post_id );
@@ -157,7 +132,7 @@ class Revisions_Manager {
 			if ( ! isset( self::$authors[ $revision->post_author ] ) ) {
 				self::$authors[ $revision->post_author ] = [
 					'avatar' => get_avatar( $revision->post_author, 22 ),
-					'display_name' => get_the_author_meta( 'display_name', $revision->post_author ),
+					'display_name' => get_the_author_meta( 'display_name' , $revision->post_author ),
 				];
 			}
 
@@ -185,7 +160,9 @@ class Revisions_Manager {
 	 * @static
 	 */
 	public static function update_autosave( $autosave_data ) {
-		self::save_revision( $autosave_data['ID'] );
+		$revision_id = $autosave_data['ID'];
+
+		Plugin::$instance->db->safe_copy_elementor_meta( $autosave_data['post_parent'], $revision_id );
 	}
 
 	/**
@@ -217,7 +194,7 @@ class Revisions_Manager {
 
 		Plugin::$instance->db->copy_elementor_meta( $revision_id, $parent_id );
 
-		$post_css = new Post_CSS( $parent_id );
+		$post_css = new Post_CSS_File( $parent_id );
 
 		$post_css->update();
 	}
@@ -347,12 +324,6 @@ class Revisions_Manager {
 	}
 
 	/**
-	 * Localize settings.
-	 *
-	 * Add new localized settings for the revisions manager.
-	 *
-	 * Fired by `elementor/editor/localize_settings` filter.
-	 *
 	 * @since 1.7.0
 	 * @access public
 	 * @static
@@ -376,7 +347,7 @@ class Revisions_Manager {
 				'revisions_disabled_1' => __( 'It looks like the post revision feature is unavailable in your website.', 'elementor' ),
 				'revisions_disabled_2' => sprintf(
 					/* translators: %s: Codex URL */
-					__( 'Learn more about <a target="_blank" href="%s">WordPress revisions</a>', 'elementor' ),
+					__( 'Learn more about <a targe="_blank" href="%s">WordPress revisions</a>', 'elementor' ),
 					'https://codex.wordpress.org/Revisions#Revision_Options'
 				),
 			],
@@ -399,7 +370,7 @@ class Revisions_Manager {
 		add_action( 'wp_creating_autosave', [ __CLASS__, 'update_autosave' ] );
 
 		// Hack to avoid delete the auto-save revision in WP editor.
-		add_filter( 'edit_post_content', [ __CLASS__, 'avoid_delete_auto_save' ], 10, 2 );
+		add_filter( 'edit_post_content', [ __CLASS__, 'avoid_delete_auto_save' ] );
 		add_action( 'edit_form_after_title', [ __CLASS__, 'remove_temp_post_content' ] );
 
 		if ( Utils::is_ajax() ) {

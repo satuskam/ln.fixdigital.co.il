@@ -29,10 +29,6 @@ class Facebook_Button extends Widget_Base {
 		return [ 'pro-elements' ];
 	}
 
-	public function get_keywords() {
-		return [ 'facebook', 'social', 'embed', 'button', 'like', 'share', 'recommend', 'follow' ];
-	}
-
 	protected function _register_controls() {
 		$this->start_controls_section(
 			'section_content',
@@ -52,22 +48,22 @@ class Facebook_Button extends Widget_Base {
 				'options' => [
 					'like' => __( 'Like', 'elementor-pro' ),
 					'recommend' => __( 'Recommend', 'elementor-pro' ),
-					/* TODO: remove on 2.3 */
-					'follow' => __( 'Follow', 'elementor-pro' ) . ' (' . __( 'Deprecated', 'elementor-pro' ) . ')',
+					'follow' => __( 'Follow', 'elementor-pro' ),
 				],
 			]
 		);
 
-		/* TODO: remove on 2.3 */
 		$this->add_control(
-			'follow_description',
+			'follow_url',
 			[
-				'type' => Controls_Manager::RAW_HTML,
-				'raw' => __( 'The Follow button has been deprecated by Facebook and will no longer work.', 'elementor-pro' ),
-				'content_classes' => 'elementor-descriptor',
+				'label' => __( 'URL', 'elementor-pro' ),
+				'placeholder' => __( 'https://your-link.com', 'elementor-pro' ),
+				'default' => 'https://www.facebook.com/elemntor/',
+				'label_block' => true,
 				'condition' => [
 					'type' => 'follow',
 				],
+				'description' => __( 'Paste the URL of the Facebook page or profile.', 'elementor-pro' ),
 			]
 		);
 
@@ -151,22 +147,6 @@ class Facebook_Button extends Widget_Base {
 		);
 
 		$this->add_control(
-			'url_format',
-			[
-				'label' => __( 'URL Format', 'elementor-pro' ),
-				'type' => Controls_Manager::SELECT,
-				'options' => [
-					Module::URL_FORMAT_PLAIN => __( 'Plain Permalink', 'elementor-pro' ),
-					Module::URL_FORMAT_PRETTY => __( 'Pretty Permalink', 'elementor-pro' ),
-				],
-				'default' => Module::URL_FORMAT_PLAIN,
-				'condition' => [
-					'url_type' => Module::URL_TYPE_CURRENT_PAGE,
-				],
-			]
-		);
-
-		$this->add_control(
 			'url',
 			[
 				'label' => __( 'URL', 'elementor-pro' ),
@@ -187,13 +167,17 @@ class Facebook_Button extends Widget_Base {
 
 		// Validate URL
 		switch ( $settings['type'] ) {
-			/* TODO: remove on 2.3 */
 			case 'follow':
-				if ( Plugin::elementor()->editor->is_edit_mode() ) {
-					echo __( 'The Follow button has been deprecated by Facebook and will no longer work.', 'elementor-pro' );
+				$facebook_url_pattern = '/^(https?:\/\/)?(www\.)?facebook.com\/[a-zA-Z0-9(\.)]*\/?$/';
 
+				if ( ! preg_match( $facebook_url_pattern, $settings['follow_url'] ) ) {
+					if ( Plugin::elementor()->editor->is_edit_mode() ) {
+						echo $this->get_title() . ': ' . esc_html__( 'Please enter a valid Facebook User/Page URL', 'elementor-pro' ); // XSS ok.
+					}
+
+					return;
 				}
-				return;
+				break;
 			case 'like':
 			case 'recommend':
 				if ( Module::URL_TYPE_CUSTOM === $settings['url_type'] && ! filter_var( $settings['url'], FILTER_VALIDATE_URL ) ) {
@@ -216,10 +200,14 @@ class Facebook_Button extends Widget_Base {
 		];
 
 		switch ( $settings['type'] ) {
+			case 'follow':
+				$attributes['data-href'] = $settings['follow_url'];
+				$attributes['class'] = 'elementor-facebook-widget fb-follow';
+				break;
 			case 'like':
 			case 'recommend':
 				if ( Module::URL_TYPE_CURRENT_PAGE === $settings['url_type'] ) {
-					$permalink = Facebook_SDK_Manager::get_permalink( $settings );
+					$permalink = Facebook_SDK_Manager::get_permalink();
 				} else {
 					$permalink = esc_url( $settings['url'] );
 				}

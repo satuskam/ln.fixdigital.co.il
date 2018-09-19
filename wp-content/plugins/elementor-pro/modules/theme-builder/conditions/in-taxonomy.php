@@ -12,7 +12,6 @@ class In_Taxonomy extends Condition_Base {
 	public static function get_type() {
 		return 'singular';
 	}
-
 	/**
 	 * @var \WP_Taxonomy
 	 */
@@ -34,7 +33,7 @@ class In_Taxonomy extends Condition_Base {
 	}
 
 	public function check( $args ) {
-		return is_singular() && has_term( (int) $args['id'], $this->taxonomy->name );
+		return has_term( (int) $args['id'], $this->taxonomy->name );
 	}
 
 	protected function _register_controls() {

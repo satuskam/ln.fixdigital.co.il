@@ -10,9 +10,7 @@ use ElementorPro\Modules\QueryControl\Controls\Group_Control_Posts;
 use ElementorPro\Modules\QueryControl\Module;
 use Elementor\Controls_Manager;
 
-if ( ! defined( 'ABSPATH' ) ) {
-	exit; // Exit if accessed directly
-}
+if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
 /**
  * Class Portfolio
@@ -38,10 +36,6 @@ class Portfolio extends Base_Widget {
 		return 'eicon-gallery-grid';
 	}
 
-	public function get_keywords() {
-		return [ 'posts', 'cpt', 'item', 'loop', 'query', 'portfolio', 'custom post type' ];
-	}
-
 	public function get_script_depends() {
 		return [ 'imagesloaded' ];
 	}
@@ -56,7 +50,6 @@ class Portfolio extends Base_Widget {
 
 	public function on_export( $element ) {
 		$element = Group_Control_Posts::on_export_remove_setting_from_element( $element, 'posts' );
-
 		return $element;
 	}
 
@@ -93,11 +86,7 @@ class Portfolio extends Base_Widget {
 					'5' => '5',
 					'6' => '6',
 				],
-				'prefix_class' => 'elementor-grid%s-',
 				'frontend_available' => true,
-				'selectors' => [
-					'.elementor-msie {{WRAPPER}} .elementor-portfolio-item' => 'width: calc( 100% / {{SIZE}} )',
-				],
 			]
 		);
 
@@ -262,16 +251,6 @@ class Portfolio extends Base_Widget {
 
 		Module::add_exclude_controls( $this );
 
-		$this->add_control(
-			'posts_query_id',
-			[
-				'label' => __( 'Query ID', 'elementor-pro' ),
-				'type' => Controls_Manager::TEXT,
-				'default' => '',
-				'description' => __( 'Give your Query a custom unique id to allow server side filtering', 'elementor-pro' ),
-			]
-		);
-
 		$this->end_controls_section();
 
 		$this->start_controls_section(
@@ -317,33 +296,14 @@ class Portfolio extends Base_Widget {
 			]
 		);
 
-		/*
-		 * The `item_gap` control is replaced by `column_gap` and `row_gap` controls since v 2.1.6
-		 * It is left (hidden) in the widget, to provide compatibility with older installs
-		 */
-
 		$this->add_control(
 			'item_gap',
 			[
 				'label' => __( 'Item Gap', 'elementor-pro' ),
 				'type' => Controls_Manager::SLIDER,
-				'selectors' => [
-					'{{WRAPPER}} .elementor-grid' => 'grid-row-gap: {{SIZE}}{{UNIT}}; grid-column-gap: {{SIZE}}{{UNIT}}',
-					'.elementor-msie {{WRAPPER}} .elementor-portfolio' => 'margin: 0 -{{SIZE}}px',
-					'(desktop).elementor-msie {{WRAPPER}} .elementor-portfolio-item' => 'width: calc( 100% / {{columns.SIZE}} ); border: {{SIZE}}px solid transparent',
-					'(tablet).elementor-msie {{WRAPPER}} .elementor-portfolio-item' => 'width: calc( 100% / {{columns_tablet.SIZE}} ); border: {{SIZE}}px solid transparent',
-					'(mobile).elementor-msie {{WRAPPER}} .elementor-portfolio-item' => 'width: calc( 100% / {{columns_mobile.SIZE}} ); border: {{SIZE}}px solid transparent',
+				'default' => [
+					'size' => 10,
 				],
-				'frontend_available' => true,
-				'classes' => 'elementor-hidden',
-			]
-		);
-
-		$this->add_control(
-			'column_gap',
-			[
-				'label' => __( 'Columns Gap', 'elementor-pro' ),
-				'type' => Controls_Manager::SLIDER,
 				'range' => [
 					'px' => [
 						'min' => 0,
@@ -351,29 +311,12 @@ class Portfolio extends Base_Widget {
 					],
 				],
 				'selectors' => [
-					'{{WRAPPER}} .elementor-posts-container' => 'grid-column-gap: {{SIZE}}{{UNIT}}',
-					'.elementor-msie {{WRAPPER}} .elementor-portfolio' => 'margin: 0 -{{SIZE}}px',
-					'.elementor-msie {{WRAPPER}} .elementor-portfolio-item' => 'border-style: solid; border-color: transparent; border-right-width: calc({{SIZE}}px / 2); border-left-width: calc({{SIZE}}px / 2)',
-				],
-			]
-		);
-
-		$this->add_control(
-			'row_gap',
-			[
-				'label' => __( 'Rows Gap', 'elementor-pro' ),
-				'type' => Controls_Manager::SLIDER,
-				'range' => [
-					'px' => [
-						'min' => 0,
-						'max' => 100,
-					],
+					'{{WRAPPER}} .elementor-portfolio' => 'margin: 0 -{{SIZE}}px',
+					'(desktop){{WRAPPER}} .elementor-portfolio-item' => 'width: calc( 100% / {{columns.SIZE}} ); border: {{SIZE}}px solid transparent',
+					'(tablet){{WRAPPER}} .elementor-portfolio-item' => 'width: calc( 100% / {{columns_tablet.SIZE}} ); border: {{SIZE}}px solid transparent',
+					'(mobile){{WRAPPER}} .elementor-portfolio-item' => 'width: calc( 100% / {{columns_mobile.SIZE}} ); border: {{SIZE}}px solid transparent',
 				],
 				'frontend_available' => true,
-				'selectors' => [
-					'{{WRAPPER}} .elementor-posts-container' => 'grid-row-gap: {{SIZE}}{{UNIT}}',
-					'.elementor-msie {{WRAPPER}} .elementor-portfolio-item' => 'border-bottom-width: {{SIZE}}px',
-				],
 			]
 		);
 
@@ -576,14 +519,7 @@ class Portfolio extends Base_Widget {
 
 		$query_args['posts_per_page'] = $this->get_settings( 'posts_per_page' );
 
-		$query_id = $this->get_settings( 'posts_query_id' );
-		if ( ! empty( $query_id ) ) {
-			add_action( 'pre_get_posts', [ $this, 'pre_get_posts_filter' ] );
-			$this->_query = new \WP_Query( $query_args );
-			remove_action( 'pre_get_posts', [ $this, 'pre_get_posts_filter' ] );
-		} else {
-			$this->_query = new \WP_Query( $query_args );
-		}
+		$this->_query = new \WP_Query( $query_args );
 	}
 
 	public function render() {
@@ -620,7 +556,7 @@ class Portfolio extends Base_Widget {
 		$thumbnail_html = Group_Control_Image_Size::get_attachment_image_html( $settings, 'thumbnail_size' );
 		?>
 		<div class="elementor-portfolio-item__img elementor-post__thumbnail">
-			<?php echo $thumbnail_html; ?>
+			<?php echo $thumbnail_html ?>
 		</div>
 		<?php
 	}
@@ -650,7 +586,7 @@ class Portfolio extends Base_Widget {
 		<ul class="elementor-portfolio__filters">
 			<li class="elementor-portfolio__filter elementor-active" data-filter="__all"><?php echo __( 'All', 'elementor-pro' ); ?></li>
 			<?php foreach ( $terms as $term ) { ?>
-				<li class="elementor-portfolio__filter" data-filter="<?php echo esc_attr( $term->term_id ); ?>"><?php echo $term->name; ?></li>
+				<li class="elementor-portfolio__filter" data-filter="<?php echo $term->term_id; ?>"><?php echo $term->name; ?></li>
 			<?php } ?>
 		</ul>
 		<?php
@@ -663,9 +599,9 @@ class Portfolio extends Base_Widget {
 
 		$tag = $this->get_settings( 'title_tag' );
 		?>
-		<<?php echo $tag; ?> class="elementor-portfolio-item__title">
-		<?php the_title(); ?>
-		</<?php echo $tag; ?>>
+		<<?php echo $tag ?> class="elementor-portfolio-item__title">
+		<?php the_title() ?>
+		</<?php echo $tag ?>>
 		<?php
 	}
 
@@ -706,7 +642,7 @@ class Portfolio extends Base_Widget {
 
 		?>
 		<article <?php post_class( $classes ); ?>>
-			<a class="elementor-post__thumbnail__link" href="<?php echo get_permalink(); ?>">
+			<a class="elementor-post__thumbnail__link" href="<?php echo get_permalink() ?>">
 		<?php
 	}
 
@@ -734,7 +670,7 @@ class Portfolio extends Base_Widget {
 			$this->render_filter_menu();
 		}
 		?>
-		<div class="elementor-portfolio elementor-grid elementor-posts-container">
+		<div class="elementor-portfolio elementor-posts-container">
 		<?php
 	}
 
@@ -755,22 +691,4 @@ class Portfolio extends Base_Widget {
 	}
 
 	public function render_plain_content() {}
-
-	public function pre_get_posts_filter( $wp_query ) {
-		$query_id = $this->get_settings( 'posts_query_id' );
-
-		/**
-		 * Elementor Pro portfolio widget Query args.
-		 *
-		 * It allows developers to alter individual posts widget queries.
-		 *
-		 * The dynamic portion of the hook name, `$query_id`, refers to the Query ID.
-		 *
-		 * @since 2.1.0
-		 *
-		 * @param \WP_Query $wp_query
-		 * @param Posts     $this
-		 */
-		do_action( "elementor_pro/portfolio/query/{$query_id}", $wp_query, $this );
-	}
 }

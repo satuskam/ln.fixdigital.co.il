@@ -6,9 +6,7 @@ use Elementor\Group_Control_Base;
 use ElementorPro\Classes\Utils;
 use ElementorPro\Modules\QueryControl\Module;
 
-if ( ! defined( 'ABSPATH' ) ) {
-	exit; // Exit if accessed directly
-}
+if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
 class Group_Control_Posts extends Group_Control_Base {
 
@@ -24,7 +22,7 @@ class Group_Control_Posts extends Group_Control_Base {
 		unset( $element['settings'][ $control_id . '_posts_ids' ] );
 		unset( $element['settings'][ $control_id . '_authors' ] );
 
-		foreach ( Utils::get_public_post_types() as $post_type => $label ) {
+		foreach ( Utils::get_post_types() as $post_type => $label ) {
 			$taxonomy_filter_args = [
 				'show_in_nav_menus' => true,
 				'object_type' => [ $post_type ],
@@ -83,7 +81,7 @@ class Group_Control_Posts extends Group_Control_Base {
 	protected function prepare_fields( $fields ) {
 		$args = $this->get_args();
 
-		$post_types = Utils::get_public_post_types( $args );
+		$post_types = Utils::get_post_types( $args );
 
 		$post_types_options = $post_types;
 
@@ -131,10 +129,7 @@ class Group_Control_Posts extends Group_Control_Base {
 			} else {
 				$taxonomy_args['type'] = Controls_Manager::SELECT2;
 
-				$terms = get_terms( [
-					'taxonomy' => $taxonomy,
-					'hide_empty' => false,
-				] );
+				$terms = get_terms( $taxonomy );
 
 				foreach ( $terms as $term ) {
 					$options[ $term->term_id ] = $term->name;
@@ -147,6 +142,27 @@ class Group_Control_Posts extends Group_Control_Base {
 		}
 
 		return parent::prepare_fields( $fields );
+	}
+
+	private function get_authors() {
+		$user_query = new \WP_User_Query(
+			[
+				'who' => 'authors',
+				'has_published_posts' => true,
+				'fields' => [
+					'ID',
+					'display_name',
+				],
+			]
+		);
+
+		$authors = [];
+
+		foreach ( $user_query->get_results() as $result ) {
+			$authors[ $result->ID ] = $result->display_name;
+		}
+
+		return $authors;
 	}
 
 	protected function get_default_options() {

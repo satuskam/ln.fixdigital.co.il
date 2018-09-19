@@ -6,6 +6,7 @@ use ElementorPro\Modules\Forms\Actions;
 use ElementorPro\Modules\Forms\Classes;
 use ElementorPro\Modules\Forms\Fields;
 use ElementorPro\Modules\Forms\Controls\Fields_Map;
+use ElementorPro\Modules\Forms\Widgets\Form;
 use ElementorPro\Plugin;
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -36,10 +37,9 @@ class Module extends Module_Base {
 	public function localize_settings( $settings ) {
 		$settings = array_replace_recursive( $settings, [
 			'i18n' => [
-				'x_field' => __( '%s Field', 'elementor-pro' ),
+				'x_field' => __( '{0} Field', 'elementor-pro' ),
 			],
 		] );
-
 		return $settings;
 	}
 

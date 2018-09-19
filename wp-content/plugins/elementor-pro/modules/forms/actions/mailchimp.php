@@ -1,4 +1,5 @@
 <?php
+
 namespace ElementorPro\Modules\Forms\Actions;
 
 use Elementor\Controls_Manager;
@@ -43,8 +44,7 @@ class Mailchimp extends Integration_Base {
 		self::global_api_control(
 			$widget,
 			$this->get_global_api_key(),
-			'MailChimp API Key',
-			[
+			'MailChimp API Key', [
 				'mailchimp_api_key_source' => 'default',
 			],
 			$this->get_name()

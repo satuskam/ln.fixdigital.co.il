@@ -25,10 +25,6 @@ class Search_Form extends Base {
 		return 'eicon-site-search';
 	}
 
-	public function get_keywords() {
-		return [ 'search', 'form' ];
-	}
-
 	protected function _register_controls() {
 		$this->start_controls_section(
 			'search_content',
@@ -738,34 +734,31 @@ class Search_Form extends Base {
 		<form class="elementor-search-form" role="search" action="<?php echo home_url(); ?>" method="get">
 			<?php if ( 'full_screen' === $settings['skin'] ) : ?>
 			<div class="elementor-search-form__toggle">
-				<i class="fa fa-search" aria-hidden="true"></i>
+				<i class="fa fa-search"></i>
 			</div>
 			<?php endif; ?>
 			<div class="elementor-search-form__container">
 				<?php if ( 'minimal' === $settings['skin'] ) : ?>
 					<div class="elementor-search-form__icon">
-						<i class="fa fa-search" aria-hidden="true"></i>
+						<i class="fa fa-search"></i>
 					</div>
 				<?php endif; ?>
-				<input <?php echo $this->get_render_attribute_string( 'input' ); ?>>
+				<input <?php echo $this->get_render_attribute_string('input'); ?>>
 				<?php if ( 'classic' === $settings['skin'] ) : ?>
 				<button class="elementor-search-form__submit" type="submit">
 					<?php if ( 'icon' === $settings['button_type'] ) : ?>
-						<i <?php echo $this->get_render_attribute_string( 'icon' ); ?> aria-hidden="true"></i>
+					<i <?php echo $this->get_render_attribute_string('icon'); ?>></i>
 					<?php elseif ( ! empty( $settings['button_text'] ) ) : ?>
 						<?php echo $settings['button_text']; ?>
 					<?php endif; ?>
 				</button>
 				<?php endif; ?>
 				<?php if ( 'full_screen' === $settings['skin'] ) : ?>
-				<div class="dialog-lightbox-close-button dialog-close-button">
-					<i class="eicon-close" aria-hidden="true"></i>
-					<span class="elementor-screen-only"><?php esc_html_e( 'Close', 'elementor-pro' ); ?></span>
-				</div>
+				<div class="dialog-lightbox-close-button dialog-close-button"><i class="eicon-close"></i></div>
 				<?php endif ?>
 			</div>
 		</form>
-		<?php
+	<?php
 	}
 
 	protected function _content_template() {
@@ -784,25 +777,25 @@ class Search_Form extends Base {
 		<form class="elementor-search-form" action="" role="search">
 			<# if ( 'full_screen' === settings.skin ) { #>
 				<div class="elementor-search-form__toggle">
-					<i class="fa fa-search" aria-hidden="true"></i>
+					<i class="fa fa-search"></i>
 				</div>
 			<# } #>
 			<div class="elementor-search-form__container">
 				<# if ( 'minimal' === settings.skin ) { #>
 					<div class="elementor-search-form__icon">
-						<i class="fa fa-search" aria-hidden="true"></i>
+						<i class="fa fa-search"></i>
 					</div>
 				<# } #>
 				<input type="search"
-					   name="s"
-					   title="<?php esc_attr_e( 'Search', 'elementor-pro' ); ?>"
-					   class="elementor-search-form__input"
-					   placeholder="{{ settings.placeholder }}">
+				       name="s"
+				       title="<?php esc_attr_e( 'Search', 'elementor-pro' ); ?>"
+				       class="elementor-search-form__input"
+				       placeholder="{{ settings.placeholder }}">
 
 				<# if ( 'classic' === settings.skin ) { #>
 					<button class="elementor-search-form__submit" type="submit">
 						<# if ( 'icon' === settings.button_type ) { #>
-							<i class="{{ iconClass }}" aria-hidden="true"></i>
+							<i class="{{ iconClass }}"></i>
 						<# } else if ( settings.button_text ) { #>
 							{{{ settings.button_text }}}
 						<# } #>

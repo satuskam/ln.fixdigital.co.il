@@ -1,23 +1,15 @@
-/*! elementor-pro - v2.1.9 - 17-09-2018 */
+/*! elementor-pro - v2.0.4 - 02-05-2018 */
 #elementor-panel-get-pro-elements {
   display: none; }
 
-.elementor-panel .elementor-control.forms-field-shortcode .elementor-control-content {
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-  -webkit-flex-flow: row;
-      -ms-flex-flow: row;
-          flex-flow: row;
-  -webkit-box-align: center;
-  -webkit-align-items: center;
-      -ms-flex-align: center;
-          align-items: center; }
-
 .elementor-panel .elementor-control.forms-field-shortcode .elementor-control-title {
+  display: table-cell;
+  vertical-align: middle;
   width: 45%; }
 
 .elementor-panel .elementor-control.forms-field-shortcode .elementor-control-raw-html {
-  width: 55%; }
+  display: table-cell;
+  vertical-align: middle; }
 
 #elementor-widget-template-empty-templates {
   margin-top: 15px;
@@ -46,7 +38,7 @@
 #elementor-global-widget-locked-header {
   -webkit-box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
           box-shadow: 0 0 8px rgba(0, 0, 0, 0.1); }
-  #elementor-global-widget-locked-header.elementor-nerd-box, #elementor-global-widget-locked-header.elementor-panel-nerd-box {
+  #elementor-global-widget-locked-header.elementor-panel-nerd-box {
     padding: 40px 25px; }
 
 #elementor-global-widget-locked-tools {
@@ -142,9 +134,13 @@
     #elementor-theme-builder-conditions .elementor-control:before {
       content: none; }
     #elementor-theme-builder-conditions .elementor-control select {
+      -webkit-appearance: none;
+         -moz-appearance: none;
+              appearance: none;
       border-width: 0;
       height: 40px;
-      padding: 0 14px; }
+      padding: 0 14px;
+      cursor: pointer; }
     #elementor-theme-builder-conditions .elementor-control-type-query {
       width: 100px; }
     #elementor-theme-builder-conditions .elementor-control-type-select .elementor-control-input-wrapper:after {
@@ -290,17 +286,17 @@
   .elementor-conditions-conflict-message a {
     color: #b01b1b; }
 
-.elementor-panel-footer-theme-builder-buttons-wrapper .elementor-panel-footer-sub-menu {
+#elementor-panel-footer-theme-builder-button-preview-wrapper .elementor-panel-footer-sub-menu {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex; }
 
-.elementor-panel-footer-theme-builder-buttons-wrapper .elementor-panel-footer-sub-menu-item {
+#elementor-panel-footer-theme-builder-button-preview-wrapper .elementor-panel-footer-sub-menu-item {
   display: inline-block; }
-  .elementor-panel-footer-theme-builder-buttons-wrapper .elementor-panel-footer-sub-menu-item i {
+  #elementor-panel-footer-theme-builder-button-preview-wrapper .elementor-panel-footer-sub-menu-item i {
     margin-right: 5px; }
-  .elementor-panel-footer-theme-builder-buttons-wrapper .elementor-panel-footer-sub-menu-item > * {
+  #elementor-panel-footer-theme-builder-button-preview-wrapper .elementor-panel-footer-sub-menu-item > * {
     display: inline-block;
     line-height: 40px; }
 

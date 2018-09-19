@@ -4,9 +4,7 @@ namespace ElementorPro\Modules\Forms\Classes;
 use ElementorPro\Base\Base_Widget;
 use ElementorPro\Modules\Forms\Module;
 
-if ( ! defined( 'ABSPATH' ) ) {
-	exit; // Exit if accessed directly
-}
+if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
 abstract class Form_Base extends Base_Widget {
 
@@ -48,7 +46,7 @@ abstract class Form_Base extends Base_Widget {
 		] );
 
 		if ( $item['placeholder'] ) {
-			$this->add_render_attribute( 'textarea' . $item_index, 'placeholder', $item['placeholder'] );
+			$this->add_render_attribute( 'textarea' . $item_index , 'placeholder', $item['placeholder'] );
 		}
 
 		if ( $item['required'] ) {
@@ -69,7 +67,7 @@ abstract class Form_Base extends Base_Widget {
 					],
 				],
 				'select' . $i => [
-					'name' => $this->get_attribute_name( $item ) . ( ! empty( $item['allow_multiple'] ) ? '[]' : '' ),
+					'name' => $this->get_attribute_name( $item ),
 					'id' => $this->get_attribute_id( $item ),
 					'class' => [
 						'elementor-field-textual',
@@ -100,20 +98,9 @@ abstract class Form_Base extends Base_Widget {
 		?>
 		<div <?php echo $this->get_render_attribute_string( 'select-wrapper' . $i ); ?>>
 			<select <?php echo $this->get_render_attribute_string( 'select' . $i ); ?>>
-				<?php
-				foreach ( $options as $option ) :
-					if ( false === strpos( $option, '|' ) ) :
-						?>
-						<option value="<?php echo esc_attr( $option ); ?>"><?php echo $option; ?></option>
-						<?php
-					else :
-						list( $label, $value ) = explode( '|', $option );
-						?>
-						<option value="<?php echo esc_attr( $value ); ?>"><?php echo $label; ?></option>
-						<?php
-					endif;
-				endforeach;
-				?>
+				<?php foreach ( $options as $option ) : ?>
+					<option value="<?php echo esc_attr( $option ); ?>"><?php echo $option; ?></option>
+				<?php endforeach; ?>
 			</select>
 		</div>
 		<?php
@@ -129,17 +116,12 @@ abstract class Form_Base extends Base_Widget {
 			foreach ( $options as $key => $option ) {
 				$element_id = $item['_id'] . $key;
 				$html_id = $this->get_attribute_id( $item ) . '-' . $key;
-				$option_label = $option;
-				$option_value = $option;
-				if ( false !== strpos( $option, '|' ) ) {
-					list( $option_label, $option_value ) = explode( '|', $option );
-				}
 
 				$this->add_render_attribute(
 					$element_id,
 					[
 						'type' => $type,
-						'value' => esc_attr( $option_value ),
+						'value' => esc_attr( $option ),
 						'id' => $html_id,
 						'name' => $this->get_attribute_name( $item ) . ( ( 'checkbox' === $type && count( $options ) > 1 ) ? '[]' : '' ),
 					]
@@ -149,11 +131,10 @@ abstract class Form_Base extends Base_Widget {
 					$this->add_required_attribute( $element_id );
 				}
 
-				$html .= '<span class="elementor-field-option"><input ' . $this->get_render_attribute_string( $element_id ) . '> <label for="' . $html_id . '">' . $option_label . '</label></span>';
+				$html .= '<span class="elementor-field-option"><input ' . $this->get_render_attribute_string( $element_id ) . '> <label for="' . $html_id . '">' . $option . '</label></span>';
 			}
 			$html .= '</div>';
 		}
-
 		return $html;
 	}
 

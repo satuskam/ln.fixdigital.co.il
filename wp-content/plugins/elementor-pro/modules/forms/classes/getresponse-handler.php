@@ -1,9 +1,7 @@
 <?php
 namespace ElementorPro\Modules\Forms\Classes;
 
-if ( ! defined( 'ABSPATH' ) ) {
-	exit; // Exit if accessed directly
-}
+if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
 class Getresponse_Handler {
 	public $rest_client = null;
@@ -22,7 +20,7 @@ class Getresponse_Handler {
 	}
 
 	private function init_rest_client( $api_key ) {
-		$this->api_key = $api_key;
+		$this->api_key  = $api_key;
 		$this->rest_client = new Rest_Client( 'https://api.getresponse.com/v3/' );
 		$this->rest_client->add_headers( [
 			'X-Auth-Token' => 'api-key ' . $api_key,
@@ -42,7 +40,6 @@ class Getresponse_Handler {
 			return true;
 		}
 		$this->api_key = '';
-
 		return false;
 	}
 
@@ -134,7 +131,6 @@ class Getresponse_Handler {
 
 	/**
 	 * create contact at GetResponse via api
-	 *
 	 * @param array $subscriber_data
 	 *
 	 * @return array|mixed

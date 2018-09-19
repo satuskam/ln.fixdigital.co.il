@@ -3,37 +3,23 @@ namespace ElementorPro\Modules\QueryControl;
 
 use Elementor\Controls_Manager;
 use Elementor\Core\Ajax_Manager;
-
+use Elementor\Utils;
 use Elementor\Widget_Base;
 use ElementorPro\Base\Module_Base;
-use ElementorPro\Classes\Utils;
-use Elementor\Utils as ElementorUtils;
 use ElementorPro\Modules\QueryControl\Controls\Group_Control_Posts;
 use ElementorPro\Modules\QueryControl\Controls\Query;
 use ElementorPro\Plugin;
 
-if ( ! defined( 'ABSPATH' ) ) {
-	exit; // Exit if accessed directly
-}
+if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
 class Module extends Module_Base {
 
 	const QUERY_CONTROL_ID = 'query';
 
-	public static $displayed_ids = [];
-
 	public function __construct() {
 		parent::__construct();
 
 		$this->add_actions();
-	}
-
-	public static function add_to_avoid_list( $ids ) {
-		self::$displayed_ids = array_merge( self::$displayed_ids, $ids );
-	}
-
-	public static function get_avoid_list_ids() {
-		return self::$displayed_ids;
 	}
 
 	/**
@@ -58,7 +44,7 @@ class Module extends Module_Base {
 			'exclude_ids',
 			[
 				'label' => __( 'Search & Select', 'elementor-pro' ),
-				'type' => self::QUERY_CONTROL_ID,
+				'type' => Module::QUERY_CONTROL_ID,
 				'post_type' => '',
 				'options' => [],
 				'label_block' => true,
@@ -69,17 +55,6 @@ class Module extends Module_Base {
 				],
 			]
 		);
-
-		$widget->add_control(
-			'avoid_duplicates',
-			[
-				'label' => __( 'Avoid Duplicates', 'elementor-pro' ),
-				'type' => Controls_Manager::SWITCHER,
-				'default' => '',
-				'description' => __( 'Set to Yes to avoid duplicate posts from showing up. This only effects the frontend.', 'elementor-pro' ),
-			]
-		);
-
 	}
 
 	public function get_name() {
@@ -105,18 +80,10 @@ class Module extends Module_Base {
 
 				$terms = get_terms( $query_params );
 
-				global $wp_taxonomies;
-
 				foreach ( $terms as $term ) {
-					if ( ! empty( $_POST['include_type'] ) ) {
-						$text = $wp_taxonomies[ $term->taxonomy ]->labels->singular_name . ': ' . $term->name;
-					} else {
-						$text = $term->name;
-					}
-
 					$results[] = [
 						'id' => $term->term_id,
-						'text' => $text,
+						'text' => $term->name,
 					];
 				}
 
@@ -130,23 +97,12 @@ class Module extends Module_Base {
 					'posts_per_page' => -1,
 				];
 
-				if ( 'attachment' === $query_params['post_type'] ) {
-					$query_params['post_status'] = 'inherit';
-				}
-
 				$query = new \WP_Query( $query_params );
 
 				foreach ( $query->posts as $post ) {
-					if ( ! empty( $_POST['include_type'] ) ) {
-						$post_type_obj = get_post_type_object( $post->post_type );
-						$text = $post_type_obj->labels->singular_name . ': ' . $post->post_title;
-					} else {
-						$text = $post->post_title;
-					}
-
 					$results[] = [
 						'id' => $post->ID,
-						'text' => $text,
+						'text' => $post->post_title,
 					];
 				}
 				break;
@@ -281,12 +237,8 @@ class Module extends Module_Base {
 		];
 
 		if ( 'by_id' === $post_type ) {
-			$post_types = Utils::get_public_post_types();
-
-			$query_args['post_type'] = array_keys( $post_types );
-			$query_args['posts_per_page'] = -1;
-
-			$query_args['post__in'] = $settings[ $control_id . '_posts_ids' ];
+			$query_args['post_type'] = 'any';
+			$query_args['post__in']  = $settings[ $control_id . '_posts_ids' ];
 
 			if ( empty( $query_args['post__in'] ) ) {
 				// If no selection - return an empty query
@@ -324,10 +276,10 @@ class Module extends Module_Base {
 			$query_args['author__in'] = $settings[ $control_id . '_authors' ];
 		}
 
-		$post__not_in = [];
 		if ( ! empty( $settings['exclude'] ) ) {
+			$post__not_in = [];
 			if ( in_array( 'current_post', $settings['exclude'] ) ) {
-				if ( ElementorUtils::is_ajax() && ! empty( $_REQUEST['post_id'] ) ) {
+				if ( Utils::is_ajax() && ! empty( $_REQUEST['post_id'] ) ) {
 					$post__not_in[] = $_REQUEST['post_id'];
 				} elseif ( is_singular() ) {
 					$post__not_in[] = get_queried_object_id();
@@ -337,13 +289,9 @@ class Module extends Module_Base {
 			if ( in_array( 'manual_selection', $settings['exclude'] ) && ! empty( $settings['exclude_ids'] ) ) {
 				$post__not_in = array_merge( $post__not_in, $settings['exclude_ids'] );
 			}
-		}
 
-		if ( ! empty( $settings['avoid_duplicates'] ) && 'yes' === $settings['avoid_duplicates'] ) {
-			$post__not_in = array_merge( $post__not_in, self::$displayed_ids );
+			$query_args['post__not_in'] = $post__not_in;
 		}
-
-		$query_args['post__not_in'] = $post__not_in;
 
 		return $query_args;
 	}
@@ -351,10 +299,10 @@ class Module extends Module_Base {
 	/**
 	 * @param \WP_Query $query
 	 */
-	public function fix_query_offset( &$query ) {
+	function fix_query_offset( &$query ) {
 		if ( ! empty( $query->query_vars['offset_to_fix'] ) ) {
 			if ( $query->is_paged ) {
-				$query->query_vars['offset'] = $query->query_vars['offset_to_fix'] + ( ( $query->query_vars['paged'] - 1 ) * $query->query_vars['posts_per_page'] );
+				$query->query_vars['offset'] = $query->query_vars['offset_to_fix'] + ( ( $query->query_vars['paged'] -1 ) * $query->query_vars['posts_per_page'] );
 			} else {
 				$query->query_vars['offset'] = $query->query_vars['offset_to_fix'];
 			}
@@ -362,7 +310,7 @@ class Module extends Module_Base {
 	}
 
 	/**
-	 * @param int       $found_posts
+	 * @param int $found_posts
 	 * @param \WP_Query $query
 	 *
 	 * @return mixed

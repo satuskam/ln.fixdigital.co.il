@@ -21,7 +21,7 @@ class Conditions_Cache {
 
 	/**
 	 * @param Theme_Document $document
-	 * @param array          $conditions
+	 * @param array $conditions
 	 *
 	 * @return $this
 	 */
@@ -58,7 +58,7 @@ class Conditions_Cache {
 
 	/**
 	 * @param Theme_Document $document
-	 * @param array          $conditions
+	 * @param array $conditions
 	 *
 	 * @return $this
 	 */
@@ -72,13 +72,11 @@ class Conditions_Cache {
 
 	public function refresh() {
 		$this->conditions = get_option( self::OPTION_NAME, [] );
-
 		return $this;
 	}
 
 	public function clear() {
 		$this->conditions = [];
-
 		return $this;
 	}
 
@@ -86,7 +84,6 @@ class Conditions_Cache {
 		if ( isset( $this->conditions[ $location ] ) ) {
 			return $this->conditions[ $location ];
 		}
-
 		return [];
 	}
 

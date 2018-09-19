@@ -25,18 +25,16 @@ class Conditions_Manager {
 	 */
 	private $cache;
 
-	private $location_cache = [];
-
 	public function __construct() {
 		$this->cache = new Conditions_Cache();
 
-		add_action( 'wp_loaded', [ $this, 'register_conditions' ] ); // After Plugins Registered CPT.
+		add_action( 'init', [ $this, 'register_conditions' ], 11 ); // After Plugins Registered CPT.
 		add_action( 'wp_trash_post', [ $this, 'purge_post_from_cache' ] );
 		add_action( 'untrashed_post', [ $this, 'on_untrash_post' ] );
 		add_action( 'elementor/ajax/register_actions', [ $this, 'register_ajax_actions' ] );
 
 		add_action( 'manage_' . Source_Local::CPT . '_posts_columns', [ $this, 'admin_columns_headers' ] );
-		add_action( 'manage_' . Source_Local::CPT . '_posts_custom_column', [ $this, 'admin_columns_content' ], 10, 2 );
+		add_action( 'manage_' . Source_Local::CPT . '_posts_custom_column', [ $this, 'admin_columns_content' ] , 10, 2 );
 	}
 
 	public function on_untrash_post( $post_id ) {
@@ -53,8 +51,8 @@ class Conditions_Manager {
 		$offset = 3;
 
 		$posts_columns = array_slice( $posts_columns, 0, $offset, true ) + [
-			'instances' => __( 'Instances', 'elementor-pro' ),
-		] + array_slice( $posts_columns, $offset, null, true );
+				'instances' => __( 'Instances', 'elementor-pro' ),
+			] + array_slice( $posts_columns, $offset, null, true );
 
 		return $posts_columns;
 	}
@@ -67,7 +65,6 @@ class Conditions_Manager {
 		$document = Module::instance()->get_document( $post_id );
 		if ( ! $document ) {
 			echo __( 'None', 'elementor-pro' );
-
 			return;
 		}
 		$document_conditions = $this->get_document_conditions( $document );
@@ -214,8 +211,6 @@ class Conditions_Manager {
 
 	public function register_conditions() {
 		$this->register_condition( 'general' );
-
-		do_action( 'elementor/theme/register_conditions', $this );
 	}
 
 	public function save_conditions( $post_id, $conditions ) {
@@ -237,19 +232,7 @@ class Conditions_Manager {
 		return $this->cache->regenerate();
 	}
 
-	/**
-	 * @deprecated 2.0.10
-	 *
-	 * @param $location
-	 *
-	 * @return array
-	 */
 	public function get_theme_templates_by_location( $location ) {
-		// TODO: _deprecated_function( __METHOD__, '2.0.10', 'get_location_templates' );
-		return $this->get_location_templates( $location );
-	}
-
-	public function get_location_templates( $location ) {
 		$conditions_priority = [];
 
 		$conditions_groups = $this->cache->get_by_location( $location );
@@ -258,11 +241,14 @@ class Conditions_Manager {
 			return $conditions_priority;
 		}
 
-		$location_manager = Module::instance()->get_locations_manager();
 		$excludes = [];
 
 		foreach ( $conditions_groups as $theme_template_id => $conditions ) {
-			$theme_template_id = apply_filters( 'elementor/theme/get_location_templates/template_id', $theme_template_id );
+			$post_status = get_post_status( $theme_template_id );
+
+			if ( 'publish' !== $post_status ) {
+				continue;
+			}
 
 			foreach ( $conditions as $condition ) {
 				$parsed_condition = $this->parse_condition( $condition );
@@ -296,18 +282,6 @@ class Conditions_Manager {
 				}
 
 				if ( $condition_pass ) {
-
-					$post_status = get_post_status( $theme_template_id );
-
-					if ( 'publish' !== $post_status ) {
-						$location_manager->inspector_log( [
-							'location' => $location,
-							'document' => Module::instance()->get_document( $theme_template_id ),
-							'description' => 'Skipped, is not Published',
-						] );
-						continue;
-					}
-
 					if ( $is_include ) {
 						$conditions_priority[ $theme_template_id ] = $this->get_condition_priority( $condition_instance, $sub_condition_instance, $sub_id );
 					} else {
@@ -327,8 +301,6 @@ class Conditions_Manager {
 	}
 
 	public function get_theme_templates_ids( $location ) {
-		$location_manager = Module::instance()->get_locations_manager();
-
 		// In case the user want to preview any page with a theme_template_id,
 		// like http://domain.com/any-post/?preview=1&theme_template_id=6453
 		if ( ! empty( $_GET['theme_template_id'] ) ) {
@@ -336,12 +308,6 @@ class Conditions_Manager {
 			$document = Module::instance()->get_document( $force_template_id );
 			// e.g. header / header
 			if ( $document && $location === $document->get_location() ) {
-				$location_manager->inspector_log( [
-					'location' => $location,
-					'document' => $document,
-					'description' => 'Force Template by URL param',
-				] );
-
 				return [
 					$force_template_id => 1,
 				];
@@ -351,18 +317,12 @@ class Conditions_Manager {
 		$current_post_id = get_the_ID();
 		$document = Module::instance()->get_document( $current_post_id );
 		if ( $document && $location === $document->get_location() ) {
-			$location_manager->inspector_log( [
-				'location' => $location,
-				'document' => $document,
-				'description' => 'Current Edited Template',
-			] );
-
 			return [
 				$current_post_id => 1,
 			];
 		}
 
-		$templates = $this->get_location_templates( $location );
+		$templates = $this->get_theme_templates_by_location( $location );
 
 		return $templates;
 	}
@@ -370,30 +330,32 @@ class Conditions_Manager {
 	/**
 	 * @param Condition_Base $condition_instance
 	 * @param Condition_Base $sub_condition_instance
-	 * @param int            $sub_id
+	 * @param int $sub_id
 	 *
 	 * @return mixed
 	 * @throws \Exception
 	 */
 	private function get_condition_priority( $condition_instance, $sub_condition_instance, $sub_id ) {
-		$priority = $condition_instance::get_priority();
+		$type_priority = [
+			'general' => 50,
+			'archive' => 40,
+			'singular' => 30,
+		];
+
+		$type_priority = $type_priority[ $condition_instance::get_type() ];
 
 		if ( $sub_condition_instance ) {
-			if ( $sub_condition_instance::get_priority() < $priority ) {
-				$priority = $sub_condition_instance::get_priority();
-			}
-
-			$priority -= 10;
+			$type_priority -= 10;
 
 			if ( $sub_id ) {
-				$priority -= 10;
+				$type_priority -= 10;
 			} elseif ( 0 === count( $sub_condition_instance->get_sub_conditions() ) ) {
 				// if no sub conditions - it's more specific.
-				$priority -= 5;
+				$type_priority -= 5;
 			}
 		}
 
-		return $priority;
+		return $type_priority;
 	}
 
 	/**
@@ -415,8 +377,7 @@ class Conditions_Manager {
 	}
 
 	protected function parse_condition( $condition ) {
-		list ( $type, $name, $sub_name, $sub_id ) = array_pad( explode( '/', $condition ), 4, '' );
-
+		list ( $type, $name, $sub_name, $sub_id ) = array_pad( explode( '/', $condition ), 4,'' );
 		return compact( 'type', 'name', 'sub_name', 'sub_id' );
 	}
 
@@ -426,10 +387,6 @@ class Conditions_Manager {
 	 * @return Theme_Document[]
 	 */
 	public function get_documents_for_location( $location ) {
-		if ( isset( $this->location_cache[ $location ] ) ) {
-			return $this->location_cache[ $location ];
-		}
-
 		$theme_templates_ids = $this->get_theme_templates_ids( $location );
 
 		$location_settings = Module::instance()->get_locations_manager()->get_locations( $location );
@@ -448,8 +405,6 @@ class Conditions_Manager {
 				break;
 			}
 		}
-
-		$this->location_cache[ $location ] = $documents;
 
 		return $documents;
 	}

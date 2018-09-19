@@ -7,9 +7,7 @@ use Elementor\Tools;
 use Elementor\Utils;
 use ElementorPro\License\API;
 
-if ( ! defined( 'ABSPATH' ) ) {
-	exit; // Exit if accessed directly
-}
+if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
 class Admin {
 
@@ -27,7 +25,6 @@ class Admin {
 		wp_register_style(
 			'elementor-pro-admin',
 			ELEMENTOR_PRO_ASSETS_URL . 'css/admin' . $direction_suffix . $suffix . '.css',
-			[],
 			ELEMENTOR_PRO_VERSION
 		);
 
@@ -67,10 +64,6 @@ class Admin {
 
 	public function remove_go_pro_menu() {
 		remove_action( 'admin_menu', [ Plugin::elementor()->settings, 'register_pro_menu' ], Settings::MENU_PRIORITY_GO_PRO );
-	}
-
-	public function hide_getting_started_menu() {
-		remove_submenu_page( 'elementor', 'elementor-getting-started' );
 	}
 
 	public function register_admin_tools_fields( Tools $tools ) {
@@ -156,7 +149,6 @@ class Admin {
 		add_action( 'admin_enqueue_scripts', [ $this, 'enqueue_styles' ] );
 		add_action( 'admin_enqueue_scripts', [ $this, 'enqueue_scripts' ] );
 		add_action( 'admin_menu', [ $this, 'remove_go_pro_menu' ], 0 );
-		add_action( 'admin_head', [ $this, 'hide_getting_started_menu' ], 510 );
 
 		add_action( 'elementor/admin/after_create_settings/' . Tools::PAGE_ID, [ $this, 'register_admin_tools_fields' ], 50 );
 

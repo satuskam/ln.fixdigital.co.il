@@ -42,7 +42,7 @@ abstract class Base extends Base_Widget {
 			[
 				'label' => __( 'Slides', 'elementor-pro' ),
 				'type' => Controls_Manager::REPEATER,
-				'fields' => $repeater->get_controls(),
+				'fields' => $repeater->get_fields(),
 				'default' => $this->get_repeater_defaults(),
 			]
 		);
@@ -79,7 +79,7 @@ abstract class Base extends Base_Widget {
 			]
 		);
 
-		$this->add_responsive_control(
+		$this->add_control(
 			'slides_to_scroll',
 			[
 				'type' => Controls_Manager::SELECT,

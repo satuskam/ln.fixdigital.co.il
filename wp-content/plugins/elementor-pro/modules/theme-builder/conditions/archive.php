@@ -2,6 +2,7 @@
 namespace ElementorPro\Modules\ThemeBuilder\Conditions;
 
 use ElementorPro\Classes\Utils;
+use ElementorPro\Modules\ThemeBuilder\Module;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly
@@ -9,22 +10,12 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 class Archive extends Condition_Base {
 
-	protected $sub_conditions = [
-		'author',
-		'date',
-		'search',
-	];
-
 	public static function get_type() {
 		return 'archive';
 	}
 
 	public function get_name() {
 		return 'archive';
-	}
-
-	public static function get_priority() {
-		return 80;
 	}
 
 	public function get_label() {
@@ -35,11 +26,16 @@ class Archive extends Condition_Base {
 		return __( 'All Archives', 'elementor-pro' );
 	}
 
-	public function register_sub_conditions() {
-		$post_types = Utils::get_public_post_types();
-		unset( $post_types['product'] );
+	public function get_sub_conditions() {
+		$sub_conditions = [
+			'author',
+			'date',
+			'search',
+		];
 
-		foreach ( $post_types as $post_type => $label ) {
+		$conditions_manager = Module::instance()->get_conditions_manager();
+
+		foreach ( Utils::get_post_types() as $post_type => $label ) {
 			if ( ! get_post_type_archive_link( $post_type ) ) {
 				continue;
 			}
@@ -47,9 +43,11 @@ class Archive extends Condition_Base {
 			$condition = new Post_Type_Archive( [
 				'post_type' => $post_type,
 			] );
-
-			$this->register_sub_condition( $condition );
+			$conditions_manager->register_condition_instance( $condition );
+			$sub_conditions[] = $condition->get_name();
 		}
+
+		return $sub_conditions;
 	}
 
 	public function check( $args ) {

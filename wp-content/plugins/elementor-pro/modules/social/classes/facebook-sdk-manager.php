@@ -5,7 +5,6 @@ use Elementor\Controls_Manager;
 use Elementor\Settings;
 use Elementor\Utils;
 use Elementor\Widget_Base;
-use ElementorPro\Modules\Social\Module;
 use ElementorPro\Plugin;
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -78,11 +77,11 @@ class Facebook_SDK_Manager {
 		}
 	}
 
-	public static function get_permalink( $settings = [] ) {
-		$post_id = get_the_ID();
-
-		if ( isset( $settings['url_format'] ) && Module::URL_FORMAT_PRETTY === $settings['url_format'] ) {
-			return get_permalink( $post_id );
+	public static function get_permalink() {
+		if ( Plugin::elementor()->editor->is_edit_mode() && Utils::is_ajax() ) {
+			$post_id = $_POST['post_id']; // WPCS: CSRF ok.
+		} else {
+			$post_id = get_the_ID();
 		}
 
 		// Use plain url to avoid losing comments after change the permalink.
@@ -96,9 +95,9 @@ class Facebook_SDK_Manager {
 
 				/* translators: %s: Facebook App Setting link. */
 				echo sprintf( __( 'Facebook SDK lets you connect to your <a href="%s" target="_blank">dedicated application</a> so you can track the Facebook Widgets analytics on your site.', 'elementor-pro' ), 'https://developers.facebook.com/docs/apps/register/' ) .
-					 '<br>' .
-					 '<br>' .
-					 __( 'If you are using the Facebook Comments Widget, you can add moderating options through your application. Note that this option will not work on local sites and on domains that don\'t have public access.', 'elementor-pro' );
+				     '<br>' .
+				     '<br>' .
+				     __( 'If you are using the Facebook Comments Widget, you can add moderating options through your application. Note that this option will not work on local sites and on domains that don\'t have public access.', 'elementor-pro' );
 			},
 			'fields' => [
 				'pro_facebook_app_id' => [

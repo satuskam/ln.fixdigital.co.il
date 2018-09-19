@@ -2,51 +2,30 @@
 namespace ElementorPro\Modules\Woocommerce\Widgets;
 
 use Elementor\Controls_Manager;
+use ElementorPro\Base\Base_Widget;
 use ElementorPro\Modules\QueryControl\Module as QueryModule;
 use ElementorPro\Modules\Woocommerce\Module;
 
-if ( ! defined( 'ABSPATH' ) ) {
-	exit; // Exit if accessed directly
-}
+if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
-class Elements extends Widget_Base {
+class Elements extends Base_Widget {
 
 	public function get_name() {
 		return 'wc-elements';
 	}
 
 	public function get_title() {
-		return __( 'WooCommerce Pages', 'elementor-pro' );
+		return __( 'Woo - Elements', 'elementor-pro' );
 	}
 
 	public function get_icon() {
-		return 'eicon-product-pages';
+		return 'eicon-woocommerce';
 	}
 
 	public function on_export( $element ) {
 		unset( $element['settings']['product_id'] );
 
 		return $element;
-	}
-
-	public function get_keywords() {
-		return [
-			'woocommerce',
-			'shop',
-			'store',
-			'cart',
-			'checkout',
-			'account',
-			'order tracking',
-			'shortcode',
-			'product',
-		];
-	}
-
-	public function get_categories() {
-		return [
-			'woocommerce-elements',
-		];
 	}
 
 	protected function _register_controls() {
@@ -60,7 +39,7 @@ class Elements extends Widget_Base {
 		$this->add_control(
 			'element',
 			[
-				'label' => __( 'Page', 'elementor-pro' ),
+				'label' => __( 'Element', 'elementor-pro' ),
 				'type' => Controls_Manager::SELECT,
 				'options' => [
 					'' => '— ' . __( 'Select', 'elementor-pro' ) . ' —',
@@ -101,9 +80,10 @@ class Elements extends Widget_Base {
 				break;
 
 			case 'product_page':
+
 				if ( ! empty( $settings['product_id'] ) ) {
 					$product_data = get_post( $settings['product_id'] );
-					$product = ! empty( $product_data ) && in_array( $product_data->post_type, [ 'product', 'product_variation' ] ) ? wc_setup_product_data( $product_data ) : false;
+					$product = ! empty( $product_data ) && in_array( $product_data->post_type, array( 'product', 'product_variation' ) ) ? wc_setup_product_data( $product_data ) : false;
 				}
 
 				if ( empty( $product ) && current_user_can( 'manage_options' ) ) {

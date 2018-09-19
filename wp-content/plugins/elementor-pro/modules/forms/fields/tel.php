@@ -3,9 +3,7 @@ namespace ElementorPro\Modules\Forms\Fields;
 
 use ElementorPro\Modules\Forms\Classes;
 
-if ( ! defined( 'ABSPATH' ) ) {
-	exit; // Exit if accessed directly
-}
+if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
 class Tel extends Field_Base {
 

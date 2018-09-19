@@ -82,8 +82,6 @@ class Module extends BaseModule {
 				$template_path = $this->get_template_path( $document->get_meta( '_wp_page_template' ) );
 				if ( $template_path ) {
 					$template = $template_path;
-
-					Plugin::$instance->inspector->add_log( 'Page Template', Plugin::$instance->inspector->parse_template_path( $template ), $document->get_edit_url() );
 				}
 			}
 		}
@@ -131,10 +129,7 @@ class Module extends BaseModule {
 	 */
 	public function add_page_templates( $page_templates, $wp_theme, $post ) {
 		if ( $post ) {
-			// FIX ME: Gutenberg not send $post as WP_Post object, just the post ID.
-			$post_id = ! empty( $post->ID ) ? $post->ID : $post;
-
-			$document = Plugin::$instance->documents->get( $post_id );
+			$document = Plugin::$instance->documents->get( $post->ID );
 			if ( $document && ! $document::get_property( 'support_wp_page_templates' ) ) {
 				return $page_templates;
 			}
@@ -263,9 +258,6 @@ class Module extends BaseModule {
 
 		$document->start_injection( [
 			'of' => 'post_status',
-			'fallback' => [
-				'of' => 'post_title',
-			],
 		] );
 
 		$document->add_control(
@@ -366,7 +358,7 @@ class Module extends BaseModule {
 	public function __construct() {
 		add_action( 'init', [ $this, 'add_wp_templates_support' ] );
 
-		add_filter( 'template_include', [ $this, 'template_include' ], 11 /* After Plugins/WooCommerce */ );
+		add_filter( 'template_include', [ $this, 'template_include' ] );
 
 		add_action( 'elementor/documents/register_controls', [ $this, 'action_register_template_control' ] );
 

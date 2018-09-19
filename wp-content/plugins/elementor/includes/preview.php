@@ -44,9 +44,6 @@ class Preview {
 
 		$this->post_id = get_the_ID();
 
-		// Don't redirect to permalink.
-		remove_action( 'template_redirect', 'redirect_canonical' );
-
 		// Compatibility with Yoast SEO plugin when 'Removes unneeded query variables from the URL' enabled.
 		// TODO: Move this code to `includes/compatibility.php`.
 		if ( class_exists( 'WPSEO_Frontend' ) ) {
@@ -173,17 +170,17 @@ class Preview {
 		$direction_suffix = is_rtl() ? '-rtl' : '';
 
 		wp_register_style(
-			'elementor-select2',
-			ELEMENTOR_ASSETS_URL . 'lib/e-select2/css/e-select2' . $suffix . '.css',
+			'select2',
+			ELEMENTOR_ASSETS_URL . 'lib/select2/css/select2' . $suffix . '.css',
 			[],
-			'4.0.6-rc.1'
+			'4.0.5'
 		);
 
 		wp_register_style(
 			'editor-preview',
 			ELEMENTOR_ASSETS_URL . 'css/editor-preview' . $direction_suffix . $suffix . '.css',
 			[
-				'elementor-select2',
+				'select2',
 			],
 			ELEMENTOR_VERSION
 		);
@@ -221,7 +218,7 @@ class Preview {
 			'elementor-inline-editor',
 			ELEMENTOR_ASSETS_URL . 'lib/inline-editor/js/inline-editor' . $suffix . '.js',
 			[],
-			ELEMENTOR_VERSION,
+			'',
 			true
 		);
 

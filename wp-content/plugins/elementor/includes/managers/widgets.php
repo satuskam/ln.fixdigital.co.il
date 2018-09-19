@@ -254,6 +254,10 @@ class Widgets_Manager {
 		$config = [];
 
 		foreach ( $this->get_widget_types() as $widget_key => $widget ) {
+			if ( ! $widget->show_in_panel() ) {
+				continue;
+			}
+
 			$config[ $widget_key ] = $widget->get_config();
 		}
 
@@ -270,7 +274,9 @@ class Widgets_Manager {
 	 * @since 1.0.0
 	 * @access public
 	 *
-	 * @throws \Exception If current user don't have permissions to edit the post.
+	 * @throw \Exception If the request has no post id.
+	 * @throw \Exception If current user don't have permissions to edit the post.
+	 * @throw \Exception If the widget was not found or does not exist.
 	 *
 	 * @param array $request Ajax request.
 	 *
@@ -279,6 +285,7 @@ class Widgets_Manager {
 	 *
 	 *     @type string $render The rendered HTML.
 	 * }
+	 * @throws \Exception
 	 */
 	public function ajax_render_widget( $request ) {
 		$document = Plugin::$instance->documents->get( $request['editor_post_id'] );

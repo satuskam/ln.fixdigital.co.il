@@ -3,9 +3,7 @@ namespace ElementorPro;
 
 use ElementorPro\Base\Module_Base;
 
-if ( ! defined( 'ABSPATH' ) ) {
-	exit; // Exit if accessed directly
-}
+if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
 final class Manager {
 	/**
@@ -16,6 +14,7 @@ final class Manager {
 	public function __construct() {
 		$modules = [
 			'query-control',
+			'css-filter-control', /* todo: remove from pro */
 			'custom-css',
 			// role-manager Must be before Global Widget
 			'role-manager',
@@ -42,7 +41,6 @@ final class Manager {
 			'library',
 			'dynamic-tags',
 			'sticky',
-			'wp-cli',
 		];
 
 		foreach ( $modules as $module_name ) {

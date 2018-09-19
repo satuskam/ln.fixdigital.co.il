@@ -201,7 +201,6 @@ abstract class Element_Base extends Controls_Stack {
 		if ( ! Plugin::instance()->role_manager->user_can( 'design' ) ) {
 			return [];
 		}
-
 		if ( null === static::$_edit_tools ) {
 			self::init_edit_tools();
 		}
@@ -245,8 +244,19 @@ abstract class Element_Base extends Controls_Stack {
 		}
 	}
 
-	final public static function is_edit_buttons_enabled() {
-		return get_option( 'elementor_edit_buttons' );
+	/**
+	 * Get element type.
+	 *
+	 * Retrieve the element type, in this case `element`.
+	 *
+	 * @since 1.0.0
+	 * @access public
+	 * @static
+	 *
+	 * @return string Control type.
+	 */
+	public static function get_type() {
+		return 'element';
 	}
 
 	/**
@@ -421,7 +431,7 @@ abstract class Element_Base extends Controls_Stack {
 	 * @return Element_Base Parent element.
 	 */
 	public function get_parent() {
-		_deprecated_function( __METHOD__, '1.7.6', __CLASS__ . '::get_data( \'parent\' )' );
+		// Todo: _deprecated_function( __METHOD__, '1.7.6', '$this->get_data( 'parent' )' );
 
 		return $this->get_data( 'parent' );
 	}
@@ -587,18 +597,7 @@ abstract class Element_Base extends Controls_Stack {
 	 * @access public
 	 */
 	public function print_element() {
-		$element_type = $this->get_type();
-
-		/**
-		 * Before frontend element render.
-		 *
-		 * Fires before Elementor element is rendered in the frontend.
-		 *
-		 * @since 2.2.0
-		 *
-		 * @param Element_Base $this The element.
-		 */
-		do_action( 'elementor/frontend/before_render', $this );
+		$element_type = static::get_type();
 
 		/**
 		 * Before frontend element render.
@@ -711,22 +710,7 @@ abstract class Element_Base extends Controls_Stack {
 	 * @since 1.8.0
 	 * @access protected
 	 */
-	protected function render_edit_tools() {
-		?>
-		<div class="elementor-element-overlay">
-			<ul class="elementor-editor-element-settings elementor-editor-<?php echo $this->get_type(); ?>-settings">
-				<?php
-				foreach ( self::get_edit_tools() as $edit_tool_name => $edit_tool ) {
-					?>
-					<li class="elementor-editor-element-setting elementor-editor-element-<?php echo esc_attr( $edit_tool_name ); ?>" title="<?php echo esc_attr( $edit_tool['title'] ); ?>">
-						<i class="eicon-<?php echo esc_attr( $edit_tool['icon'] ); ?>" aria-hidden="true"></i>
-						<span class="elementor-screen-only"><?php echo esc_html( $edit_tool['title'] ); ?></span>
-					</li>
-				<?php } ?>
-			</ul>
-		</div>
-		<?php
-	}
+	protected function render_edit_tools() {}
 
 	/**
 	 * Is type instance.
@@ -764,22 +748,12 @@ abstract class Element_Base extends Controls_Stack {
 
 		$settings = $this->get_active_settings();
 
-		$controls = $this->get_controls();
-
-		$class_settings = [];
-
-		foreach ( $settings as $setting_key => $setting ) {
-			if ( isset( $controls[ $setting_key ]['prefix_class'] ) ) {
-				$class_settings[ $setting_key ] = $setting;
-			}
-		}
-
-		foreach ( $class_settings as $setting_key => $setting ) {
-			if ( empty( $setting ) && '0' !== $setting ) {
+		foreach ( self::get_class_controls() as $control ) {
+			if ( empty( $settings[ $control['name'] ] ) ) {
 				continue;
 			}
 
-			$this->add_render_attribute( '_wrapper', 'class', $controls[ $setting_key ]['prefix_class'] . $setting );
+			$this->add_render_attribute( '_wrapper', 'class', $control['prefix_class'] . $settings[ $control['name'] ] );
 		}
 
 		if ( ! empty( $settings['animation'] ) || ! empty( $settings['_animation'] ) ) {

@@ -4,6 +4,7 @@ namespace ElementorPro\Modules\Social\Widgets;
 use Elementor\Controls_Manager;
 use Elementor\Widget_Base;
 use ElementorPro\Modules\Social\Classes\Facebook_SDK_Manager;
+use ElementorPro\Modules\Social\Module;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly
@@ -25,10 +26,6 @@ class Facebook_Embed extends Widget_Base {
 
 	public function get_categories() {
 		return [ 'pro-elements' ];
-	}
-
-	public function get_keywords() {
-		return [ 'facebook', 'social', 'embed', 'video', 'post', 'comment' ];
 	}
 
 	protected function _register_controls() {
@@ -163,13 +160,11 @@ class Facebook_Embed extends Widget_Base {
 
 		if ( empty( $settings['type'] ) ) {
 			esc_html_e( 'Please set the embed type', 'elementor-pro' );
-
 			return;
 		}
 
 		if ( 'comment' === $settings['type'] && empty( $settings['comment_url'] ) || 'post' === $settings['type'] && empty( $settings['post_url'] ) || 'video' === $settings['type'] && empty( $settings['video_url'] ) ) {
 			esc_html_e( 'Please enter a valid URL', 'elementor-pro' );
-
 			return;
 		}
 

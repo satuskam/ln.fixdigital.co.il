@@ -9,9 +9,7 @@ use ElementorPro\Modules\Forms\Classes\Getresponse_Handler;
 use ElementorPro\Classes\Utils;
 use Elementor\Settings;
 
-if ( ! defined( 'ABSPATH' ) ) {
-	exit; // Exit if accessed directly
-}
+if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
 class Getresponse extends Integration_Base {
 
@@ -43,8 +41,7 @@ class Getresponse extends Integration_Base {
 		self::global_api_control(
 			$widget,
 			$this->get_global_api_key(),
-			'GetResponse API key',
-			[
+			'GetResponse API key', [
 				'getresponse_api_key_source' => 'default',
 			],
 			$this->get_name()
@@ -155,7 +152,6 @@ class Getresponse extends Integration_Base {
 
 		if ( ! $subscriber ) {
 			$ajax_handler->add_admin_error_message( __( 'GetResponse Integration requires an email field', 'elementor-pro' ) );
-
 			return;
 		}
 
@@ -183,7 +179,6 @@ class Getresponse extends Integration_Base {
 	/**
 	 * Create subscriber array from submitted data and form settings
 	 * returns a subscriber array or false on error
-	 *
 	 * @param Form_Record $record
 	 *
 	 * @return array|bool
@@ -229,7 +224,6 @@ class Getresponse extends Integration_Base {
 			}
 			$custom_fields[ $id ] = $field['value'];
 		}
-
 		return $custom_fields;
 	}
 
@@ -261,7 +255,6 @@ class Getresponse extends Integration_Base {
 			];
 		}
 		$subscriber['customFieldValues'] = $custom_fields;
-
 		return $subscriber;
 	}
 

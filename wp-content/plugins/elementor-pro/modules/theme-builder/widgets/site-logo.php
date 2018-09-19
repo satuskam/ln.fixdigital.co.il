@@ -27,10 +27,6 @@ class Site_Logo extends Widget_Image {
 		return [ 'theme-elements' ];
 	}
 
-	public function get_keywords() {
-		return [ 'site', 'logo', 'branding' ];
-	}
-
 	protected function _register_controls() {
 		parent::_register_controls();
 
@@ -71,8 +67,6 @@ class Site_Logo extends Widget_Image {
 				'recursive' => true,
 			]
 		);
-
-		$this->remove_control( 'caption' );
 	}
 
 	protected function get_html_wrapper_class() {

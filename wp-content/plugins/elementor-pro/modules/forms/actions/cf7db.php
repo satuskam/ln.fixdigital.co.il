@@ -1,11 +1,10 @@
 <?php
+
 namespace ElementorPro\Modules\Forms\Actions;
 
 use ElementorPro\Modules\Forms\Classes\Action_Base;
 
-if ( ! defined( 'ABSPATH' ) ) {
-	exit; // Exit if accessed directly
-}
+if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
 class CF7DB extends Action_Base {
 

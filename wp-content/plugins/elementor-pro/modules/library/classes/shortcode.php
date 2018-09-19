@@ -1,12 +1,11 @@
 <?php
+
 namespace ElementorPro\Modules\Library\Classes;
 
 use Elementor\TemplateLibrary\Source_Local;
 use ElementorPro\Plugin;
 
-if ( ! defined( 'ABSPATH' ) ) {
-	exit; // Exit if accessed directly
-}
+if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
 class Shortcode {
 
@@ -18,7 +17,6 @@ class Shortcode {
 
 	public function admin_columns_headers( $defaults ) {
 		$defaults['shortcode'] = __( 'Shortcode', 'elementor-pro' );
-
 		return $defaults;
 	}
 
@@ -35,19 +33,13 @@ class Shortcode {
 			return '';
 		}
 
-		$include_css = false;
-
-		if ( isset( $attributes['css'] ) && 'false' !== $attributes['css'] ) {
-			$include_css = (bool) $attributes['css'];
-		}
-
-		return Plugin::elementor()->frontend->get_builder_content_for_display( $attributes['id'], $include_css );
+		return Plugin::elementor()->frontend->get_builder_content_for_display( $attributes['id'] );
 	}
 
 	private function add_actions() {
 		if ( is_admin() ) {
 			add_action( 'manage_' . Source_Local::CPT . '_posts_columns', [ $this, 'admin_columns_headers' ] );
-			add_action( 'manage_' . Source_Local::CPT . '_posts_custom_column', [ $this, 'admin_columns_content' ], 10, 2 );
+			add_action( 'manage_' . Source_Local::CPT . '_posts_custom_column', [ $this, 'admin_columns_content' ] , 10, 2 );
 		}
 
 		add_shortcode( self::SHORTCODE, [ $this, 'shortcode' ] );

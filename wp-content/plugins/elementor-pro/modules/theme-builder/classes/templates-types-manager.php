@@ -1,6 +1,7 @@
 <?php
 namespace ElementorPro\Modules\ThemeBuilder\Classes;
 
+use Elementor\TemplateLibrary\Source_Local;
 use ElementorPro\Modules\ThemeBuilder\Documents;
 use ElementorPro\Plugin;
 
@@ -12,20 +13,14 @@ class Templates_Types_Manager {
 	private $docs_types = [];
 
 	public function __construct() {
-		add_action( 'elementor/documents/register', [ $this, 'register_documents' ] );
+		add_action( 'elementor_pro/init', [ $this, 'register_documents' ] );
 	}
 
 	public function get_types_config() {
 		$config = [];
 
-		$document_types = Plugin::elementor()->documents->get_document_types();
-
-		foreach ( $document_types as $type => $document_type ) {
-			$properties = $document_type::get_properties();
-
-			if ( ( new $document_type() ) instanceof Documents\Theme_Document ) {
-				$config[ $type ] = $properties;
-			}
+		foreach ( $this->docs_types as $type => $class_name ) {
+			$config[ $type ] = call_user_func( [ $class_name, 'get_properties' ] );
 		}
 
 		return $config;
@@ -42,6 +37,7 @@ class Templates_Types_Manager {
 
 		foreach ( $this->docs_types as $type => $class_name ) {
 			Plugin::elementor()->documents->register_document_type( $type, $class_name );
+			Source_Local::add_template_type( $type );
 		}
 	}
 }

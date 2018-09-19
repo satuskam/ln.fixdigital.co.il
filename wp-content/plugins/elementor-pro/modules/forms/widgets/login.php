@@ -9,9 +9,7 @@ use Elementor\Scheme_Typography;
 use ElementorPro\Base\Base_Widget;
 use ElementorPro\Plugin;
 
-if ( ! defined( 'ABSPATH' ) ) {
-	exit; // Exit if accessed directly
-}
+if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
 class Login extends Base_Widget {
 
@@ -25,10 +23,6 @@ class Login extends Base_Widget {
 
 	public function get_icon() {
 		return 'eicon-lock-user';
-	}
-
-	public function get_keywords() {
-		return [ 'login', 'user', 'form' ];
 	}
 
 	protected function _register_controls() {
@@ -159,32 +153,6 @@ class Login extends Base_Widget {
 				'description' => __( 'Note: Because of security reasons, you can ONLY use your current domain here.', 'elementor-pro' ),
 				'condition' => [
 					'redirect_after_login' => 'yes',
-				],
-			]
-		);
-
-		$this->add_control(
-			'redirect_after_logout',
-			[
-				'label' => __( 'Redirect After Logout', 'elementor-pro' ),
-				'type' => Controls_Manager::SWITCHER,
-				'default' => '',
-				'label_off' => __( 'Off', 'elementor-pro' ),
-				'label_on' => __( 'On', 'elementor-pro' ),
-			]
-		);
-
-		$this->add_control(
-			'redirect_logout_url',
-			[
-				'type' => Controls_Manager::URL,
-				'show_label' => false,
-				'show_external' => false,
-				'separator' => false,
-				'placeholder' => __( 'https://your-link.com', 'elementor-pro' ),
-				'description' => __( 'Note: Because of security reasons, you can ONLY use your current domain here.', 'elementor-pro' ),
-				'condition' => [
-					'redirect_after_logout' => 'yes',
 				],
 			]
 		);
@@ -739,15 +707,14 @@ class Login extends Base_Widget {
 		}
 
 		$this->add_render_attribute( 'field-group', 'class', 'elementor-field-required' )
-			 ->add_render_attribute( 'input', 'required', true )
-			 ->add_render_attribute( 'input', 'aria-required', 'true' );
+			->add_render_attribute( 'input', 'required', true )
+			->add_render_attribute( 'input', 'aria-required', 'true' );
 
 	}
 
 	protected function render() {
 		$settings = $this->get_settings();
 		$current_url = remove_query_arg( 'fake_arg' );
-		$logout_redirect = $current_url;
 
 		if ( 'yes' === $settings['redirect_after_login'] && ! empty( $settings['redirect_url']['url'] ) ) {
 			$redirect_url = $settings['redirect_url']['url'];
@@ -755,16 +722,12 @@ class Login extends Base_Widget {
 			$redirect_url = $current_url;
 		}
 
-		if ( 'yes' === $settings['redirect_after_logout'] && ! empty( $settings['redirect_logout_url']['url'] ) ) {
-			$logout_redirect = $settings['redirect_logout_url']['url'];
-		}
-
 		if ( is_user_logged_in() && ! Plugin::elementor()->editor->is_edit_mode() ) {
 			if ( 'yes' === $settings['show_logged_in_message'] ) {
 				$current_user = wp_get_current_user();
 
 				echo '<div class="elementor-login">' .
-					sprintf( __( 'You are Logged in as %1$s (<a href="%2$s">Logout</a>)', 'elementor-pro' ), $current_user->display_name, wp_logout_url( $logout_redirect ) ) .
+					sprintf( __( 'You are Logged in as %1$s (<a href="%2$s">Logout</a>)', 'elementor-pro' ), $current_user->display_name, wp_logout_url( $current_url ) ) .
 					'</div>';
 			}
 

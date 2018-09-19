@@ -24,11 +24,7 @@ class Post_Featured_Image extends Widget_Image {
 	}
 
 	public function get_categories() {
-		return [ 'theme-elements-single' ];
-	}
-
-	public function get_keywords() {
-		return [ 'image', 'featured', 'thumbnail' ];
+		return [ 'theme-elements' ];
 	}
 
 	protected function _register_controls() {

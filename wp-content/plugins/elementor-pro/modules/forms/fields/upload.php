@@ -7,12 +7,11 @@ use Elementor\Controls_Manager;
 use ElementorPro\Modules\Forms\Widgets\Form;
 use ElementorPro\Plugin;
 
-if ( ! defined( 'ABSPATH' ) ) {
-	exit; // Exit if accessed directly
-}
+if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
 class Upload extends Field_Base {
 
+	private $has_errors = false;
 	private $fixed_files_indices = false;
 
 	public function get_type() {
@@ -35,64 +34,79 @@ class Upload extends Field_Base {
 			return;
 		}
 
-		$field_controls = [
-			'file_sizes' => [
-				'name' => 'file_sizes',
-				'label' => __( 'Max. File Size', 'elementor-pro' ),
-				'type' => Controls_Manager::SELECT,
-				'condition' => [
-					'field_type' => $this->get_type(),
-				],
-				'options' => $this->get_upload_file_size_options(),
-				'description' => __( 'If you need to increase max upload size please contact your hosting.', 'elementor-pro' ),
-				'tab' => 'content',
-				'inner_tab' => 'form_fields_content_tab',
-				'tabs_wrapper' => 'form_fields_tabs',
+		$file_size = [
+			'name' => 'file_sizes',
+			'label' => __( 'Max. File Size', 'elementor-pro' ),
+			'type' => Controls_Manager::SELECT,
+			'condition' => [
+				'field_type' => $this->get_type(),
 			],
-			'file_types' => [
-				'name' => 'file_types',
-				'label' => __( 'Allowed File Types', 'elementor-pro' ),
-				'type' => Controls_Manager::TEXT,
-				'condition' => [
-					'field_type' => $this->get_type(),
-				],
-				'description' => __( 'Enter the allowed file types, separated by a comma (jpg, gif, pdf, etc).', 'elementor-pro' ),
-				'tab' => 'content',
-				'inner_tab' => 'form_fields_content_tab',
-				'tabs_wrapper' => 'form_fields_tabs',
-			],
-			'allow_multiple_upload' => [
-				'name' => 'allow_multiple_upload',
-				'label' => __( 'Multiple Files', 'elementor-pro' ),
-				'type' => Controls_Manager::SWITCHER,
-				'condition' => [
-					'field_type' => $this->get_type(),
-				],
-				'tab' => 'content',
-				'inner_tab' => 'form_fields_content_tab',
-				'tabs_wrapper' => 'form_fields_tabs',
-			],
-			'max_files' => [
-				'name' => 'max_files',
-				'label' => __( 'Max. Files', 'elementor-pro' ),
-				'type' => Controls_Manager::NUMBER,
-				'condition' => [
-					'field_type' => $this->get_type(),
-					'allow_multiple_upload' => 'yes',
-				],
-				'tab' => 'content',
-				'inner_tab' => 'form_fields_content_tab',
-				'tabs_wrapper' => 'form_fields_tabs',
-			],
+			'options' => $this->get_upload_file_size_options(),
+			'description' => __( 'If you need to increase max upload size please contact your hosting.', 'elementor-pro' ),
+			'tab' => 'content',
+			'inner_tab' => 'form_fields_content_tab',
+			'tabs_wrapper' => 'form_fields_tabs',
 		];
 
-		$control_data['fields'] = $this->inject_field_controls( $control_data['fields'], $field_controls );
+		$file_types = [
+			'name' => 'file_types',
+			'label' => __( 'Allowed File Types', 'elementor-pro' ),
+			'type' => Controls_Manager::TEXT,
+			'condition' => [
+				'field_type' => $this->get_type(),
+			],
+			'description' => __( 'Enter the allowed file types, separated by a comma (jpg, gif, pdf, etc).', 'elementor-pro' ),
+			'tab' => 'content',
+			'inner_tab' => 'form_fields_content_tab',
+			'tabs_wrapper' => 'form_fields_tabs',
+		];
+
+		$multiple_files = [
+			'name' => 'allow_multiple_upload',
+			'label' => __( 'Multiple Files', 'elementor-pro' ),
+			'type' => Controls_Manager::SWITCHER,
+			'condition' => [
+				'field_type' => $this->get_type(),
+			],
+			'tab' => 'content',
+			'inner_tab' => 'form_fields_content_tab',
+			'tabs_wrapper' => 'form_fields_tabs',
+		];
+
+		$multiple_files_max = [
+			'name' => 'max_files',
+			'label' => __( 'Max. Files', 'elementor-pro' ),
+			'type' => Controls_Manager::NUMBER,
+			'condition' => [
+				'field_type' => $this->get_type(),
+				'allow_multiple_upload' => 'yes',
+			],
+			'tab' => 'content',
+			'inner_tab' => 'form_fields_content_tab',
+			'tabs_wrapper' => 'form_fields_tabs',
+		];
+
+		$new_order = [];
+		foreach ( $control_data['fields'] as $index => $field ) {
+			if ( 'required' === $field['name'] ) {
+				$new_order[] = $field;
+				$new_order[] = $file_size;
+				$new_order[] = $file_types;
+				$new_order[] = $multiple_files;
+				$new_order[] = $multiple_files_max;
+			} else {
+				$new_order[] = $field;
+			}
+		}
+
+		$control_data['fields'] = $new_order;
+		unset( $new_order );
 		$widget->update_control( 'form_fields', $control_data );
 	}
 
 	/**
-	 * @param      $item
-	 * @param      $item_index
+	 * @param $item
+	 * @param $item_index
 	 * @param Form $form
 	 */
 	public function render( $item, $item_index, $form ) {
@@ -146,9 +160,8 @@ class Upload extends Field_Base {
 
 	/**
 	 * validate uploaded file size against allowed file size
-	 *
 	 * @param array $field
-	 * @param       $file
+	 * @param $file
 	 *
 	 * @return bool
 	 */
@@ -157,7 +170,6 @@ class Upload extends Field_Base {
 		// File size validation
 		$file_size_meta = $allowed_size * pow( 1024, 2 );
 		$upload_file_size = $file['size'];
-
 		return ( $upload_file_size < $file_size_meta );
 	}
 
@@ -165,7 +177,7 @@ class Upload extends Field_Base {
 	 * validates uploaded file type against allowed file types
 	 *
 	 * @param array $field
-	 * @param       $file
+	 * @param $file
 	 *
 	 * @return bool
 	 */
@@ -178,10 +190,6 @@ class Upload extends Field_Base {
 		$file_extension = pathinfo( $file['name'], PATHINFO_EXTENSION );
 		$file_types_meta = explode( ',', $field['file_types'] );
 		$file_types_meta = array_map( 'trim', $file_types_meta );
-
-		$file_types_meta = array_map( 'strtolower', $file_types_meta );
-		$file_extension = strtolower( $file_extension );
-
 		return ( in_array( $file_extension, $file_types_meta ) && ! in_array( $file_extension, $this->get_blacklist_file_ext() ) );
 	}
 
@@ -206,15 +214,13 @@ class Upload extends Field_Base {
 			 */
 			$blacklist = apply_filters( 'elementor_pro/forms/filetypes/blacklist', $blacklist );
 		}
-
 		return $blacklist;
 	}
 
 	/**
 	 * validate uploaded file field
-	 *
-	 * @param array                $field
-	 * @param Classes\Form_Record  $record
+	 * @param array $field
+	 * @param Classes\Form_Record $record
 	 * @param Classes\Ajax_Handler $ajax_handler
 	 */
 	public function validation( $field, Classes\Form_Record $record, Classes\Ajax_Handler $ajax_handler ) {
@@ -247,7 +253,6 @@ class Upload extends Field_Base {
 					intval( $field['max_files'] )
 				);
 				$ajax_handler->add_error( $id, $error_message );
-
 				return;
 			}
 		}
@@ -261,14 +266,12 @@ class Upload extends Field_Base {
 			// is the file required and missing?
 			if ( $field['required'] && UPLOAD_ERR_NO_FILE === $file['error'] ) {
 				$ajax_handler->add_error( $id, $upload_errors[ $file['error'] ] );
-
 				return;
 			}
 
 			// Has any error with upload the file?
 			if ( $file['error'] > UPLOAD_ERR_OK ) {
 				$ajax_handler->add_error( $id, $upload_errors[ $file['error'] ] );
-
 				return;
 			}
 
@@ -347,23 +350,22 @@ class Upload extends Field_Base {
 		wp_mkdir_p( $path );
 
 		//'base' => $upload_dir['basedir'] . '/elementor/forms',
-		$files = [
-			[
+		$files = array(
+			array(
 				'file' => 'index.php',
 				'content' => '<?php' . PHP_EOL . '// Silence is golden.',
-			],
-			[
+			),
+			array(
 				'file' => '.htaccess',
 				'content' => 'Options -Indexes' . PHP_EOL . '<Files *.*>' . PHP_EOL . 'Header set Content-Disposition attachment' . PHP_EOL . '</Files>',
-			],
-		];
+			),
+		);
 
 		foreach ( $files as $file ) {
 			if ( ! file_exists( trailingslashit( $path ) . $file['file'] ) ) {
-				@ file_put_contents( trailingslashit( $path ) . $file['file'], $file['content'] );
+					@ file_put_contents( trailingslashit( $path ) . $file['file'], $file['content'] );
 			}
 		}
-
 		return $path;
 	}
 
@@ -375,20 +377,17 @@ class Upload extends Field_Base {
 	private function get_upload_file_size_options() {
 		$max_file_size = wp_max_upload_size() / pow( 1024, 2 ); //MB
 
-		$sizes = [];
-
+		$sizes = array();
 		for ( $file_size = 1; $file_size <= $max_file_size; $file_size++ ) {
 			$sizes[ $file_size ] = $file_size . 'MB';
 		}
-
 		return $sizes;
 	}
 
 	/**
 	 * process file and move it to uploads directory
-	 *
-	 * @param array                $field
-	 * @param Classes\Form_Record  $record
+	 * @param array $field
+	 * @param Classes\Form_Record $record
 	 * @param Classes\Ajax_Handler $ajax_handler
 	 */
 	public function process_field( $field, Classes\Form_Record $record, Classes\Ajax_Handler $ajax_handler ) {
@@ -397,11 +396,11 @@ class Upload extends Field_Base {
 			if ( UPLOAD_ERR_NO_FILE === $file['error'] ) {
 				continue;
 			}
-			$uploads_dir = $this->get_ensure_upload_dir();
+			$uploads_dir    = $this->get_ensure_upload_dir();
 			$file_extension = pathinfo( $file['name'], PATHINFO_EXTENSION );
-			$filename = uniqid() . '.' . $file_extension;
-			$filename = wp_unique_filename( $uploads_dir, $filename );
-			$new_file = trailingslashit( $uploads_dir ) . $filename;
+			$filename       = uniqid() . '.' . $file_extension;
+			$filename       = wp_unique_filename( $uploads_dir, $filename );
+			$new_file       = trailingslashit( $uploads_dir ) . $filename;
 			if ( is_dir( $uploads_dir ) && is_writable( $uploads_dir ) ) {
 				$move_new_file = @ move_uploaded_file( $file['tmp_name'], $new_file );
 				if ( false !== $move_new_file ) {
@@ -411,7 +410,7 @@ class Upload extends Field_Base {
 					$record->add_file( $id, $index,
 						[
 							'path' => $new_file,
-							'url' => $this->get_file_url( $filename ),
+							'url'  => $this->get_file_url( $filename ),
 						]
 					);
 				} else {
@@ -427,8 +426,7 @@ class Upload extends Field_Base {
 	 * Used to set the upload filed values with
 	 * value => file url
 	 * raw_value => file path
-	 *
-	 * @param Classes\Form_Record  $record
+	 * @param Classes\Form_Record $record
 	 * @param Classes\Ajax_Handler $ajax_handler
 	 */
 	public function set_file_fields_values( Classes\Form_Record $record, Classes\Ajax_Handler $ajax_handler ) {

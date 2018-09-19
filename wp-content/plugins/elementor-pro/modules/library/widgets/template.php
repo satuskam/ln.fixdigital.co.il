@@ -6,9 +6,7 @@ use ElementorPro\Base\Base_Widget;
 use ElementorPro\Modules\Library\Module;
 use ElementorPro\Plugin;
 
-if ( ! defined( 'ABSPATH' ) ) {
-	exit; // Exit if accessed directly
-}
+if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
 class Template extends Base_Widget {
 
@@ -22,10 +20,6 @@ class Template extends Base_Widget {
 
 	public function get_icon() {
 		return 'eicon-document-file';
-	}
-
-	public function get_keywords() {
-		return [ 'elementor', 'template', 'library', 'block', 'page' ];
 	}
 
 	public function is_reload_preview_required() {
@@ -75,7 +69,7 @@ class Template extends Base_Widget {
 				'default' => '0',
 				'options' => $options,
 				'types' => $types,
-				'label_block' => 'true',
+				'label_block'  => 'true',
 			]
 		);
 
@@ -84,10 +78,6 @@ class Template extends Base_Widget {
 
 	protected function render() {
 		$template_id = $this->get_settings( 'template_id' );
-		if ( 'publish' !== get_post_status( $template_id ) ) {
-			return;
-		}
-
 		?>
 		<div class="elementor-template">
 			<?php

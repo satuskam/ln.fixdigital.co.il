@@ -7,9 +7,7 @@ use Elementor\Widget_Base;
 use ElementorPro\Modules\Woocommerce\Module;
 use ElementorPro\Modules\Woocommerce\Widgets\Products;
 
-if ( ! defined( 'ABSPATH' ) ) {
-	exit; // Exit if accessed directly
-}
+if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
 /**
  * Class Skin_Classic
@@ -70,11 +68,9 @@ class Skin_Classic extends Skin_Base {
 
 		woocommerce_product_loop_start();
 
-		while ( $query->have_posts() ) {
-			$query->the_post();
-
+		while ( $query->have_posts() ) : $query->the_post();
 			wc_get_template_part( 'content', 'product' );
-		}
+		endwhile;
 
 		woocommerce_product_loop_end();
 
