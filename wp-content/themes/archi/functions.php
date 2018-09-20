@@ -1,6 +1,6 @@
 <?php
 
-function dtbaker_wp_cloudfront(){
+function enableRichEditorBehindCloudFront(){
     add_filter('user_can_richedit','__return_true');
 }
-add_action( 'init', 'dtbaker_wp_cloudfront' , 9 );
+add_action( 'init', 'enableRichEditorBehindCloudFront' , 9 );

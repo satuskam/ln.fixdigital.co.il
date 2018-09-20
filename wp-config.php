@@ -41,10 +41,10 @@ define('BLOG_ID_CURRENT_SITE', 1);
 
 // It's need to enable ssl support for HTTPS requests to the mapped custom domains through CluoudFront
 $sslHeaders = [
+    'HTTP_CLOUDFRONT_FORWARDED_PROTO' => 'https',
     'HTTPS' => 'on',
     'HTTP_X_FORWARDED_PROTO' => 'https',
-    'HTTP_X_FORWARDED_SSL' => 'on',
-    'HTTP_CLOUDFRONT_FORWARDED_PROTO' => 'https',
+    'HTTP_X_FORWARDED_SSL' => 'on',   
 ];
 $isSecure = false;
 foreach ($sslHeaders as $header => $value) {
@@ -56,10 +56,10 @@ foreach ($sslHeaders as $header => $value) {
     }
 }
 
-
+/*
 define( 'AS3CF_AWS_ACCESS_KEY_ID',     'AKIAJT3V5GJYQC3245FQ' );
 define( 'AS3CF_AWS_SECRET_ACCESS_KEY', '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' );
-
+*/
 
 //$REQUEST_PROTOCOL = $isSecure ? 'https://' : 'http://';
 //define( 'WP_CONTENT_URL', $REQUEST_PROTOCOL.$_SERVER['HTTP_HOST'] . '/wp-content');
