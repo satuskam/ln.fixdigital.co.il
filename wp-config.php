@@ -27,6 +27,7 @@ define( 'NONCE_SALT', 'ZiBRn5D&NZ7Se0IPnD^fml%LU1$mCQfY~wnoKC4e_b%%@sq$$VLYT7#-l
 
 $table_prefix  = 'wp_';
 define('WP_DEBUG', (bool) $_SERVER['WP_DEBUG']);
+define('SCRIPT_DEBUG', (bool) $_SERVER['SCRIPT_DEBUG']);
 
 define('WP_ALLOW_MULTISITE', true);
 
