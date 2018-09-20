@@ -57,6 +57,10 @@ foreach ($sslHeaders as $header => $value) {
 }
 
 
+define( 'AS3CF_AWS_ACCESS_KEY_ID',     'AKIAJT3V5GJYQC3245FQ' );
+define( 'AS3CF_AWS_SECRET_ACCESS_KEY', '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' );
+
+
 //$REQUEST_PROTOCOL = $isSecure ? 'https://' : 'http://';
 //define( 'WP_CONTENT_URL', $REQUEST_PROTOCOL.$_SERVER['HTTP_HOST'] . '/wp-content');
 //define( 'WP_HOME', $REQUEST_PROTOCOL.$_SERVER['HTTP_HOST'] );
