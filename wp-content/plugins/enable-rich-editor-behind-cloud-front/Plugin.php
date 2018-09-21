@@ -29,4 +29,4 @@ class Plugin
     }
 }
 
-Plugin:init();
+Plugin::init();
