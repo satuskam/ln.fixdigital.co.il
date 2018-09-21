@@ -19,7 +19,7 @@ class Plugin
 {
     static public function init()
     {
-        add_action( 'init', [$this, 'enableRichEditorBehindCloudFront'] , 9 );
+        add_action( 'init', ['EnableRichEditorBehindCloudFront\Plugin', 'enableRichEditorBehindCloudFront'] , 9 );
     }
     
     
