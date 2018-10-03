@@ -2,7 +2,7 @@
 /*
 Plugin Name:  Fixdigital CRM
 Description: Services to interact with Fixdigital CRM Plugin
-Version: 2.6.1
+Version: 2.6.2
 Author: satuskam
 Author URI: atuskam@gmail.com
 */
@@ -20,7 +20,7 @@ define('WEB_GROUP_CRM_OPTIONS', 'web_group_crm_options');
 
 
 class WP_WebGroupUcoCrmIntergration {
-    private $_version = '2.6.1';
+    private $_version = '2.6.2';
     
     private $_fieldsNamesTypesMap = null;
     private $_leadsLog = null;

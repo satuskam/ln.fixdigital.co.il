@@ -141,8 +141,7 @@ class FixdigitalLeadsLog
         
         // create table
         $sql = "CREATE TABLE $this->_tableName (
-
-            `id` bigint(20) NOT NULL,
+            `id` bigint(20)  unsigned NOT NULL  AUTO_INCREMENT,
             `blog_id` bigint(20) UNSIGNED DEFAULT NULL,
             `page_id` bigint(20) UNSIGNED DEFAULT NULL,
             `channel_id` bigint(20) UNSIGNED DEFAULT NULL,
@@ -157,9 +156,7 @@ class FixdigitalLeadsLog
             `attempts` tinyint(1) UNSIGNED DEFAULT '1',
             `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
             `updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-
             PRIMARY KEY  (id)
-
         ) $charset_collate;";
 
         require_once( ABSPATH . 'wp-admin/includes/upgrade.php' );

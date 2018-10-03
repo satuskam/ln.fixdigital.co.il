@@ -2,7 +2,7 @@
 /*
 Plugin Name: API to manage multisite's blogs
 Description: API to manage multisite's blogs
-Version: 2.11.0
+Version: 2.11.2
 Author: satuskam
 Author URI: atuskam@gmail.com
 */
@@ -1048,6 +1048,15 @@ add_action( 'after_setup_theme', 'silentAuthByUserToken' );
 function _logoutAndCrearCookie()
 {
     wp_logout();
+    
+    // To avoid 500 error, return if it's one of multisites hosted on wg3 server
+    $crmOptions = get_site_option('web_group_crm_options');
+    if (is_array($crmOptions) && !empty($crmOptions['multisiteCrmId'])) {
+	// 20 - ln1 ; 18 - shop
+        if ( in_array($crmOptions['multisiteCrmId'], [20, 18]) ) {
+            return;
+        }
+    }
 
     foreach ($_COOKIE as $c_id => $c_value) {
         setcookie($c_id, NULL, -1, "/");
