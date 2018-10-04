@@ -1,0 +1,424 @@
+/*
+Theme Name: Event Planning Child
+Description: Event Planning child theme for gasparo site
+Version: 0.1.0
+Author: UCO
+Author URI: http://uco.co.il/
+Text Domain: event-planning-child
+Template: event-planning
+*/
+
+
+/**
+* YOUR CSS CODE, PUT IN assets/css/style.css
+* FOR RTL, PUT IN assets/css/rtl.css
+*/
+/*! stream - v4.0.11 - 19-11-2017 */
+
+/* Your CSS code goes here
+-------------------------------------- */
+*{
+    margin: 0;
+    padding: 0;
+    font-family: "Assistant", Sans-serif;
+}
+
+.pojo-form .form-message{
+    font-size: 1.6em;
+}
+
+#footer {
+    background: none !important;
+}
+
+#footer div a,
+#footer div a:hover {
+    color: inherit;
+}
+
+
+#footer div a:hover {
+    font-weight: bold;
+}
+
+
+
+.gallery {
+  margin: 0 auto 20px;
+}
+.gallery .gallery-item a {
+  display: block;
+}
+.gallery .gallery-item {
+  display: inline-block;
+  text-align: center;
+  vertical-align: top;
+  width: 100%;
+  padding: 5px;
+  margin: 0 !important;
+}
+.gallery.gallery-columns-2 .gallery-item {
+  max-width: 50%;
+}
+.gallery.gallery-columns-3 .gallery-item {
+  max-width: 33.33%;
+}
+.gallery.gallery-columns-4 .gallery-item {
+  max-width: 25%;
+}
+.gallery.gallery-columns-5 .gallery-item {
+  max-width: 20%;
+}
+.gallery.gallery-columns-6 .gallery-item {
+  max-width: 16.66%;
+}
+.gallery.gallery-columns-7 .gallery-item {
+  max-width: 14.28%;
+}
+.gallery.gallery-columns-8 .gallery-item {
+  max-width: 12.5%;
+}
+.gallery.gallery-columns-9 .gallery-item {
+  max-width: 11.11%;
+}
+.gallery img {
+  display: block;
+  width: 100%;
+  height: auto;
+  margin: 0 auto;
+  border: none !important;
+  -webkit-transition: 0.3s;
+  -o-transition: 0.3s;
+  transition: 0.3s;
+}
+.gallery img:hover {
+  opacity: 0.7;
+}
+.gallery .gallery-caption {
+  margin: 0;
+}
+
+/* Product */
+.single-product h1{
+  font-family: "Assistant", Sans-serif;
+  font-weight: 600;
+  font-size: 39px;
+  border-bottom: 1px dotted #afafaf;
+  padding: 20px 0 !important;
+  margin-bottom: 15px;
+}
+.single-product h2{
+  font-family: "Assistant", Sans-serif;
+  font-weight: 600;
+  font-size: 29px !important;
+  margin: 5px 0 15px;
+  }
+.single-product #primary > .container{
+	max-width: 1140px !important;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    margin-right: auto !important;
+    margin-left: auto !important;
+    position: relative;
+}
+.product_price-table {
+	background: #E7F4CE;
+  margin-top: 20px;
+}
+.product_price-table .product_price-table-header{
+	width: 100%;
+}
+.product_price-table .product_price-table-header > div{
+	width: 25%;
+	background:#b0da5d !important;	
+	}
+.product_price-table .product_price-table-col{
+	width: 25%;
+	display: inline-block;
+	
+}
+.a3dg-image-wrapper{
+  height: 300px !important;
+}
+.product_price-table > div > div{
+	width: 100%;
+	height: 62px;
+	float: right;
+	text-align: center;
+	color: #000000;
+	font-family: "Assistant", Sans-serif;
+	font-size: 20px;
+	line-height: 20px;
+	font-weight: 600;
+	vertical-align: middle;
+	position: relative;
+}
+.product_price-table > div > div{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+  border: 1px solid #fff;
+box-sizing: border-box;
+}
+.product_price-table > div > div:nth-child(even),
+.single-product .summary tr:nth-child(even){
+	background:#b0da5d;	
+}
+
+.product_price-table > div > div:nth-child(odd),
+.single-product .summary tr:nth-child(odd){
+	
+}
+.single-product #primary > .container > #content {
+    margin: 0;
+    width: 100%;
+    }
+.tabs.wc-tabs,
+.lazy-load,
+.a3dg-navbar-control,
+.related.products > h2,
+.single-product .a3-dgallery .a3dg-forward, 
+.single-product .a3-dgallery .a3dg-back{
+	display: none !important;
+}
+.single-product .a3-dgallery .a3dg-forward, 
+.single-product .a3-dgallery .a3dg-back,
+.single-product .a3-dgallery .a3dg-thumbs li a.a3dg-active{
+	border: none !important;
+}
+.single-product .a3-dgallery .a3dg-thumbs li {
+    margin: 5px !important;
+    }
+.product-form{
+	display: inline-block;
+	width: 	100%;
+  background: #000;
+  padding: 20px;
+  box-sizing: border-box;
+  margin-bottom: 50px;
+}
+div.wpcf7-validation-errors, div.wpcf7-acceptance-missing{
+  border: none !important;
+}
+div.wpcf7 .ajax-loader{
+    display: none;
+}
+.product-form h3{
+    color: #ffffff;
+    font-size: 24px;
+    font-weight: 400;
+    line-height: 1.2em;    
+    font-family: "Assistant", Sans-serif;
+    text-align: center;
+    margin: 0;
+  }
+.product-form .wpcf7{
+  margin-top: 20px;
+}
+.product-form .wpcf7-form p > span,
+.product-form .wpcf7-form > span{
+  width: 25%;
+  display: inline-block;
+  float: right;
+  position: relative;
+  padding: 0 2px;
+  box-sizing: border-box;
+}
+
+.product-form .wpcf7 input{
+  width: 100%;
+  display: inline-block;
+  text-align: right;
+  box-sizing: border-box;
+  font-family: "Assistant", Sans-serif;
+      border: 1px solid #818a91;
+      font-size: 16px;
+}
+.product-form .wpcf7-list-item-label{
+    color:#fff;
+    font-size: 16px;
+    text-align: right;
+    padding: 10px;
+    line-height: 36px;
+}
+.product-form .wpcf7 .wpcf7-submit{
+      background-color: #94bf3e;
+    color: #ffffff;
+    font-size: 16px;
+    font-weight: 600;
+    border: none;
+    line-height: 40px;
+    padding: 0 30px;    
+    font-family: "Assistant", Sans-serif;
+    -webkit-border-radius: 0;
+            border-radius: 0;
+    cursor: pointer;
+    float: left !important;
+    width: auto;
+    margin: 5px 2px;
+}
+.product-form .wpcf7 .checkbox-634{
+    width: auto;
+}
+.product-form .wpcf7 .checkbox-634 input{
+    width: auto;
+    float: right;
+    margin: 12px 0;
+}
+.product-form .wpcf7-submit:hover{
+    color:#b0da5d;
+}
+.product-form span.wpcf7-list-item{
+    margin: 0;
+}
+
+.single-product{
+  font-size:  13px;
+}
+.single-product .shop_attributes th,
+.single-product .shop_attributes td,
+.single-product .shop_attributes{
+      font-size: 20px;
+      font-weight: 600 !important;
+      text-align: right;
+      font-style:  normal !important;
+}
+.woocommerce table.shop_attributes td p {
+    padding: 14px 0;
+    }
+.woocommerce-tabs.wc-tabs-wrapper{
+  border-top: 1px dotted #afafaf;
+  display: inline-block;
+  width: 100%;
+}
+.related-product-header{
+  text-align: center;
+  width: 100%;
+  border-bottom: 1px dotted #afafaf;
+  border-top: 1px dotted #afafaf;
+  padding: 20px 0;
+  margin-bottom: 20px !important;
+}
+.woocommerce table.shop_attributes{
+  margin-bottom:  0 !important;
+}
+#tab-description{
+  padding-left: 0 !important;
+}
+#tab-description p{
+      font-size: 16px;
+  }
+#tab-additional_information{
+  padding-right: 0 !important;
+}
+#tab-description,
+#tab-additional_information{
+	display: inline-block !important;
+	width: 50%;
+	float: left;
+	box-sizing: border-box;
+}
+.woocommerce table.shop_attributes tr:nth-child(2n) td, 
+.woocommerce table.shop_attributes tr:nth-child(2n) th{
+  background: none;
+}
+.woocommerce table.shop_attributes{
+   border: 1px solid rgba(167,169,172,0.3);
+}
+.woocommerce table.shop_attributes tr:last-child th, 
+.woocommerce table.shop_attributes tr:last-child td,
+.woocommerce table.shop_attributes tr{
+  border:   none !important;
+}
+.woocommerce table.shop_attributes th,
+.woocommerce table.shop_attributes td{
+  border-bottom: 1px solid rgba(167,169,172,0.3);
+  padding: 8px;
+}
+.woocommerce table.shop_attributes th{
+  border-left: 1px solid rgba(167,169,172,0.3);
+  }
+.single-product ul.products li.product, 
+.single-product ul.products li.product{
+      border-style: solid;
+    border-width: 1px 1px 1px 1px;
+    border-color: rgba(167,169,172,0.5);
+    transition: background 0.3s, border 0.3s, border-radius 0.3s, box-shadow 0.3s;
+}
+.single-product ul.products li.product{
+    margin: 0 0 2.992em 1.2%;
+    width: 24.05%;
+    padding:  10px;
+    box-sizing: border-box;
+    min-height: 306px;
+    position: relative; 
+}
+.related.products .woocommerce-Price-amount{
+  width:  100%;
+  display: inline-block;
+  text-align: center;
+  color: #94bf3e;
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 21px;
+  
+}
+.related.products {
+  margin-bottom: 60px;
+}
+.related.products .price{
+  position: absolute;
+bottom: 10px;
+width: 100%;
+left: 0;
+}
+.related.products .woocommerce-Price-amount:before{
+    display: inline;
+    content:' החל מ - ';
+}
+.related.products .woocommerce-Price-amount:after{
+  content:'לחודש כולל מע"מ';
+  display:  inline-block;
+  color: #000000;
+    font-family: "Assistant", Sans-serif;
+    font-weight: 600;
+    font-size: 13px;
+width: 100%;
+}
+.related.products .price:after{
+  display: block;
+color: #ffffff;
+background-color: #000;
+content: 'לפרטים נוספים »';
+font-size: 16px;
+padding: 5px 10px;
+cursor: pointer;
+-webkit-transition: all .5s ease;
+transition: all .5s ease;
+margin: 5px auto 0;
+max-width: 100px;
+}
+.woocommerce ul.products li.product a img {
+
+    width: auto;
+    height: 140px;
+    display: block;
+    margin: 0 auto 1em;
+    box-shadow: none;
+    }
+.related.products .price:hover:after{
+  background-color: #94bf3e;
+  }
+.single-product ul.products li.product:last-child{
+  margin-left:   0px !important;
+  }
+.related.products .woocommerce-loop-product__title{
+    color: #000000;
+    font-family: "Assistant", Sans-serif;
+    font-weight: 600;    
+    font-size: 1.17em !important;
+    text-align: center;
+    line-height: 1.2em !important;
+}

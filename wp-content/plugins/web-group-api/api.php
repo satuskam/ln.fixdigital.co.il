@@ -2,7 +2,7 @@
 /*
 Plugin Name: API to manage multisite's blogs
 Description: API to manage multisite's blogs
-Version: 2.11.2
+Version: 2.12.2
 Author: satuskam
 Author URI: atuskam@gmail.com
 */
@@ -484,6 +484,10 @@ function getTemplateSites()
     foreach (wp_get_sites(['limit' => 9999]) as $s) {
         if (preg_match('/^templatesite/', $s['domain'])) {
             $tmplSites[] = $s;
+        } else if (preg_match('/^templatecatalog/', $s['domain'])) {
+            $tmplSites[] = $s;
+        } else if (preg_match('/^templatelands/', $s['domain'])) {
+            $tmplSites[] = $s;
         }
     }
 
@@ -502,6 +506,29 @@ function getValidTemplateSitesIds()
     return $ids;
 }
 
+
+function _getBackupSitesIds()
+{
+    $ids = [];
+    
+    $regexes = [
+        '/^backup-/',
+        '/^test-templatesite/',
+        '/^old-templatesite/',
+        '/^new-templatesite/'
+    ];
+    
+    foreach (wp_get_sites(['limit' => 9999]) as $s) {
+        foreach ($regexes as $r) {
+            if (preg_match($r, $s['domain'])) {
+                $ids[] = (int) $s['blog_id'];
+                break;
+            }
+        }
+    }
+   
+    return $ids;
+}
 
 
 function listTemplateSitesByWebGroupApi()
@@ -1467,7 +1494,24 @@ function deleteBlogByWebGroupApi()
     if (is_main_site($blogId) || in_array($blogId, getValidTemplateSitesIds())) {
         returnError(400, "You cannot remove blog with id: $blogId. You don't have required permissions to do it.");
     }
+    
+    _deleteBlog($blogId);
+    
+    // clear cache
+    exec('wp cache flush');
+    exec('wp nginx-helper purge-all');
+    
+    die( json_encode( ['status' => 'Ok'] ) );
+}
+add_action( 'wp_ajax_deleteBlog', 'deleteBlogByWebGroupApi' );
+add_action( 'wp_ajax_nopriv_deleteBlog', 'deleteBlogByWebGroupApi' );
 
+
+/*
+ *  Delete blog by ID. Deletion with custom tables and uploaded files
+ */
+function _deleteBlog($blogId)
+{
     switch_to_blog($blogId);
     
     $uploadDir = wp_upload_dir();
@@ -1490,15 +1534,7 @@ function deleteBlogByWebGroupApi()
     
     // fire standart wp-hook to remove custom blog's tables
     do_action( 'delete_blog', $blogId, true );
-    
-    // clear cache
-    exec('wp cache flush');
-    exec('wp nginx-helper purge-all');
-    
-    die( json_encode( ['status' => 'Ok'] ) );
 }
-add_action( 'wp_ajax_deleteBlog', 'deleteBlogByWebGroupApi' );
-add_action( 'wp_ajax_nopriv_deleteBlog', 'deleteBlogByWebGroupApi' );
 add_action( 'delete_blog', 'deleteCustomBlogTables', 1000, 2);
 
 
@@ -4175,3 +4211,72 @@ function deleteUsersApi()
 add_action( 'wp_ajax_deleteUsers', 'deleteUsersApi' );
 add_action( 'wp_ajax_nopriv_deleteUsers', 'deleteUsersApi' );
 
+
+function deleteBlogsApi()
+{
+    $result = [
+        'deleted' => [], // IDs which are deleted.
+        'notFound' => [], // IDs which were present in request but not founded
+        'cannotBeDeleted' => [], // templates, backups
+        'requestLimit' => 25
+    ];
+    
+    checkAuthorizationByToken();
+    
+    $blogsIds = isset( $_POST['blogs'] ) ? $_POST['blogs'] : '';
+    if (!$blogsIds) {
+        returnError(400, "Parameter 'blogs' is required");
+    }
+    
+    $limit = isset( $_GET['limit'] ) ? $_GET['limit'] : 0;
+    if ($limit !== 'all') {
+        $limit = (int) $limit;
+    }
+    if (!$limit) {
+        $limit = 25;
+    }
+    $result['requestLimit'] = $limit;
+    
+    $validTemplateSitesIds = getValidTemplateSitesIds();
+    $backupedSitesIds =  _getBackupSitesIds();
+    $sitesNotForDeletetion = array_merge($validTemplateSitesIds, $backupedSitesIds);
+       
+    $blogsIds = explode(',', $blogsIds);
+    foreach ($blogsIds as $blogId) {
+        $blogExists = false;
+        $blogId = (int) trim($blogId);
+         
+        if ($blogId) {
+            $blogData = get_blog_details( $blogId );
+
+            $blogExists = (bool) $blogData;
+        }
+        
+        if ($blogExists) {
+            if (is_main_site($blogId) || in_array($blogId, $sitesNotForDeletetion)) {
+                $result['cannotBeDeleted'][] = $blogId;
+            } else {
+                $result['deleted'][] = $blogId;
+            }
+            
+        } else {
+            $result['notFound'][] = $blogId;
+        }
+        
+        if ($limit !== 'all' && count($result['deleted']) >= $limit) break;
+    }
+    
+    foreach ($result['deleted'] as $blogId) {
+   //    _deleteBlog($blogId);
+    }
+    
+    // clear cache
+    exec('wp cache flush');
+    exec('wp nginx-helper purge-all');
+    
+    $result['status'] = 'Ok';
+   
+    die( json_encode( $result ) );
+}
+add_action( 'wp_ajax_deleteBlogs', 'deleteBlogsApi' );
+add_action( 'wp_ajax_nopriv_deleteBlogs', 'deleteBlogsApi' );
